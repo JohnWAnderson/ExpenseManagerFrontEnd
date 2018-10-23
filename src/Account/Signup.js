@@ -99,33 +99,113 @@ class Signup extends React.Component {
                 username: this.state.username.value,
                 password: this.state.password.value
             };
-            signup(signupRequestObject).then(response => {
-                if(response.available){
-                    this.signedup(signupRequestObject.username, signupRequestObject.password);
+            UsernameAvailabile(this.state.username.value).then(response =>
+                {
+                    if(response.available){
+                        EmailAvailabile(this.state.email.value).then(response =>
+                            {
+                                if(response.available){
+                                    signup(signupRequestObject).then(response => {
+                                        if(response.available){
+                                            this.signedup(signupRequestObject.username, signupRequestObject.password);
+                                            this.resetInput(e);
+                                        }
+                                    });
+                                }
+                                else{
+                                    this.setState({
+                                        email: {
+                                            value: this.state.email.value,
+                                            valid: false,
+                                            error: 'email taken'
+                                        }
+                                    })
+                                }
+                            });      
+                    }
+                    else{
+                this.setState({
+                        username: {
+                            value: this.state.username.value,
+                            valid: false,
+                            error: 'username taken'
+                        }
+                })
                 }
             });
-        }
-        else{
-            console.log("no");
-        }       
-        this.resetInput(e);
+        }   
     };
 
+    // UsernameAvailabile(UserName).then(response =>
+    //     {
+    //         if(response.available){
+    //             EmailAvailabile(email).then(response =>
+    //                 {
+    //                     if(response.available){
+    //                         signup(signupRequestObject).then(response => {
+    //                             if(response.available){
+    //                                 this.signedup(signupRequestObject.username, signupRequestObject.password);
+    //                             }
+    //                         });
+    //                     }
+    //                     else{
+    //                         this.setState({
+    //                             email: {
+    //                                 value: email,
+    //                                 valid: false,
+    //                                 error: 'taken'
+    //                             }
+    //                         })
+    //                     }
+    //                 });      
+    //         }
+    //         else{
+    //     this.setState({
+    //             username: {
+    //                 value: UserName,
+    //                 valid: false,
+    //                 error: 'taken'
+    //             }
+    //     })
+    //     }
+    // });
+
+    // EmailAvailabile(email).then(response =>
+    //     {
+    //         if(response.available){
+    //             this.setState({
+    //                 email: {
+    //                     value: email,
+    //                     valid: true,
+    //                     error: ''
+    //                 }
+    //             })
+    //         }
+    //         else{
+    //             this.setState({
+    //                 email: {
+    //                     value: email,
+    //                     valid: false,
+    //                     error: 'taken'
+    //                 }
+    //             })
+    //         }
+    //     });      
 
     signedup=(username, password)=>{
-        const signinRequestObject = {
-            usernameOrEmail: username,
-            password: password
-        };
-        signin(signinRequestObject)
-        .then(response => {
-            console.log(response);
-            // localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-            // getCurrentUser()
-            // .then(response => {
-            //     this.props.dispatch(addUser({currentUser: response, isAuthenticated: true}))
-            // })
-        });
+        // const signinRequestObject = {
+        //     usernameOrEmail: username,
+        //     password: password
+        // };
+        // signin(signinRequestObject)
+        // .then(response => {
+        //     console.log(response);
+        //     // localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+        //     // getCurrentUser()
+        //     // .then(response => {
+        //     //     this.props.dispatch(addUser({currentUser: response, isAuthenticated: true}))
+        //     // })
+        // });
     }
 
     resetInput = (e) =>{
@@ -221,9 +301,6 @@ class Signup extends React.Component {
         UserNameChange = (e) =>{
             const UserName = e.target.value
             if(UserName.length >= 3 && UserName.length <= 20){
-                UsernameAvailabile(UserName).then(response =>
-                    {
-                        if(response.available){
                             this.setState({
                                 username: {
                                     value: UserName,
@@ -231,17 +308,6 @@ class Signup extends React.Component {
                                     error: ''
                                 }
                             })
-                        }
-                        else{
-                    this.setState({
-                            username: {
-                                value: UserName,
-                                valid: false,
-                                error: 'taken'
-                            }
-                    })
-                    }
-                });
             }
             else if(UserName.length === 0){
                 this.setState({
@@ -276,9 +342,6 @@ class Signup extends React.Component {
             }
             else if(this.validateEmail(email)){
                 if(email.length <= 50){
-                    EmailAvailabile(email).then(response =>
-                        {
-                            if(response.available){
                                 this.setState({
                                     email: {
                                         value: email,
@@ -286,17 +349,6 @@ class Signup extends React.Component {
                                         error: ''
                                     }
                                 })
-                            }
-                            else{
-                                this.setState({
-                                    email: {
-                                        value: email,
-                                        valid: false,
-                                        error: 'taken'
-                                    }
-                                })
-                            }
-                        });      
             }
             else{
                 this.setState({

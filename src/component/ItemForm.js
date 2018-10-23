@@ -56,42 +56,41 @@ class ItemForm extends React.Component{
     onSubmit= (e) => {
         e.preventDefault();         
         if(this.state.name.valid || this.state.cost.valid || !!this.state.description.value){
-            this.props.onSubmit ({
-                "name":  this.state.name.value,
-                "cost": this.state.cost.value*100,
-                "description":this.state.description.value,
-                "userName": this.props.User.username,
-                "duedate": this.state.duedate.format("YYYY-MM-DD"),
-                "recurring": this.state.recurring,
-                "recurringsize": this.state.recurringsize,
-                "enddate": this.state.enddate,
-                "endrecurring": (this.state.endrecurring === null)? null :this.state.endrecurring.format("YYYY-MM-DD")
-            });
+            TaskNameAvailability(this.state.name.value).then(response =>
+                {                  
+                    if(response.available){
+                        this.props.onSubmit ({
+                            "name":  this.state.name.value,
+                            "cost": this.state.cost.value*100,
+                            "description":this.state.description.value,
+                            "userName": this.props.User.username,
+                            "duedate": this.state.duedate.format("YYYY-MM-DD"),
+                            "recurring": this.state.recurring,
+                            "recurringsize": this.state.recurringsize,
+                            "enddate": this.state.enddate,
+                            "endrecurring": (this.state.endrecurring === null)? null :this.state.endrecurring.format("YYYY-MM-DD")
+                        });
+                    }
+                    else{
+                        this.setState(() => ({name:{
+                            value: this.state.name.value,
+                            valid: false,
+                            error:'You already have a Task with this name'
+                        }}));
+                    }
+        
+                });
         }
     }
 
     NameChange = (e) =>{
         const name = e.target.value;
-        if(name.length >2){
-            TaskNameAvailability(name).then(response =>
-                {                  
-                    if(response.available){
-                        this.setState(() => ({name:{
-                            value: name,
-                            valid: true,
-                            error: ''
-                        }}));
-                    }
-                    else{
-                        this.setState(() => ({name:{
-                            value: name,
-                            valid: false,
-                            error:'You already have a Task with this name'
-                        }}));
-                    }
-
-                });
-
+        if(name.length >2){             
+                this.setState(() => ({name:{
+                    value: name,
+                    valid: true,
+                    error:''
+                }}));
         }
         else{
             this.setState(() => ({name:{

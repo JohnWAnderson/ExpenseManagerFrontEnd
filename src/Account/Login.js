@@ -29,7 +29,7 @@ const Login =(props)=> {
     
     return(
         <div>
-            <form onSubmit={(e)=>{
+            <form id="login-form" onSubmit={(e)=>{
                 e.preventDefault();
                 const signupRequestObject = {
                     usernameOrEmail: e.target.elements.username.value,
@@ -40,6 +40,7 @@ const Login =(props)=> {
                     localStorage.setItem(ACCESS_TOKEN, response.accessToken);
                     props.handleLogOn();
                 });
+                document.getElementById("login-form").reset();
             }} >
                 <table>
                 <tbody>
