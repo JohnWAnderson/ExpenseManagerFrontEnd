@@ -1,7 +1,8 @@
 import React from 'react';
-import { signup, signin , UsernameAvailabile, EmailAvailabile} from '../ApiMethods/Account';
+import { signup, signin , UsernameAvailabile, EmailAvailabile, ACCESS_TOKEN, getCurrentUser} from '../ApiMethods/Account';
+import { addUser} from '../Redux/Actions/Users';
 import styled from 'styled-components';
-
+import { connect } from 'react-redux';
 const SingUpH1 = styled.h1`
     text-align: left ;
     padding-bottom: 25px;
@@ -136,83 +137,22 @@ class Signup extends React.Component {
         }   
     };
 
-    // UsernameAvailabile(UserName).then(response =>
-    //     {
-    //         if(response.available){
-    //             EmailAvailabile(email).then(response =>
-    //                 {
-    //                     if(response.available){
-    //                         signup(signupRequestObject).then(response => {
-    //                             if(response.available){
-    //                                 this.signedup(signupRequestObject.username, signupRequestObject.password);
-    //                             }
-    //                         });
-    //                     }
-    //                     else{
-    //                         this.setState({
-    //                             email: {
-    //                                 value: email,
-    //                                 valid: false,
-    //                                 error: 'taken'
-    //                             }
-    //                         })
-    //                     }
-    //                 });      
-    //         }
-    //         else{
-    //     this.setState({
-    //             username: {
-    //                 value: UserName,
-    //                 valid: false,
-    //                 error: 'taken'
-    //             }
-    //     })
-    //     }
-    // });
-
-    // EmailAvailabile(email).then(response =>
-    //     {
-    //         if(response.available){
-    //             this.setState({
-    //                 email: {
-    //                     value: email,
-    //                     valid: true,
-    //                     error: ''
-    //                 }
-    //             })
-    //         }
-    //         else{
-    //             this.setState({
-    //                 email: {
-    //                     value: email,
-    //                     valid: false,
-    //                     error: 'taken'
-    //                 }
-    //             })
-    //         }
-    //     });      
-
     signedup=(username, password)=>{
-        // const signinRequestObject = {
-        //     usernameOrEmail: username,
-        //     password: password
-        // };
-        // signin(signinRequestObject)
-        // .then(response => {
-        //     console.log(response);
-        //     // localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-        //     // getCurrentUser()
-        //     // .then(response => {
-        //     //     this.props.dispatch(addUser({currentUser: response, isAuthenticated: true}))
-        //     // })
-        // });
+        const signinRequestObject = {
+            usernameOrEmail: username,
+            password: password
+        };
+        signin(signinRequestObject)
+        .then(response => {
+            localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+            getCurrentUser()
+            .then(response => {
+                this.props.dispatch(addUser({currentUser: response, isAuthenticated: true}))
+            })
+        });
     }
 
     resetInput = (e) =>{
-        e.target.elements.name.value = '';
-        e.target.elements.email.value = '';
-        e.target.elements.username.value = '';
-        e.target.elements.password.value = '';
         this.setState({name: {
             value: '',
             valid: false,
@@ -411,4 +351,10 @@ class Signup extends React.Component {
 
 }
 
-export default Signup;
+const MapUserInfo=(state)=>{
+    return{
+        User: state
+    }
+}
+
+export default connect(MapUserInfo)(Signup);
