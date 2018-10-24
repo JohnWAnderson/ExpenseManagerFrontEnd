@@ -86,8 +86,8 @@ class Login extends React.Component {
                         <LoginLabelTd><label >Password</label></LoginLabelTd>
                     </tr>
                     <tr>
-                        <td><LoginInput failed={this.state.failed} type = "text" name = "username" onChange = {this.UserNameChange} required/></td>
-                        <td><LoginInput failed={this.state.failed} type = "password" name = "password" onChange = {this.PasswordChange} required/></td>
+                        <td><LoginInput failed={this.state.failed} disabled={this.state.clicked} type = "text" name = "username" onChange = {this.UserNameChange} required/></td>
+                        <td><LoginInput failed={this.state.failed} disabled={this.state.clicked} type = "password" name = "password" onChange = {this.PasswordChange} required/></td>
                         <td><LoginButton type="submit" value="Submit" clicked={this.state.clicked} disabled={this.state.clicked} className= "LogButton" >Login Submit</LoginButton></td>
                     </tr>
                 </tbody>

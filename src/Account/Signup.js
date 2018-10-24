@@ -351,7 +351,15 @@ class Signup extends React.Component {
     render= () =>(
         <MainSigninDiv>
         <MaSigninInfoDiv>
-        manage your money now
+        prototype information:
+        <br/>
+        <br/>
+        -First start might take a some time, <br/>
+        heroku api might have to walk up
+        <br/>
+        <br/>
+        -CSS and UI currently being worked on,<br/>
+        this is prototype build
         </MaSigninInfoDiv>
         <SignupDiv>
             <SingUpH1>Sign Up</SingUpH1>
@@ -360,19 +368,19 @@ class Signup extends React.Component {
                     <table>
                     <tbody>
                     <tr>
-                        <td><SignUpInput type = "text" name = "Name"  id="name" placeholder="Name" onChange = {this.NameChange} required /> </td>
+                        <td><SignUpInput disabled={this.state.clicked} type = "text" name = "Name"  id="name" placeholder="Name" onChange = {this.NameChange} required /> </td>
                         <SignupTdError>{!this.state.name.valid && this.state.name.error}</SignupTdError>
                     </tr>
                     <tr>
-                        <td><SignUpInput failed={this.state.username.failed} type = "text" name = "Username" id="username" placeholder="Username" onChange = {this.UserNameChange} required /></td>
+                        <td><SignUpInput disabled={this.state.clicked} failed={this.state.username.failed} type = "text" name = "Username" id="username" placeholder="Username" onChange = {this.UserNameChange} required /></td>
                         <SignupTdError>{!this.state.username.valid && this.state.username.error}</SignupTdError>
                     </tr>
                     <tr>
-                        <td><SignUpInput failed={this.state.email.failed} type = "email" name = "Email" id= "email" placeholder="Email"  onChange = {this.EmailChange} required/></td>
+                        <td><SignUpInput disabled={this.state.clicked} failed={this.state.email.failed} type = "email" name = "Email" id= "email" placeholder="Email"  onChange = {this.EmailChange} required/></td>
                         <SignupTdError>{!this.state.email.valid && this.state.email.error}</SignupTdError>
                     </tr>
                     <tr>
-                        <td><SignUpInput type = "password" name = "Password" id="password" placeholder="Password" onChange = {this.PasswordChange} required/></td>
+                        <td><SignUpInput disabled={this.state.clicked} type = "password" name = "Password" id="password" placeholder="Password" onChange = {this.PasswordChange} required/></td>
                         <SignupTdError>{!this.state.password.valid && this.state.password.error}</SignupTdError>
                     </tr>
                     <tr>

@@ -30,9 +30,8 @@ class App extends React.Component {
     this.loadCurrentUser=this.loadCurrentUser.bind(this);
     this.handleLogOut=this.handleLogOut.bind(this);
     this.loadItems=this.loadItems.bind(this);
-    
   }
-  
+
 handleLogOn=()=>{
   this.loadCurrentUser();
   this.loadItems();
