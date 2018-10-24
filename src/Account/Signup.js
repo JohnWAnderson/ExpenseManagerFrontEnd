@@ -62,6 +62,21 @@ const MaSigninInfoDiv = styled.div`
     text-align: left ;
     position: relative;
 `   
+const LoginButton = styled.button`
+background-color: green;
+border: none;
+padding: 2px 2px;
+margin-left: 3px;
+font-size: 16px;
+border-radius: 3px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+
+${({ clicked }) => clicked && `
+background-color: lime;
+`}`
+
 
 class Signup extends React.Component {
     constructor(props){
@@ -86,18 +101,26 @@ class Signup extends React.Component {
                 value: '',
                 valid: false,
                 error: ''
-            }
-
+            },
+            clicked: false
         }
         this.validateEmail = this.validateEmail.bind(this);
         this.resetInput = this.resetInput.bind(this);
         this.signedup = this.signedup.bind(this);
+        this.ButtonClicked = this.ButtonClicked.bind(this);
     }  
 
+    ButtonClicked = (boolean) =>{
+        this.setState({ clicked: boolean }) // true
+        if(boolean)
+            document.body.style.cursor='wait';
+        else   
+            document.body.style.cursor='default';
+    }
 
     onSubmit = (e) =>{
         e.preventDefault();
-        
+        this.ButtonClicked(true);
         if(this.state.username.valid && this.state.name.valid && this.state.email.valid && this.state.password.valid){
             const signupRequestObject = {
                 name: this.state.name.value,
@@ -119,6 +142,7 @@ class Signup extends React.Component {
                                     });
                                 }
                                 else{
+                                    this.ButtonClicked(false);
                                     this.setState({
                                         email: {
                                             value: this.state.email.value,
@@ -131,6 +155,7 @@ class Signup extends React.Component {
                             });      
                     }
                     else{
+                        this.ButtonClicked(false);         
                 this.setState({
                         username: {
                             value: this.state.username.value,
@@ -141,7 +166,10 @@ class Signup extends React.Component {
                 })
                 }
             });
-        }   
+        }
+        else{
+            this.ButtonClicked(false);
+        }
     };
 
     signedup=(username, password)=>{
@@ -348,7 +376,7 @@ class Signup extends React.Component {
                         <SignupTdError>{!this.state.password.valid && this.state.password.error}</SignupTdError>
                     </tr>
                     <tr>
-                        <SignupTdLabel><button className= "button">Signup</button></SignupTdLabel>
+                        <SignupTdLabel><LoginButton type="submit" value="Submit" clicked={this.state.clicked} disabled={this.state.clicked} className= "button">Signup</LoginButton></SignupTdLabel>
                     </tr>
                     </tbody>
                     </table>

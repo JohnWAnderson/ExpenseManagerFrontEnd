@@ -19,19 +19,11 @@ const SignUpInput = styled.input`
 `
 
 const SignupTdError = styled.td`
-    text-align: right ;
+    text-align: center ;
     width: auto; height: auto;
     color: red;
+    min-width: 115px;
 `
-const SignupDiv = styled.div`
-    display: inline-block;
-    vertical-align: top;
-    width: 40%;
-    align: right;
-    text-align: right ;
-    position: relative;
-    height: 100%;
-`   
 
 const ItemFormDiv = styled.div`
     text-align: center;
@@ -44,6 +36,22 @@ const ItemFormForm = styled.form`
     margin: auto;
     position: relative;
 `
+
+const ItemFormButton = styled.button`
+background-color: DodgerBlue;
+border: none;
+padding: 2px 2px;
+margin-top: 10px;
+font-size: 16px;
+border-radius: 3px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 25px;
+
+${({ clicked }) => clicked && `
+background-color: DeepSkyBlue;
+`}`
 
 const ItemFormSelect = styled.select`
 `
@@ -75,17 +83,29 @@ class ItemForm extends React.Component{
             CalFocuse: false,
             RecFocuse: false,
             edit: props.item? true :false,
-            old: props.item? props.item.name :''
+            old: props.item? props.item.name :'',
+            clicked: false
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.HandlePropSubmit = this.HandlePropSubmit.bind(this);
+        this.ButtonClicked = this.ButtonClicked.bind(this);
+    }
+
+    ButtonClicked = (boolean) =>{
+        this.setState({ clicked: boolean }) // true
+        if(boolean)
+            document.body.style.cursor='wait';
+        else   
+            document.body.style.cursor='default';
     }
 
     onSubmit= (e) => {
-        e.preventDefault();         
+        e.preventDefault();
+        this.ButtonClicked(true);         
         if(this.state.name.valid && this.state.cost.valid){
             if(this.state.old === this.state.name.value){
                 this.HandlePropSubmit();
+                this.ButtonClicked(false);
             }
             else{
             TaskNameAvailability(this.state.name.value).then(response =>
@@ -100,13 +120,15 @@ class ItemForm extends React.Component{
                             error:'Item name exists'
                         }}));
                     }
+                    this.ButtonClicked(false);
                 });
             }    
         }
+        else
+            this.ButtonClicked(false);
     }
 
     HandlePropSubmit= ()=>{
-        console.log(this.props);
         this.props.onSubmit ({
             "name":  this.state.name.value,
             "cost": this.state.cost.value*100,
@@ -299,7 +321,7 @@ class ItemForm extends React.Component{
                     </tr>}
                 </tbody>
                 </table>
-                <button className= "button">Submit</button>
+                <ItemFormButton type="submit" value="Submit" clicked={this.state.clicked} disabled={this.state.clicked} className= "button">Submit</ItemFormButton>
             </ItemFormForm>
         </ItemFormDiv>
     );
