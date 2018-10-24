@@ -6,9 +6,14 @@ import styled from 'styled-components';
 const LoginInput = styled.input`
 margin: 2px 0;
 display: inline-block;
-border: 1px solid #ccc;
+border: 2px solid #ccc;
 border-radius: 5px;
 box-sizing: border-box;
+
+${({ failed }) => failed && `
+border-color: red;
+`}
+
 `
 const LoginLabelTd = styled.td`
 text-align: center ;
@@ -24,12 +29,19 @@ text-decoration: none;
 display: inline-block;
 `
 
-const Login =(props)=> {
-    console.log(props);
+
+class Login extends React.Component {
+        constructor(props){
+            super(props);
+            this.state = {
+                failed: false
+            }
+        }
     
-    return(
+    render= () =>(
         <div>
             <form id="login-form" onSubmit={(e)=>{
+                document.body.classList.add('busy-cursor');
                 e.preventDefault();
                 const signupRequestObject = {
                     usernameOrEmail: e.target.elements.username.value,
@@ -37,8 +49,14 @@ const Login =(props)=> {
                 };
                 signin(signupRequestObject)
                 .then(response => {
-                    localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-                    props.handleLogOn();
+                    if(response.tokenType === "Bearer "){
+                        this.setState({ failed: false });
+                        localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+                        this.props.handleLogOn();
+                    }
+                    else{   
+                        this.setState({ failed: true })
+                    }
                 });
                 document.getElementById("login-form").reset();
             }} >
@@ -49,8 +67,8 @@ const Login =(props)=> {
                         <LoginLabelTd><label >Password</label></LoginLabelTd>
                     </tr>
                     <tr>
-                        <td><LoginInput type = "text" name = "username" onChange = {this.UserNameChange} required/></td>
-                        <td><LoginInput type = "password" name = "password" onChange = {this.PasswordChange} required/></td>
+                        <td><LoginInput failed={this.state.failed} type = "text" name = "username" onChange = {this.UserNameChange} required/></td>
+                        <td><LoginInput failed={this.state.failed} type = "password" name = "password" onChange = {this.PasswordChange} required/></td>
                         <td><LoginButton className= "button">Login Submit</LoginButton></td>
                     </tr>
                 </tbody>

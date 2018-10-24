@@ -4,19 +4,17 @@ import { CreateItem } from '../ApiMethods/Account';
 import { connect } from 'react-redux';
 import { addItem } from '../Redux/Actions/Items';
 import styled from 'styled-components';
-
 const MainDiv = styled.div`
     position:relative;
     min-height: 92%;
     height: auto;
 `
 const PageFormDiv = styled.div`
-    padding: 0;
     text-align: center;
+    align:center;
     position: relative;
-    border-bottom: none;
     width: 70%;
-    margin auto;
+    margin: auto;
 `
 
 const PageFormH1 = styled.h1`
@@ -26,15 +24,12 @@ const PageFormH1 = styled.h1`
 `
 
 const AddPage = (props) =>{
-    console.log(props);
     return(
     <MainDiv>
         <PageFormDiv>
         <PageFormH1>Add Item</PageFormH1>
         <ItemForm
             onSubmit={(item) => {
-                // props.dispatch(addItem(item))
-                // props.history.push('/') 
                 CreateItem(item).then(response => {
                     if(response.available){
                         props.dispatch(addItem(item))

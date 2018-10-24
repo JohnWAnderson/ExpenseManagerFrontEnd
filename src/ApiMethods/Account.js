@@ -1,3 +1,4 @@
+//export const API_BASE_URL = 'http://localhost:8080/api';
 export const API_BASE_URL = 'https://jwaexpensemanagerserver.herokuapp.com/api';
 export const ACCESS_TOKEN = 'accessToken';
 export const REDUX_TOKEN = 'reduxState';
@@ -17,7 +18,7 @@ export const request = (options) => {
     .then(response => 
         response.json().then(json => {
             if(!response.ok) {
-                return Promise.reject(json);
+                return json;
             }
             return json;
         })

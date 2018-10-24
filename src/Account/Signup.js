@@ -17,6 +17,11 @@ const SignUpInput = styled.input`
     box-sizing: border-box;
     height: 30px;
     width: 250px;
+
+    ${({ failed }) => failed && `
+    border-color: red;
+    `}
+
 `
 const SignupTdLabel = styled.td`
     text-align: left ;
@@ -118,7 +123,8 @@ class Signup extends React.Component {
                                         email: {
                                             value: this.state.email.value,
                                             valid: false,
-                                            error: 'email taken'
+                                            error: 'email taken',
+                                            failed: true
                                         }
                                     })
                                 }
@@ -129,7 +135,8 @@ class Signup extends React.Component {
                         username: {
                             value: this.state.username.value,
                             valid: false,
-                            error: 'username taken'
+                            error: 'username taken',
+                            failed: true
                         }
                 })
                 }
@@ -161,12 +168,14 @@ class Signup extends React.Component {
         username: {
             value: '',
             valid: false,
-            error: ''
+            error: '',
+            failed: false
         },
         email: {
             value: '',
             valid: false,
-            error: ''
+            error: '',
+            failed: false
         },
         password: {
             value: '',
@@ -327,11 +336,11 @@ class Signup extends React.Component {
                         <SignupTdError>{!this.state.name.valid && this.state.name.error}</SignupTdError>
                     </tr>
                     <tr>
-                        <td><SignUpInput type = "text" name = "Username" id="username" placeholder="Username" onChange = {this.UserNameChange} required /></td>
+                        <td><SignUpInput failed={this.state.username.failed} type = "text" name = "Username" id="username" placeholder="Username" onChange = {this.UserNameChange} required /></td>
                         <SignupTdError>{!this.state.username.valid && this.state.username.error}</SignupTdError>
                     </tr>
                     <tr>
-                        <td><SignUpInput type = "email" name = "Email" id= "email" placeholder="Email"  onChange = {this.EmailChange} required/></td>
+                        <td><SignUpInput failed={this.state.email.failed} type = "email" name = "Email" id= "email" placeholder="Email"  onChange = {this.EmailChange} required/></td>
                         <SignupTdError>{!this.state.email.valid && this.state.email.error}</SignupTdError>
                     </tr>
                     <tr>

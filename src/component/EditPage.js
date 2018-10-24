@@ -12,12 +12,21 @@ const MainDiv = styled.div`
     min-height: 92%;
     height: auto;
 `
+const PageFormH1 = styled.h1`
+    text-align: center ;
+    padding-bottom: 10px;
+    padding-left: 2px;
+`
+const RemoveButton = styled.button`
+    text-align: center ;
+    margin-bottom: 25px;
+    padding-left: 2px;
+`
 
 const PageFormDiv = styled.div`
     padding: 0;
     text-align: center;
     position: relative;
-    border-bottom: none;
     width: 70%;
     margin auto;
 `
@@ -29,7 +38,8 @@ const EditPage = (props) =>{
         return(
             <MainDiv>
             <PageFormDiv>
-            <button onClick={()=>{
+            <PageFormH1>Edit Item</PageFormH1>
+            <RemoveButton onClick={()=>{
                 const newItem = ({...item, userName: props.User.currentUser.username})
                 DeleteItem(newItem).then(response => {        
                     if(response.available){
@@ -37,7 +47,7 @@ const EditPage = (props) =>{
                         props.history.push('/')  
                     }
                 });
-            }}>Remove</button>
+            }}>Remove</RemoveButton>
             <ItemForm item={item}        
                     onSubmit={(item) => {
                         const newItem=({...item,oldName: holder})
