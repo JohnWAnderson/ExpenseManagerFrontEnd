@@ -20,18 +20,23 @@ const HeaderH1 = styled.h1`
     position: reletive;
 `
 
+const HeaderDiv = styled.div`
+    font-size: 25px;
+    position: reletive;
+`
+
 const getVisableItemNumber = (props) =>{
     return(
-        <div>
+        <HeaderDiv>
             <div>
                 {props.Items.length > 0 ? 
-                <p>Page contains {props.Items.length} which totals to ${props.Sum/100}</p>:
+                <p>Page contains {props.Items.length} which totals to: ${props.Sum/100}</p>:
                 <p>Page contains no items</p>}
             </div>
             <HeaderH1>
                 <HeaderLink to="/add" activeclassname="is-active" exact="true" > Add Item </HeaderLink> 
             </HeaderH1>
-        </div>
+        </HeaderDiv>
     );
 }
 

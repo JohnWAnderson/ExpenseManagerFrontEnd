@@ -55,7 +55,6 @@ handleLogOut=()=>{
 loadItems = () =>{
   GetItems().then(response => {     
       for (const item of response.content) {
-        console.log(item);
         const newItem = {...item, times: TimesItemChange(item, this.props.User.filter.startDate, this.props.User.filter.endDate)}
         this.props.dispatch(addItem(newItem))
       }
@@ -69,8 +68,8 @@ loadItems = () =>{
             <Header handleLogOut= {this.handleLogOut} handleLogOn={this.handleLogOn}/>
             <Switch>
                 <Route path="/" component = {DatePicker} exact={true}/>
-                <PrivateRoute path="/edit/:id" component= {EditPage} isAuthenticated={this.props.User.user.isAuthenticated}/>
-                <PrivateRoute path="/add" component={AddPage} isAuthenticated={this.props.User.user.isAuthenticated}/> 
+                <PrivateRoute path="/edit/:id" component= {EditPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/>
+                <PrivateRoute path="/add" component={AddPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/> 
                 <Route component= {NotFound}/>
             </Switch>
         </MainApp>

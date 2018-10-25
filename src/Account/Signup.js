@@ -4,11 +4,32 @@ import {LoadingChange} from '../Redux/Actions/Loading';
 import { addUser} from '../Redux/Actions/Users';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+
 const SingUpH1 = styled.h1`
     text-align: left ;
     padding-bottom: 25px;
     padding-left: 2px;
 `
+
+const InformationH1 = styled.h1`
+    text-align: left ;
+    padding-bottom: 25px;
+    padding-left: 2px;
+    font-size: 16px;
+`
+
+const PrototypeH1 = styled.h1`
+    text-align: left ;
+    padding-bottom: 20px;
+    padding-left: 2px;
+`
+const InformationBottomDiv = styled.div`
+    text-align: left ;
+    position: absolute; 
+    bottom: 0;
+    border: 1px solid black;
+`
+
 const SignUpInput = styled.input`
     margin-bottom: 10px;
     padding: 2px;
@@ -25,6 +46,7 @@ const SignUpInput = styled.input`
 
 `
 const SignupTdLabel = styled.td`
+    position: relative;
     text-align: left ;
 `
 const SignupForm = styled.form`
@@ -52,6 +74,7 @@ const SignupDiv = styled.div`
 const MainSigninDiv = styled.div`
     position: relative;
     display: block;
+    height: 100%;
 `   
 
 const MaSigninInfoDiv = styled.div`
@@ -61,22 +84,22 @@ const MaSigninInfoDiv = styled.div`
     width: 60%;
     height: 100%;
     text-align: left ;
-    position: relative;
+    position=relative;
 `   
 const LoginButton = styled.button`
-background-color: green;
-border: none;
-padding: 2px 2px;
-margin-left: 3px;
-font-size: 16px;
-border-radius: 3px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
+    background-color: green;
+    border: none;
+    padding: 2px 2px;
+    margin-left: 3px;
+    font-size: 16px;
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
 
-${({ clicked }) => clicked && `
-background-color: lime;
-`}`
+    ${({ clicked }) => clicked && `
+    background-color: lime;
+    `}`
 
 
 class Signup extends React.Component {
@@ -384,15 +407,15 @@ class Signup extends React.Component {
     render= () =>(
         <MainSigninDiv>
         <MaSigninInfoDiv>
-        prototype information:
-        <br/>
-        <br/>
-        -First start might take a some time, <br/>
-        heroku api might have to walk up
-        <br/>
-        <br/>
-        -CSS and UI currently being worked on,<br/>
-        this is prototype build
+        <SingUpH1>Track your spending habits now</SingUpH1>
+        <InformationH1>-Track Expenses with single payment or with recurring costs</InformationH1>
+        <InformationH1>-Observe your spending habits relative to a time series</InformationH1>
+        <InformationBottomDiv>
+        <PrototypeH1>prototype information:</PrototypeH1>
+        <p>-First start might take a some time, heroku api might have to wake up</p>
+        <p>-CSS and UI currently being worked on, this is prototype build</p>
+        <p>-Other components currently under built, only time series active</p>
+        </InformationBottomDiv>
         </MaSigninInfoDiv>
         <SignupDiv>
             <SingUpH1>Sign Up</SingUpH1>
