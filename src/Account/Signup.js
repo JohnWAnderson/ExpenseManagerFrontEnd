@@ -136,6 +136,9 @@ class Signup extends React.Component {
                                             this.signedup(signupRequestObject.username, signupRequestObject.password);
                                             this.resetInput(e);
                                         }
+                                        else{
+                                            this.props.dispatch(LoadingChange({clicked: false}));
+                                        }
                                     });
                                 }
                                 else{
@@ -150,9 +153,6 @@ class Signup extends React.Component {
                                     })
                                 }
                             });      
-                    }
-                    else if(response.failed){
-                        console.log("failed");
                     }
                     else{
                         this.props.dispatch(LoadingChange({clicked: false}));       
@@ -182,6 +182,7 @@ class Signup extends React.Component {
             localStorage.setItem(ACCESS_TOKEN, response.accessToken);
             getCurrentUser()
             .then(response => {
+                this.props.dispatch(LoadingChange({clicked: false}));
                 this.props.dispatch(addUser({currentUser: response, isAuthenticated: true}))
             })
         });
@@ -415,8 +416,10 @@ class Signup extends React.Component {
                         <td><SignUpInput disabled={this.props.Loading.clicked} type = "password" name = "Password" id="password" placeholder="Password" onChange = {this.PasswordChange} required/></td>
                         <SignupTdError>{!this.state.password.valid && this.state.password.error}</SignupTdError>
                     </tr>
+                    <tr>
                         <td><SignUpInput disabled={this.props.Loading.clicked} type = "password" name = "rePassword" id="rePassword" placeholder="Re-Password" onChange = {this.RePasswordChange} required/></td>
                         <SignupTdError>{!this.state.rePassword.valid && this.state.rePassword.error}</SignupTdError>
+                    </tr>
                     <tr>
                         <SignupTdLabel><LoginButton type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "button">Signup</LoginButton></SignupTdLabel>
                     </tr>

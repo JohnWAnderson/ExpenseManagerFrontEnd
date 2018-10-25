@@ -45,8 +45,6 @@ class Login extends React.Component {
 
     render= () =>(
         <div>
-            {console.log(this.props)
-            }
             <form id="login-form" onSubmit={(e)=>{
                 this.props.dispatch(LoadingChange({clicked: true}));
                 document.body.classList.add('busy-cursor');
@@ -56,23 +54,16 @@ class Login extends React.Component {
                     password: e.target.elements.password.value
                 }; 
                 signin(signupRequestObject)
-                .then(response => { 
-                    console.log(response);
-                                   
+                .then(response => {              
+                    this.props.dispatch(LoadingChange({clicked: false}));
                     if(response.tokenType === "Bearer "){
-                        this.props.dispatch(LoadingChange({clicked: false}));
                         localStorage.setItem(ACCESS_TOKEN, response.accessToken);
                         this.props.handleLogOn();
-                    }
-                    else if(response.failed){
-                        console.log("failed");
-                        
                     }
                     else{   
                         this.setState({ failed: true })
                         document.getElementById("login-form").reset();
                     }
-                    this.props.dispatch(LoadingChange({clicked: false}));
                 });
             }} >
                 <table>
