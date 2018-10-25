@@ -14,7 +14,7 @@ import { resetFilter } from './Redux/Actions/Filter';
 import DatePicker from './component/DatePicker';
 import {TimesItemChange} from './Redux/TimesChange';
 import styled from 'styled-components';
-import {LoadingChange, ServerChange} from './Redux/Actions/Loading';
+import {LoadingChange} from './Redux/Actions/Loading';
 const MainApp = styled.div`
 padding: 0;
 height: 100%;
@@ -31,7 +31,6 @@ class App extends React.Component {
     this.handleLogOut=this.handleLogOut.bind(this);
     this.loadItems=this.loadItems.bind(this);
     this.props.dispatch(LoadingChange({clicked: false}));
-    this.props.dispatch(ServerChange({serverFail: false}));
   }
 
 handleLogOn=()=>{

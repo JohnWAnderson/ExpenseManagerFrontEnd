@@ -1,6 +1,6 @@
 import React from 'react';
 import { signup, signin , UsernameAvailabile, EmailAvailabile, ACCESS_TOKEN, getCurrentUser} from '../ApiMethods/Account';
-import {LoadingChange, ServerChange} from '../Redux/Actions/Loading';
+import {LoadingChange} from '../Redux/Actions/Loading';
 import { addUser} from '../Redux/Actions/Users';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -138,10 +138,6 @@ class Signup extends React.Component {
                                         }
                                     });
                                 }
-                                else if(response.failed){
-                                    this.props.dispatch(ServerChange({serverFail: true}));
-                                    this.props.dispatch(LoadingChange({clicked: false}));
-                                }
                                 else{
                                     this.props.dispatch(LoadingChange({clicked: false}));
                                     this.setState({
@@ -156,8 +152,7 @@ class Signup extends React.Component {
                             });      
                     }
                     else if(response.failed){
-                        this.props.dispatch(ServerChange({serverFail: true}));
-                        this.props.dispatch(LoadingChange({clicked: false}));
+                        console.log("failed");
                     }
                     else{
                         this.props.dispatch(LoadingChange({clicked: false}));       
@@ -420,10 +415,8 @@ class Signup extends React.Component {
                         <td><SignUpInput disabled={this.props.Loading.clicked} type = "password" name = "Password" id="password" placeholder="Password" onChange = {this.PasswordChange} required/></td>
                         <SignupTdError>{!this.state.password.valid && this.state.password.error}</SignupTdError>
                     </tr>
-                    <tr>
                         <td><SignUpInput disabled={this.props.Loading.clicked} type = "password" name = "rePassword" id="rePassword" placeholder="Re-Password" onChange = {this.RePasswordChange} required/></td>
                         <SignupTdError>{!this.state.rePassword.valid && this.state.rePassword.error}</SignupTdError>
-                    </tr>
                     <tr>
                         <SignupTdLabel><LoginButton type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "button">Signup</LoginButton></SignupTdLabel>
                     </tr>
