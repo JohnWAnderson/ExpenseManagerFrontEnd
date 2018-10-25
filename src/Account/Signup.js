@@ -1,5 +1,6 @@
 import React from 'react';
 import { signup, signin , UsernameAvailabile, EmailAvailabile, ACCESS_TOKEN, getCurrentUser} from '../ApiMethods/Account';
+import {LoadingChange} from '../Redux/Actions/Loading';
 import { addUser} from '../Redux/Actions/Users';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -101,26 +102,16 @@ class Signup extends React.Component {
                 value: '',
                 valid: false,
                 error: ''
-            },
-            clicked: false
+            }
         }
         this.validateEmail = this.validateEmail.bind(this);
         this.resetInput = this.resetInput.bind(this);
         this.signedup = this.signedup.bind(this);
-        this.ButtonClicked = this.ButtonClicked.bind(this);
     }  
-
-    ButtonClicked = (boolean) =>{
-        this.setState({ clicked: boolean }) // true
-        if(boolean)
-            document.body.style.cursor='wait';
-        else   
-            document.body.style.cursor='default';
-    }
 
     onSubmit = (e) =>{
         e.preventDefault();
-        this.ButtonClicked(true);
+        this.props.dispatch(LoadingChange({clicked: true}));
         if(this.state.username.valid && this.state.name.valid && this.state.email.valid && this.state.password.valid){
             const signupRequestObject = {
                 name: this.state.name.value,
@@ -142,7 +133,7 @@ class Signup extends React.Component {
                                     });
                                 }
                                 else{
-                                    this.ButtonClicked(false);
+                                    this.props.dispatch(LoadingChange({clicked: false}));
                                     this.setState({
                                         email: {
                                             value: this.state.email.value,
@@ -155,7 +146,7 @@ class Signup extends React.Component {
                             });      
                     }
                     else{
-                        this.ButtonClicked(false);         
+                        this.props.dispatch(LoadingChange({clicked: false}));       
                 this.setState({
                         username: {
                             value: this.state.username.value,
@@ -168,7 +159,7 @@ class Signup extends React.Component {
             });
         }
         else{
-            this.ButtonClicked(false);
+            this.props.dispatch(LoadingChange({clicked: false}));
         }
     };
 
@@ -346,8 +337,6 @@ class Signup extends React.Component {
                 })
             }
         }
-    
-
     render= () =>(
         <MainSigninDiv>
         <MaSigninInfoDiv>
@@ -368,23 +357,23 @@ class Signup extends React.Component {
                     <table>
                     <tbody>
                     <tr>
-                        <td><SignUpInput disabled={this.state.clicked} type = "text" name = "Name"  id="name" placeholder="Name" onChange = {this.NameChange} required /> </td>
+                        <td><SignUpInput disabled={this.props.Loading.clicked} type = "text" name = "Name"  id="name" placeholder="Name" onChange = {this.NameChange} required /> </td>
                         <SignupTdError>{!this.state.name.valid && this.state.name.error}</SignupTdError>
                     </tr>
                     <tr>
-                        <td><SignUpInput disabled={this.state.clicked} failed={this.state.username.failed} type = "text" name = "Username" id="username" placeholder="Username" onChange = {this.UserNameChange} required /></td>
+                        <td><SignUpInput disabled={this.props.Loading.clicked} failed={this.state.username.failed} type = "text" name = "Username" id="username" placeholder="Username" onChange = {this.UserNameChange} required /></td>
                         <SignupTdError>{!this.state.username.valid && this.state.username.error}</SignupTdError>
                     </tr>
                     <tr>
-                        <td><SignUpInput disabled={this.state.clicked} failed={this.state.email.failed} type = "email" name = "Email" id= "email" placeholder="Email"  onChange = {this.EmailChange} required/></td>
+                        <td><SignUpInput disabled={this.props.Loading.clicked} failed={this.state.email.failed} type = "email" name = "Email" id= "email" placeholder="Email"  onChange = {this.EmailChange} required/></td>
                         <SignupTdError>{!this.state.email.valid && this.state.email.error}</SignupTdError>
                     </tr>
                     <tr>
-                        <td><SignUpInput disabled={this.state.clicked} type = "password" name = "Password" id="password" placeholder="Password" onChange = {this.PasswordChange} required/></td>
+                        <td><SignUpInput disabled={this.props.Loading.clicked} type = "password" name = "Password" id="password" placeholder="Password" onChange = {this.PasswordChange} required/></td>
                         <SignupTdError>{!this.state.password.valid && this.state.password.error}</SignupTdError>
                     </tr>
                     <tr>
-                        <SignupTdLabel><LoginButton type="submit" value="Submit" clicked={this.state.clicked} disabled={this.state.clicked} className= "button">Signup</LoginButton></SignupTdLabel>
+                        <SignupTdLabel><LoginButton type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "button">Signup</LoginButton></SignupTdLabel>
                     </tr>
                     </tbody>
                     </table>
@@ -398,7 +387,8 @@ class Signup extends React.Component {
 
 const MapUserInfo=(state)=>{
     return{
-        User: state
+        User: state,
+        Loading: state.loading
     }
 }
 

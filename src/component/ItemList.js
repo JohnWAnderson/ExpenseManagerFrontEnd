@@ -3,6 +3,7 @@ import Item from './Item';
 import { connect } from 'react-redux';
 import getVisableItem from '../Redux/SelectorItemOrder';
 import styled from 'styled-components';
+import NoItems from './NoItems';
 
 const ItemListDiv = styled.div`
     padding: 0;
@@ -21,8 +22,6 @@ const ItemListTable = styled.table`
     text-align: center;
     width: 100%;
 ` 
-//position: relative or absolute;
-//padding: 100px;
 const ItemListTd = styled.td`
 position: relative;
 padding-top: 5px;
@@ -35,8 +34,12 @@ const ItemList =(props)=>{
         <ItemListDiv>
             <ItemListTable>
             <tbody>
-                    {props.items.map((item,index)=>{
-                        return(<tr key={index}><ItemListTd key={index}><Item key={index} {...item} index={index+1}/></ItemListTd></tr>)})}
+                {props.items.length > 0 ? 
+                    props.items.map((item,index)=>{
+                    return(<tr key={index}><ItemListTd key={index}><Item key={index} {...item} index={index+1}/></ItemListTd></tr>)})
+                    : 
+                    <tr><ItemListTd><NoItems/></ItemListTd></tr>
+                }
             </tbody>
             </ItemListTable>
         </ItemListDiv>

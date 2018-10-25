@@ -1,8 +1,12 @@
 import React from 'react';
 import ItemForm from './ItemForm';
 import { UpdateItems, DeleteItem} from '../ApiMethods/Account';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 import { connect } from 'react-redux';
+import {LoadingChange} from '../Redux/Actions/Loading';
 import { editItem, removeItem} from '../Redux/Actions/Items';
+import {TimesItemChange} from '../Redux/TimesChange';
 import NotFound from './NotFound';
 import getVisableItem from '../Redux/SelectorItemOrder';
 import styled from 'styled-components';
@@ -30,9 +34,15 @@ const PageFormDiv = styled.div`
     width: 70%;
     margin auto;
 `
-
-const EditPage = (props) =>{
-    const item=props.items[props.match.params.id-1]
+class EditPage extends React.Component {
+    constructor(props){
+    super(props);
+    this.state = {
+        showDialog: false,
+        }
+    }
+    render() {
+    const item=this.props.items[this.props.match.params.id-1]
     if(!!item){
         const holder = item.name;
         return(
@@ -40,21 +50,39 @@ const EditPage = (props) =>{
             <PageFormDiv>
             <PageFormH1>Edit Item</PageFormH1>
             <RemoveButton onClick={()=>{
-                const newItem = ({...item, userName: props.User.currentUser.username})
-                DeleteItem(newItem).then(response => {        
-                    if(response.available){
-                        props.dispatch(removeItem({name: newItem.name}));    
-                        props.history.push('/')  
-                    }
-                });
-            }}>Remove</RemoveButton>
+                confirmAlert({
+                    title: 'Confirm to Delete',
+                    message: `Are you sure to delete '${item.name}'.`,
+                    buttons: [
+                      {
+                        label: 'Yes, Delete',
+                        onClick: () => {
+                        this.props.dispatch(LoadingChange({clicked: true}));
+                        const newItem = ({...item, userName: this.props.User.currentUser.username})
+                        DeleteItem(newItem).then(response => {
+                            this.props.dispatch(LoadingChange({clicked: false}));        
+                            if(response.available){
+                                this.props.dispatch(removeItem({name: newItem.name}));    
+                                this.props.history.push('/')  
+                            }
+                        });}
+                      },
+                      {
+                        label: 'cancel',
+                        onClick: () => {}
+                      }
+                    ]
+                  })
+            }}>Delete</RemoveButton>
             <ItemForm item={item}        
                     onSubmit={(item) => {
                         const newItem=({...item,oldName: holder})
                         UpdateItems(newItem).then(response => {
-                            if(response.available){          
-                                props.dispatch(editItem(holder,item)); 
-                                props.history.push('/')  
+                            this.props.dispatch(LoadingChange({clicked: false}));
+                            if(response.available){
+                                const timeItem = {...item, times: TimesItemChange(item, this.props.filter.startDate, this.props.filter.endDate)};          
+                                this.props.dispatch(editItem(holder,timeItem));
+                                this.props.history.push('/')  
                             }
                         });
                     }}
@@ -69,12 +97,13 @@ const EditPage = (props) =>{
                 <NotFound/>
             </div>
         );
-   }
+   }}
 };
 
 const MapUserInfo=(state)=>{
   return{
       User: state.user,
+      filter: state.filter,
       items: getVisableItem(state.items, state.filter)
   }
 }

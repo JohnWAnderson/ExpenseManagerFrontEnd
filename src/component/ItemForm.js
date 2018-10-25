@@ -1,5 +1,6 @@
 import React from 'react';
 import { TaskNameAvailability } from '../ApiMethods/Account';
+import {LoadingChange} from '../Redux/Actions/Loading';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
@@ -84,28 +85,17 @@ class ItemForm extends React.Component{
             RecFocuse: false,
             edit: props.item? true :false,
             old: props.item? props.item.name :'',
-            clicked: false
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.HandlePropSubmit = this.HandlePropSubmit.bind(this);
-        this.ButtonClicked = this.ButtonClicked.bind(this);
-    }
-
-    ButtonClicked = (boolean) =>{
-        this.setState({ clicked: boolean }) // true
-        if(boolean)
-            document.body.style.cursor='wait';
-        else   
-            document.body.style.cursor='default';
     }
 
     onSubmit= (e) => {
         e.preventDefault();
-        this.ButtonClicked(true);         
+        this.props.dispatch(LoadingChange({clicked: true}));       
         if(this.state.name.valid && this.state.cost.valid){
             if(this.state.old === this.state.name.value){
                 this.HandlePropSubmit();
-                this.ButtonClicked(false);
             }
             else{
             TaskNameAvailability(this.state.name.value).then(response =>
@@ -119,13 +109,13 @@ class ItemForm extends React.Component{
                             valid: false,
                             error:'Item name exists'
                         }}));
+                        this.props.dispatch(LoadingChange({clicked: false}));
                     }
-                    this.ButtonClicked(false);
                 });
             }    
         }
         else
-            this.ButtonClicked(false);
+        this.props.dispatch(LoadingChange({clicked: false}));
     }
 
     HandlePropSubmit= ()=>{
@@ -229,29 +219,29 @@ class ItemForm extends React.Component{
             <tbody>
                 <tr>
                 <td><label >Name:  </label>
-                <SignUpInput type = "text" placeholder="Name" name = "Name"  id="name" value = {this.state.name.value} onChange = {this.NameChange} required /> </td>
+                <SignUpInput disabled={this.props.Loading.clicked} type = "text" placeholder="Name" name = "Name"  id="name" value = {this.state.name.value} onChange = {this.NameChange} required /> </td>
                 <SignupTdError>{!!this.state.name.error && this.state.name.error}</SignupTdError>
                 </tr>
                 <tr>
                 <td>
                 <label >Cost: $</label>
-                <SignUpInput type = "number" placeholder="1.00" name = "Cost" id="cost" value = {this.state.cost.value} onChange = {this.CostChange} required/></td>
+                <SignUpInput disabled={this.props.Loading.clicked} type = "number" placeholder="1.00" name = "Cost" id="cost" value = {this.state.cost.value} onChange = {this.CostChange} required/></td>
                 <SignupTdError>{!!this.state.cost.error && this.state.cost.error}</SignupTdError>
                 </tr>
                 <tr>
                 <td>
                 <label >Note:  </label>
-                <SignUpInput type = "text" name = "Description"  id= "description" value = {this.state.description.value} onChange = {this.descriptionChange} placeholder="description (Optional)"/> </td> 
+                <SignUpInput disabled={this.props.Loading.clicked} type = "text" name = "Description"  id= "description" value = {this.state.description.value} onChange = {this.descriptionChange} placeholder="description (Optional)"/> </td> 
                 <td></td>
                 </tr>
                 <tr>
-                <td><SingleDatePicker date ={this.state.duedate} onDateChange={this.onDateChange} focused = {this.state.CalFocuse} onFocusChange={this.onFocusChange} numberOfMonths={1} isOutsideRange={()=> false}/> </td>  
+                <td><SingleDatePicker disabled={this.props.Loading.clicked} date ={this.state.duedate} onDateChange={this.onDateChange} focused = {this.state.CalFocuse} onFocusChange={this.onFocusChange} numberOfMonths={1} isOutsideRange={()=> false}/> </td>  
                 <td></td>
                 </tr>
                 <tr>
                 <td>
                 <label >Is this cost Recurring:</label>
-                <ItemFormSelect value={this.state.recurring} onChange={(e) => {     
+                <ItemFormSelect disabled={this.props.Loading.clicked} value={this.state.recurring} onChange={(e) => {     
                     if(e.target.value === 'true'){
                         this.handleRecurringChange(true);
                         if(this.state.recurringsize)
@@ -272,7 +262,7 @@ class ItemForm extends React.Component{
                 </tr>
                 {this.state.recurring && <tr><td>
                     <label >Select rate of recurrence:</label>
-                    <select value={this.state.recurringsize} onChange={(e) => {     
+                    <select disabled={this.props.Loading.clicked} value={this.state.recurringsize} onChange={(e) => {     
                         if(e.target.value === 'weekly')
                             this.handlerecurringsizeChange('weekly');                 
                         else if(e.target.value === 'biweekly')
@@ -284,7 +274,6 @@ class ItemForm extends React.Component{
                         else
                             this.handlerecurringsizeChange('daily');//will change for error handling
                     }}>>
-                        <option value = 'Select Type:'>Select Type:</option>
                         <option value = 'daily'>daily</option>
                         <option value = 'weekly'>weekly</option>
                         <option value = 'biweekly'>bi-weekly</option>
@@ -296,7 +285,7 @@ class ItemForm extends React.Component{
                     {this.state.recurring &&<tr>
                     <td>
                     <label>Is there an end date for this item:</label>
-                    <select value={this.state.enddate} onChange={(e) => {     
+                    <select disabled={this.props.Loading.clicked} value={this.state.enddate} onChange={(e) => {     
                         if(e.target.value === 'true'){
                             this.handleEndDateChange(true); 
                             this.onEndRecurringChange(moment().add(1, 'M'))
@@ -315,13 +304,13 @@ class ItemForm extends React.Component{
                     {this.state.recurring && <tr>
                     <td>
                     {this.state.enddate && 
-                        <SingleDatePicker date ={this.state.endrecurring} onDateChange={this.onEndRecurringChange} focused = {this.state.RecFocuse} onFocusChange={this.onRecFocuseChange} numberOfMonths={1} isOutsideRange={()=> false}/> }
+                        <SingleDatePicker disabled={this.props.Loading.clicked} date ={this.state.endrecurring} onDateChange={this.onEndRecurringChange} focused = {this.state.RecFocuse} onFocusChange={this.onRecFocuseChange} numberOfMonths={1} isOutsideRange={()=> false}/> }
                     </td>
                     <td></td>
                     </tr>}
                 </tbody>
                 </table>
-                <ItemFormButton type="submit" value="Submit" clicked={this.state.clicked} disabled={this.state.clicked} className= "button">Submit</ItemFormButton>
+                <ItemFormButton type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "button">Submit</ItemFormButton>
             </ItemFormForm>
         </ItemFormDiv>
     );
@@ -330,7 +319,9 @@ class ItemForm extends React.Component{
 
 const MapUserInfo=(state)=>{
     return{
-        User: state.user.currentUser
+        User: state.user.currentUser,
+        filter: state.filter,
+        Loading: state.loading
     }
   }
 

@@ -17,6 +17,7 @@ const ItemCostDiv = styled.div`
 
 const ItemCost = (props) => (
     <ItemCostDiv>
+        {console.log(props)}
         <ItemCostPartDIV>
             { props.times > 1 ? <div>${props.cost/100} Recurring:{props.times}</div> : <div></div>}
         </ItemCostPartDIV>

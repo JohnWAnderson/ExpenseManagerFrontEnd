@@ -2,7 +2,9 @@ import React from 'react';
 import ItemForm from './ItemForm';
 import { CreateItem } from '../ApiMethods/Account';
 import { connect } from 'react-redux';
+import {LoadingChange} from '../Redux/Actions/Loading';
 import { addItem } from '../Redux/Actions/Items';
+import {TimesItemChange} from '../Redux/TimesChange';
 import styled from 'styled-components';
 const MainDiv = styled.div`
     position:relative;
@@ -32,7 +34,9 @@ const AddPage = (props) =>{
             onSubmit={(item) => {
                 CreateItem(item).then(response => {
                     if(response.available){
-                        props.dispatch(addItem(item))
+                        const timeItem = {...item, times: TimesItemChange(item, props.filter.startDate, props.filter.endDate)};
+                        props.dispatch(addItem(timeItem))
+                        props.dispatch(LoadingChange({clicked: false}));
                         props.history.push('/')
                     }
                 });
@@ -45,7 +49,8 @@ const AddPage = (props) =>{
 
 const MapUserInfo=(state)=>{
     return{
-        User: state
+        User: state,
+        filter: state.filter
     }
   }
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
 import {setEndDate, setStartDate} from '../Redux/Actions/Filter';
 import { editItem } from '../Redux/Actions/Items';
 import {TimesItemChange} from '../Redux/TimesChange';
@@ -73,18 +75,18 @@ class FilterPicker extends React.Component{
                 Select Date Range:
             </FilterTitleDiv>
             <DatePickerDiv>
-            <DateRangePicker
-            startDateId= "start"
-            endDateId= "end"
-            startDate={moment(this.props.Filter.startDate)}
-            endDate={moment(this.props.Filter.endDate)}
-            onDatesChange={this.onDatesChange}
-            focusedInput={this.state.CalFocuse}
-            onFocusChange={this.onFocusChange}
-            showClearDates={true}
-            numberOfMonths={1} 
-            isOutsideRange={()=> false}
-            />
+                <DateRangePicker 
+                startDateId= "start"
+                endDateId= "end"
+                startDate={moment(this.props.Filter.startDate)}
+                endDate={moment(this.props.Filter.endDate)}
+                onDatesChange={this.onDatesChange}
+                focusedInput={this.state.CalFocuse}
+                onFocusChange={this.onFocusChange}
+                showClearDates={true}
+                numberOfMonths={1} 
+                isOutsideRange={()=> false}
+                />
             </DatePickerDiv>
             </MainFilterPickerDiv>
         );

@@ -14,7 +14,10 @@ const HeaderLink = styled(Link)`
     position: reletive;
 `
 const HeaderH1 = styled.h1`
-    font-size: 20px;
+    font-size: 25px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    position: reletive;
 `
 
 const getVisableItemNumber = (props) =>{
@@ -26,7 +29,7 @@ const getVisableItemNumber = (props) =>{
                 <p>Page contains no items</p>}
             </div>
             <HeaderH1>
-                <HeaderLink to="/add" activeClassName="is-active" exact={true} > Add Item </HeaderLink> 
+                <HeaderLink to="/add" activeclassname="is-active" exact="true" > Add Item </HeaderLink> 
             </HeaderH1>
         </div>
     );
