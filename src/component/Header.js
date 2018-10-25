@@ -49,8 +49,14 @@ display: inline-block;
 
 const LogInDiv = styled.div`
     position: absolute;
-    right: 0; bottom: 0
+    right: 0; bottom: 0;
     text-align: right ;
+`
+
+const ErrorHeaderServer = styled.div`
+    text-align: center ;
+    color: red;
+    font-size: 30px;
 `
 
 const Header =(props)=>{
@@ -61,6 +67,7 @@ const Header =(props)=>{
             Expense Manager
         </HeaderLink>
         </HeaderH1>
+    {props.Loading.serverFail && <ErrorHeaderServer>Server is down try again later</ErrorHeaderServer>}
     {(props.User.isAuthenticated) ?
             <LogOutDiv>
             <LogOutTextDiv>Hello, {props.User.currentUser.name}</LogOutTextDiv>
@@ -73,7 +80,8 @@ const Header =(props)=>{
 
 const MapUserInfo=(state)=>{
     return{
-        User: state.user
+        User: state.user,
+        Loading: state.loading
     }
 }
 

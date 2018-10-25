@@ -1,6 +1,6 @@
 import React from 'react';
 import { signin, ACCESS_TOKEN } from '../ApiMethods/Account';
-import {LoadingChange} from '../Redux/Actions/Loading';
+import {LoadingChange, ServerChange} from '../Redux/Actions/Loading';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -45,8 +45,6 @@ class Login extends React.Component {
 
     render= () =>(
         <div>
-            {console.log(this.props)
-            }
             <form id="login-form" onSubmit={(e)=>{
                 this.props.dispatch(LoadingChange({clicked: true}));
                 document.body.classList.add('busy-cursor');
@@ -57,16 +55,13 @@ class Login extends React.Component {
                 }; 
                 signin(signupRequestObject)
                 .then(response => { 
-                    console.log(response);
-                                   
                     if(response.tokenType === "Bearer "){
                         this.props.dispatch(LoadingChange({clicked: false}));
                         localStorage.setItem(ACCESS_TOKEN, response.accessToken);
                         this.props.handleLogOn();
                     }
                     else if(response.failed){
-                        console.log("failed");
-                        
+                        this.props.dispatch(ServerChange({serverFail: true}));
                     }
                     else{   
                         this.setState({ failed: true })

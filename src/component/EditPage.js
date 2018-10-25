@@ -4,7 +4,7 @@ import { UpdateItems, DeleteItem} from '../ApiMethods/Account';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 import { connect } from 'react-redux';
-import {LoadingChange} from '../Redux/Actions/Loading';
+import {LoadingChange, ServerChange} from '../Redux/Actions/Loading';
 import { editItem, removeItem} from '../Redux/Actions/Items';
 import {TimesItemChange} from '../Redux/TimesChange';
 import NotFound from './NotFound';
@@ -65,6 +65,10 @@ class EditPage extends React.Component {
                                 this.props.dispatch(removeItem({name: newItem.name}));    
                                 this.props.history.push('/')  
                             }
+                            else if(response.failed){
+                                console.log("failed");
+                                this.props.dispatch(ServerChange({serverFail: true}));
+                            }
                         });}
                       },
                       {
@@ -83,6 +87,10 @@ class EditPage extends React.Component {
                                 const timeItem = {...item, times: TimesItemChange(item, this.props.filter.startDate, this.props.filter.endDate)};          
                                 this.props.dispatch(editItem(holder,timeItem));
                                 this.props.history.push('/')  
+                            }
+                            else if(response.failed){
+                                console.log("failed");
+                                this.props.dispatch(ServerChange({serverFail: true}));
                             }
                         });
                     }}

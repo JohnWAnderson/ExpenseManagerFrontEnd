@@ -1,4 +1,9 @@
-export const LoadingChange = ({clicked: value=false} = {}) =>({
+export const LoadingChange = ({clicked: clicked=false} = {}) =>({
     type: 'LOADING_BOOLEAN',
-    clicked: value
+    clicked
+});
+
+export const ServerChange = ({serverFail: serverFail=false} = {}) =>({
+    type: 'SERVER_BOOLEAN',
+    serverFail
 });

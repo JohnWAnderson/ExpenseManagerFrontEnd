@@ -1,6 +1,6 @@
 import React from 'react';
 import { TaskNameAvailability } from '../ApiMethods/Account';
-import {LoadingChange} from '../Redux/Actions/Loading';
+import {LoadingChange, ServerChange} from '../Redux/Actions/Loading';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
@@ -103,6 +103,10 @@ class ItemForm extends React.Component{
                     if(response.available){
                         this.HandlePropSubmit();
                     }
+                    else if(response.failed){
+                        console.log("failed");
+                        this.props.dispatch(ServerChange({serverFail: true}));
+                    }
                     else{
                         this.setState(() => ({name:{
                             value: this.state.name.value,
@@ -149,7 +153,7 @@ class ItemForm extends React.Component{
             }}));
         }
     }
-    2147483647
+
     CostChange = (e) =>{
         const cost = e.target.value;
         if(cost < 0.00 || cost > 21474836.45){
