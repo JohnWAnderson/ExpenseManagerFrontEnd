@@ -16,8 +16,8 @@ const SignUpInput = styled.input`
     border: 1px solid #ccc;
     border-radius: 10px;
     box-sizing: border-box;
-    height: 30px;
-    width: 250px;
+    height: 35px;
+    width: 300px;
 
     ${({ failed }) => failed && `
     border-color: red;
@@ -102,6 +102,11 @@ class Signup extends React.Component {
                 value: '',
                 valid: false,
                 error: ''
+            },
+            rePassword: {
+                value: '',
+                valid: false,
+                error: ''
             }
         }
         this.validateEmail = this.validateEmail.bind(this);
@@ -112,7 +117,7 @@ class Signup extends React.Component {
     onSubmit = (e) =>{
         e.preventDefault();
         this.props.dispatch(LoadingChange({clicked: true}));
-        if(this.state.username.valid && this.state.name.valid && this.state.email.valid && this.state.password.valid){
+        if(this.state.username.valid && this.state.name.valid && this.state.email.valid && this.state.password.valid && this.state.rePassword.valid){
             const signupRequestObject = {
                 name: this.state.name.value,
                 email: this.state.email.value,
@@ -121,6 +126,7 @@ class Signup extends React.Component {
             };
             UsernameAvailabile(this.state.username.value).then(response =>
                 {
+                    
                     if(response.available){
                         EmailAvailabile(this.state.email.value).then(response =>
                             {
@@ -144,6 +150,9 @@ class Signup extends React.Component {
                                     })
                                 }
                             });      
+                    }
+                    else if(response.failed){
+                        console.log("failed");
                     }
                     else{
                         this.props.dispatch(LoadingChange({clicked: false}));       
@@ -217,6 +226,11 @@ class Signup extends React.Component {
                         valid: true,
                         error: ''
                     }})
+                if(password === this.state.rePassword.value){
+                    this.setState({
+                        rePassword: {
+                            valid: true,
+                    }})}
             }
             else if(password.length === 0){
                 this.setState({
@@ -232,6 +246,35 @@ class Signup extends React.Component {
                         value: password,
                         valid: false,
                         error: 'Invalid Length'
+                    }})
+            }
+        }
+
+        RePasswordChange = (e) =>{         
+            const rePassword = e.target.value
+            if(rePassword.length >= 6 && rePassword.length <= 20){
+                if(rePassword === this.state.password.value){
+                this.setState({
+                    rePassword: {
+                        value: rePassword,
+                        valid: true,
+                        error: ''
+                    }})}
+                else{
+                    this.setState({
+                        rePassword: {
+                        value: rePassword,
+                        valid: false,
+                         error: "Don't Match"
+                    }})
+                }
+            }
+            else{
+                this.setState({
+                    rePassword: {
+                        value: rePassword,
+                        valid: false,
+                        error: ''
                     }})
             }
         }
@@ -372,6 +415,8 @@ class Signup extends React.Component {
                         <td><SignUpInput disabled={this.props.Loading.clicked} type = "password" name = "Password" id="password" placeholder="Password" onChange = {this.PasswordChange} required/></td>
                         <SignupTdError>{!this.state.password.valid && this.state.password.error}</SignupTdError>
                     </tr>
+                        <td><SignUpInput disabled={this.props.Loading.clicked} type = "password" name = "rePassword" id="rePassword" placeholder="Re-Password" onChange = {this.RePasswordChange} required/></td>
+                        <SignupTdError>{!this.state.rePassword.valid && this.state.rePassword.error}</SignupTdError>
                     <tr>
                         <SignupTdLabel><LoginButton type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "button">Signup</LoginButton></SignupTdLabel>
                     </tr>

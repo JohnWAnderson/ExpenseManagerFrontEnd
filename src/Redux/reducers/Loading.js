@@ -11,7 +11,6 @@ export default (state = LoadingReducerDefault, action) => {
             return {
                 clicked: action.clicked
             }
-            
         default:
             return state;
     }

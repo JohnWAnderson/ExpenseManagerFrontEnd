@@ -81,7 +81,6 @@ loadItems = () =>{
 const MapUserInfo=(state)=>{
   return{
       User: state,
-      Loading: state.loading
   }
 }
 export default connect(MapUserInfo)(App);

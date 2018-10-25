@@ -56,11 +56,17 @@ class Login extends React.Component {
                     password: e.target.elements.password.value
                 }; 
                 signin(signupRequestObject)
-                .then(response => {
+                .then(response => { 
+                    console.log(response);
+                                   
                     if(response.tokenType === "Bearer "){
                         this.props.dispatch(LoadingChange({clicked: false}));
                         localStorage.setItem(ACCESS_TOKEN, response.accessToken);
                         this.props.handleLogOn();
+                    }
+                    else if(response.failed){
+                        console.log("failed");
+                        
                     }
                     else{   
                         this.setState({ failed: true })

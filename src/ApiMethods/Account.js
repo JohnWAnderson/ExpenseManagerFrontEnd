@@ -1,5 +1,5 @@
-//export const API_BASE_URL = 'http://localhost:8080/api';
-export const API_BASE_URL = 'https://jwaexpensemanagerserver.herokuapp.com/api';
+export const API_BASE_URL = 'http://localhost:8080/api';
+//export const API_BASE_URL = 'https://jwaexpensemanagerserver.herokuapp.com/api';
 export const ACCESS_TOKEN = 'accessToken';
 export const REDUX_TOKEN = 'reduxState';
 
@@ -17,12 +17,11 @@ export const request = (options) => {
     return fetch(options.url, options)
     .then(response => 
         response.json().then(json => {
-            if(!response.ok) {
-                return json;
-            }
             return json;
         })
-    );
+    ).catch(function() {
+        return ({failed: true})
+    });
 };
 
 export const signup = (signupRequest) => {
