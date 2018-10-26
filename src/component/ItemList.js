@@ -29,14 +29,13 @@ padding-bottom: 5px;
 `
 
 const ItemList =(props)=>{
-    console.log(props.items);
     return(
         <ItemListDiv>
             <ItemListTable>
             <tbody>
-                {props.items.length > 0 ? 
-                    props.items.map((item,index)=>{
-                    return(<tr key={index}><ItemListTd key={index}><Item key={index} {...item} index={index+1}/></ItemListTd></tr>)})
+                {props.itemsV.length > 0 ? 
+                    props.itemsV.map((item,index)=>{
+                    return(<tr key={index}><ItemListTd key={index}><Item key={index} {...item} index={props.items.indexOf(item)+1}/></ItemListTd></tr>)})
                     : 
                     <tr><ItemListTd><NoItems/></ItemListTd></tr>
                 }
@@ -48,7 +47,9 @@ const ItemList =(props)=>{
 
 const MapInfo=(state)=>{
     return{
-        items: getVisableItem(state.items, state.filter)
+        
+        itemsV: getVisableItem(state.items, state.filter),
+        items: state.items
     }
 }
 

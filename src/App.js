@@ -4,6 +4,7 @@ import Header from './component/Header';
 import NotFound from './component/NotFound';
 import AddPage from './component/AddPage';
 import EditPage from './component/EditPage';
+import CalendarPage from './component/CalendarPage';
 import { getCurrentUser, ACCESS_TOKEN, GetItems } from './ApiMethods/Account';
 import PrivateRoute from './component/PrivateRoute';
 import { connect } from 'react-redux';
@@ -70,6 +71,7 @@ loadItems = () =>{
                 <Route path="/" component = {DatePicker} exact={true}/>
                 <PrivateRoute path="/edit/:id" component= {EditPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/>
                 <PrivateRoute path="/add" component={AddPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/> 
+                <PrivateRoute path="/c" component={CalendarPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/> 
                 <Route component= {NotFound}/>
             </Switch>
         </MainApp>

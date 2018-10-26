@@ -104,7 +104,7 @@ const MapUserInfo=(state)=>{
   return{
       User: state.user,
       filter: state.filter,
-      items: getVisableItem(state.items, state.filter)
+      items: state.items
   }
 }
 export default connect(MapUserInfo)(EditPage);
