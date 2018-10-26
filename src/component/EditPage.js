@@ -8,7 +8,6 @@ import {LoadingChange} from '../Redux/Actions/Loading';
 import { editItem, removeItem} from '../Redux/Actions/Items';
 import {TimesItemChange} from '../Redux/TimesChange';
 import NotFound from './NotFound';
-import getVisableItem from '../Redux/SelectorItemOrder';
 import styled from 'styled-components';
 
 const MainDiv = styled.div`
