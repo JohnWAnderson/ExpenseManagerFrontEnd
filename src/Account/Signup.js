@@ -39,7 +39,6 @@ const SignUpInput = styled.input`
     box-sizing: border-box;
     height: 35px;
     width: 300px;
-
     ${({ failed }) => failed && `
     border-color: red;
     `}
@@ -63,8 +62,9 @@ const SignupTdError = styled.td`
 `
 const SignupDiv = styled.div`
     display: inline-block;
+    min-width: 400px;
     vertical-align: top;
-    width: 40%;
+    width: 50%;
     align: right;
     text-align: right ;
     position: relative;
@@ -75,13 +75,15 @@ const MainSigninDiv = styled.div`
     position: relative;
     display: block;
     height: 100%;
+    min-width: 1000px;
 `   
 
 const MaSigninInfoDiv = styled.div`
     display: inline-block;
+    min-width: 500px;
     vertical-align: top;
     align: left;
-    width: 60%;
+    width: 50%;
     height: 100%;
     text-align: left ;
     position=relative;

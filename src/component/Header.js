@@ -5,10 +5,11 @@ import styled from 'styled-components';
 import Login from '../Account/Login';
 const MainHeader = styled.header`
     padding: 0;
-    height: 8%;
+    height: 5%;
     background: #5dade9
     position: relative;
-    min-width: 750px;
+    min-width: 825px;
+    min-height: 50px;
 `
 
 const HeaderLink = styled(Link)`

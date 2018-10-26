@@ -16,12 +16,16 @@ import DatePicker from './component/DatePicker';
 import {TimesItemChange} from './Redux/TimesChange';
 import styled from 'styled-components';
 import {LoadingChange} from './Redux/Actions/Loading';
+
 const MainApp = styled.div`
-padding: 0;
-height: 100%;
-min-height: 100%;
-overflow:auto;
-background: #D4D7EF
+  padding: 0;
+  height: 100%;
+  min-height: 100%;
+  min-width: 100%;
+  width: 100%;
+  position: relative;
+  overflow:auto;
+  background: #D4D7EF
 `
 
 class App extends React.Component {

@@ -13,6 +13,7 @@ import moment from 'moment';
 const MainFilterPickerDiv = styled.div`
     position: relative;
     display: block;
+    min-width: 700px;
 `   
 const FilterTitleDiv = styled.div`
     display: inline-block;
@@ -22,10 +23,10 @@ const FilterTitleDiv = styled.div`
 `
 
 const DatePickerDiv= styled.div`
-display: inline-block;
-font-size: 30px;
-text-align: center;
-height: 100%
+    display: inline-block;
+    font-size: 30px;
+    text-align: center;
+    height: 100%
 `
 
 class FilterPicker extends React.Component{

@@ -10,6 +10,7 @@ const MainDiv = styled.div`
     position:relative;
     min-height: 92%;
     height: auto;
+    min-width: 700px;
 `
 const PageFormDiv = styled.div`
     text-align: center;

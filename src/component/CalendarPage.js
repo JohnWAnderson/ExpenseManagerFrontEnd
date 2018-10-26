@@ -1,5 +1,5 @@
 import React from 'react';
-import Calendar from 'react-big-calendar'
+import BigCalendar from 'react-big-calendar'
 import moment from 'moment'
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -8,29 +8,38 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const CalenderPageDiv = styled.div`
     padding: 0;
+    display: block;
     align: center;
     position: relative;
-    border-bottom: none;
-    width: 70%;
-    min-width: 750px;
+    min-width: 1000px;
     margin: auto;
+    min-height: 92%;
 `
-const CalenderDiv = styled.div`
-    padding: 0;
-    text-align: center;
-    align: center;
+const CalendarInformation = styled.div`
+    display: inline-block;
+    vertical-align: top;
+    align: left;
+    width: 50%;
+    height: 100%;
+    text-align: left ;
+    position=relative;
+`   
+const CalendarDiv = styled.div`
+    min-width: 800px;
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+    align: right;
+    text-align: right ;
     position: relative;
-    border-bottom: none;
-    width: 70%;
-    min-width: 750px;
-    margin: auto;
-`
+    height: 100%;
+`   
 
 class CalendarPage extends React.Component {
     constructor(props){
     super(props);
     this.state = {
-        localizer: Calendar.momentLocalizer(moment),
+        localizer: BigCalendar.momentLocalizer(moment),
         currentDate: new Date(),
         events: SelectCalendarEvents(this.props.items, new Date())
       };
@@ -54,17 +63,20 @@ class CalendarPage extends React.Component {
     render() {
         return(
             <CalenderPageDiv>
-            <CalenderDiv>
-            <Calendar
+            <CalendarDiv>
+            <BigCalendar
                 onSelectEvent={this.handleSelectEvent} 
                 localizer={this.state.localizer}
                 defaultView="month"
                 views={['month']}
                 events={this.state.events}
-                style={{ height: "80vh", width: "100vh", align: "center", position: "relative", margin:"auto"}}
+                style={{ height: "800px", width:"770px", align: "center", position: "relative", margin:"auto"}}
                 onNavigate={(date) => {this.onMonthChange(date)}}
             />
-            </CalenderDiv>
+            </CalendarDiv>
+            <CalendarInformation>
+            temp
+            </CalendarInformation>
             </CalenderPageDiv>
         )
     };
