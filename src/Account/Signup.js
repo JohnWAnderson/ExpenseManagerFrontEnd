@@ -412,6 +412,7 @@ class Signup extends React.Component {
         <InformationH1>-Observe your spending habits relative to a time series</InformationH1>
         <InformationBottomDiv>
         <PrototypeH1>prototype information:</PrototypeH1>
+        <p>-! Calendar currently being worked on to be added into the home dash board !-</p>
         <p>-First start might take a some time, heroku api might have to wake up</p>
         <p>-CSS and UI currently being worked on, this is prototype build</p>
         <p>-Other components currently under built, only time series active</p>

@@ -5,7 +5,17 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import SelectCalendarEvents from '../Redux/SelectCalandarEvents';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-const ItemListDiv = styled.div`
+
+const CalenderPageDiv = styled.div`
+    padding: 0;
+    align: center;
+    position: relative;
+    border-bottom: none;
+    width: 70%;
+    min-width: 750px;
+    margin: auto;
+`
+const CalenderDiv = styled.div`
     padding: 0;
     text-align: center;
     align: center;
@@ -13,7 +23,7 @@ const ItemListDiv = styled.div`
     border-bottom: none;
     width: 70%;
     min-width: 750px;
-    margin auto;
+    margin: auto;
 `
 
 class CalendarPage extends React.Component {
@@ -27,7 +37,6 @@ class CalendarPage extends React.Component {
       this.onMonthChange = this.onMonthChange.bind(this);
       this.handleSelectEvent = this.handleSelectEvent.bind(this);
       this.getindexID = this.getindexID.bind(this);
-      console.log(this.props);
     }
 
     onMonthChange=(date)=>{
@@ -44,17 +53,19 @@ class CalendarPage extends React.Component {
 
     render() {
         return(
-            <ItemListDiv>
+            <CalenderPageDiv>
+            <CalenderDiv>
             <Calendar
                 onSelectEvent={this.handleSelectEvent} 
                 localizer={this.state.localizer}
                 defaultView="month"
                 views={['month']}
                 events={this.state.events}
-                style={{ height: "80vh", width: "100vh", align: "center", position: "relative"}}
+                style={{ height: "80vh", width: "100vh", align: "center", position: "relative", margin:"auto"}}
                 onNavigate={(date) => {this.onMonthChange(date)}}
             />
-            </ItemListDiv>
+            </CalenderDiv>
+            </CalenderPageDiv>
         )
     };
 }

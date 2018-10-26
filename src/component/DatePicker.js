@@ -1,6 +1,7 @@
 import React from 'react';
 import ItemList from './ItemList';
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 import FilterPicker from './FilterPicker';
 import PageInformation from './PageInformation';
 import styled from 'styled-components';
@@ -38,6 +39,9 @@ const DatePicker= (props) =>{
                 <AppDashBoard>
                     <FilterPicker/>
                     <PageInformation/>
+                    <Link to="/calendar">
+                    [Calendare prototype link]
+                    </Link>
                     <ItemList/>
                 </AppDashBoard> :
                 <MainSignupBlock>
