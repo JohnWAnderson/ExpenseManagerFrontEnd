@@ -31,7 +31,7 @@ const PageFormDiv = styled.div`
     padding: 0;
     text-align: center;
     position: relative;
-    width: 70%;
+    width: 90%;
     margin auto;
 `
 class EditPage extends React.Component {

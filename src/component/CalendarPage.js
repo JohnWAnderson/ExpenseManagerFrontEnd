@@ -11,8 +11,8 @@ const CalenderPageDiv = styled.div`
     display: block;
     align: center;
     position: relative;
-    min-width: 1000px;
     margin: auto;
+    min-width: 1600px;
     min-height: 92%;
 `
 const CalendarInformation = styled.div`
@@ -21,6 +21,7 @@ const CalendarInformation = styled.div`
     align: left;
     width: 50%;
     height: 100%;
+    min-width: 800px;
     text-align: left ;
     position=relative;
 `   
@@ -70,11 +71,11 @@ class CalendarPage extends React.Component {
                 defaultView="month"
                 views={['month']}
                 events={this.state.events}
-                style={{ height: "800px", width:"770px", align: "center", position: "relative", margin:"auto"}}
+                style={{ height: "600px", width:"770px", align: "center", position: "relative", margin:"auto"}}
                 onNavigate={(date) => {this.onMonthChange(date)}}
             />
             </CalendarDiv>
-            <CalendarInformation>
+                        <CalendarInformation>
             temp
             </CalendarInformation>
             </CalenderPageDiv>

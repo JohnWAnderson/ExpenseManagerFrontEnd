@@ -39,7 +39,7 @@ const DatePicker= (props) =>{
                     <FilterPicker/>
                     <PageInformation/>
                     <Link to="/calendar">
-                    [Calendare prototype link]
+                    [calendar prototype link]
                     </Link>
                     <ItemList/>
                 </AppDashBoard> :

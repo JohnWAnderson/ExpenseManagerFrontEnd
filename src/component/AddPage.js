@@ -16,7 +16,7 @@ const PageFormDiv = styled.div`
     text-align: center;
     align:center;
     position: relative;
-    width: 70%;
+    width: 80%;
     margin: auto;
 `
 

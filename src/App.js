@@ -25,7 +25,7 @@ const MainApp = styled.div`
   width: 100%;
   position: relative;
   overflow:auto;
-  background: #D4D7EF
+  background: white;
 `
 
 class App extends React.Component {
