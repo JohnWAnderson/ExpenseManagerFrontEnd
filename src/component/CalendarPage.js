@@ -1,37 +1,36 @@
 import React from 'react';
-import BigCalendar from 'react-big-calendar'
-import moment from 'moment'
+import BigCalendar from 'react-big-calendar';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import SelectCalendarEvents from '../Redux/SelectCalandarEvents';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import CalendarInfo from './CalendarInformation';
 
 const CalenderPageDiv = styled.div`
     padding: 0;
-    display: block;
     align: center;
+    text-align: center;
+    flex-direction: column;
     position: relative;
     margin: auto;
-    min-width: 1600px;
+    width:100%;
     min-height: 92%;
 `
 const CalendarInformation = styled.div`
-    display: inline-block;
-    vertical-align: top;
-    align: left;
-    width: 50%;
+    align: center;
+    margin: auto;
     height: 100%;
-    min-width: 800px;
-    text-align: left ;
+    text-align: center ;
     position=relative;
+    width:100%;
 `   
 const CalendarDiv = styled.div`
     min-width: 800px;
-    display: inline-block;
-    vertical-align: top;
-    width: 50%;
-    align: right;
-    text-align: right ;
+    margin: auto;
+    width:100%;
+    align: center;
+    text-align: center ;
     position: relative;
     height: 100%;
 `   
@@ -39,10 +38,13 @@ const CalendarDiv = styled.div`
 class CalendarPage extends React.Component {
     constructor(props){
     super(props);
+    const eventList = (SelectCalendarEvents(this.props.items, new Date()))
     this.state = {
         localizer: BigCalendar.momentLocalizer(moment),
         currentDate: new Date(),
-        events: SelectCalendarEvents(this.props.items, new Date())
+        events: eventList[0],
+        cost: eventList[1],
+        itemNum: eventList[2]
       };
       this.onMonthChange = this.onMonthChange.bind(this);
       this.handleSelectEvent = this.handleSelectEvent.bind(this);
@@ -50,10 +52,14 @@ class CalendarPage extends React.Component {
     }
 
     onMonthChange=(date)=>{
-        this.setState({events: SelectCalendarEvents(this.props.items, date)});
+        const eventList = (SelectCalendarEvents(this.props.items, date))
+        console.log(date);
+        this.setState({events: eventList[0],
+            cost: eventList[1],
+            itemNum: eventList[2]});
     }
-
-    handleSelectEvent(event,target) {
+    
+    handleSelectEvent(event) {
         this.props.history.push(`/edit/${this.getindexID(event.title)}`)  
     }
 
@@ -61,9 +67,14 @@ class CalendarPage extends React.Component {
         return this.props.items.map(item => item.name).indexOf(name)+1;
     }
 
+
+
     render() {
         return(
             <CalenderPageDiv>
+            <CalendarInformation>
+                <CalendarInfo cost={this.state.cost} items={this.state.itemNum}/>
+            </CalendarInformation>
             <CalendarDiv>
             <BigCalendar
                 onSelectEvent={this.handleSelectEvent} 
@@ -75,9 +86,6 @@ class CalendarPage extends React.Component {
                 onNavigate={(date) => {this.onMonthChange(date)}}
             />
             </CalendarDiv>
-                        <CalendarInformation>
-            temp
-            </CalendarInformation>
             </CalenderPageDiv>
         )
     };

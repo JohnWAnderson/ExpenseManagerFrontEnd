@@ -8,7 +8,7 @@ const MainHeader = styled.header`
     height: 8%;
     background: #5dade9
     position: relative;
-    min-width: 750px;
+    min-width: 800px;
     width:100%;
     min-height: 50px;
 `

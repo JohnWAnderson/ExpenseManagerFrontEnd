@@ -25,8 +25,9 @@ const PrototypeH1 = styled.h1`
 `
 const InformationBottomDiv = styled.div`
     text-align: left ;
-    position: absolute; 
+    position: relitive; 
     bottom: 0;
+    margin-top: 200px;
     border: 1px solid black;
 `
 
