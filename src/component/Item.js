@@ -4,10 +4,15 @@ import styled from 'styled-components';
 import ItemCost from './/ItemCost';
 
 const ItemDiv = styled.div`
-    border: 1px solid black;
+    border-collapse: collapse;
     position: relative;
     display: block;
     height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width:100%;
+    min-height: 35px;
 `   
 const HeaderLink = styled(Link)`
     color: blue;
@@ -16,6 +21,7 @@ const HeaderLink = styled(Link)`
     position: absolute;
     bottom: 0;
     font-size: 12px;
+    padding: 0;
 `
 
 const ItemPartDiv =styled.div`
@@ -24,6 +30,15 @@ const ItemPartDiv =styled.div`
     position: relative;
     width: 33%;
     height: 100%;
+    padding: 0;
+`
+const ItemPartDisDiv =styled.div`
+    display: inline-block;
+    vertical-align: center;
+    position: relative;
+    width: 34%;
+    height: 100%;
+    padding: 0;
 `
 
 const ItemH3 = styled.h3`
@@ -31,6 +46,7 @@ const ItemH3 = styled.h3`
     position: relative;
     font-size: 30px;
     margin: 0;
+    padding: 0;
 `   
 const Item = (props) => (
  <ItemDiv>
@@ -42,9 +58,9 @@ const Item = (props) => (
         </HeaderLink>
         </ItemH3>
     </ItemPartDiv>
-    <ItemPartDiv>
+    <ItemPartDisDiv>
         {props.description}
-    </ItemPartDiv>
+    </ItemPartDisDiv>
     <ItemPartDiv>
         <ItemCost {...props}/>
     </ItemPartDiv>

@@ -26,7 +26,12 @@ const MainApp = styled.div`
   position: relative;
   overflow:auto;
   background: white;
+  
+  .Header + .Route{
+    
+  }
 `
+
 
 class App extends React.Component {
   constructor(props) {   

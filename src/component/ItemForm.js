@@ -7,6 +7,7 @@ import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import styled from 'styled-components';
+import {UserNameField} from '../Functions/Validation';
 
 const ItemFormInput = styled.input`
     margin-bottom: 10px;
@@ -136,7 +137,7 @@ class ItemForm extends React.Component{
 
     onSubmit= (e) => {
         e.preventDefault();
-        this.props.dispatch(LoadingChange({clicked: true}));       
+        this.props.dispatch(LoadingChange({clicked: true}));
         if(this.state.name.valid && this.state.cost.valid){
             if(this.state.old === this.state.name.value){
                 this.HandlePropSubmit();
@@ -178,12 +179,20 @@ class ItemForm extends React.Component{
 
     NameChange = (e) =>{
         const name = e.target.value;
-        if(name.length >2){             
+        if(name.length >2){
+            if(UserNameField(name)){        
                 this.setState(() => ({name:{
                     value: name,
                     valid: true,
                     error:''
+                }}));}
+            else{
+                this.setState(() => ({name:{
+                    value: name,
+                    valid: false,
+                    error:'Invalid Character'
                 }}));
+            }
         }
         else{
             this.setState(() => ({name:{
@@ -193,14 +202,13 @@ class ItemForm extends React.Component{
             }}));
         }
     }
-    2147483647
     CostChange = (e) =>{
         const cost = e.target.value;
         if(cost < 0.00 || cost > 21474836.45){
             this.setState(() => ({cost: {
                 value: cost,
                 valid: false,
-                error:'Number size invalid'
+                error:'Number Size Invalid'
             }}));           
         }
         else if(!cost || cost.match(/^\d{1,}(\.\d{0,2})?$/))
@@ -213,11 +221,29 @@ class ItemForm extends React.Component{
         }
     }
 
-    descriptionChange = (e) =>{
+    descriptionChange = (e) =>{        
         const description = e.target.value;
-        this.setState(() => ({description:{
-            value: description
-        }}));
+        if(description.length < 254){
+            if(UserNameField(description)){
+                this.setState(() => ({description:{
+                    value: description,
+                    valid: true,
+                    error:''
+                }}));}
+            else{
+                this.setState(() => ({description:{
+                    value: description,
+                    valid: false,
+                    error:'Invalid Character'
+                }}));
+            }
+        }
+        else{
+            this.setState(() => ({description:{
+                valid: false,
+                error:'Discription to long'
+            }}));
+        }
     }
 
     onDateChange= (duedate)=>{
@@ -278,7 +304,7 @@ class ItemForm extends React.Component{
                 <td></td>
                 </tr>
                 <tr>
-                <div>
+                <td>
                 <ItemFormSingleDate>Select Date: </ItemFormSingleDate>
                 <SingleDatePicker disabled={this.props.Loading.clicked} date ={this.state.duedate} onDateChange={this.onDateChange} focused = {this.state.CalFocuse} onFocusChange={this.onFocusChange} numberOfMonths={1} isOutsideRange={()=> false}/> 
                 <ItemFormRecurring>Is this a recurring date: </ItemFormRecurring>
@@ -298,7 +324,7 @@ class ItemForm extends React.Component{
                     <option value='true'>yes</option>
                     <option value = 'false'>no</option>
                 </ItemFormSelect>
-                </div>
+                </td>
                 </tr>
                 {this.state.recurring && <tr><td>
                     <ItemFormSingleDate >Select rate of recurrence:</ItemFormSingleDate>
@@ -333,11 +359,11 @@ class ItemForm extends React.Component{
                         <option value = 'false'>no</option>
                         <option value='true'>yes</option>
                     </ItemFormSelect>
-                        {this.state.enddate && <div>
-                            <ItemFormSingleDate>Select End Date</ItemFormSingleDate>
-                            <SingleDatePicker disabled={this.props.Loading.clicked} date ={this.state.endrecurring} onDateChange={this.onEndRecurringChange} focused = {this.state.RecFocuse} onFocusChange={this.onRecFocuseChange} numberOfMonths={1} isOutsideRange={()=> false}/> 
-                            </div>}
-                            </td> </tr>}
+                        {this.state.enddate && 
+                            <ItemFormSingleDate>Select End Date:</ItemFormSingleDate> }
+                            {this.state.enddate && 
+                            <SingleDatePicker disabled={this.props.Loading.clicked} date ={this.state.endrecurring} onDateChange={this.onEndRecurringChange} focused = {this.state.RecFocuse} onFocusChange={this.onRecFocuseChange} numberOfMonths={1} isOutsideRange={()=> false}/> }
+                </td></tr>}
                 </ItemFormTBody>
                 </ItemFormTable>
                 <ItemFormButton type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "button">Submit</ItemFormButton>

@@ -4,18 +4,21 @@ import { connect } from 'react-redux';
 import getVisableItem from '../Redux/SelectorItemOrder';
 import styled from 'styled-components';
 import NoItems from './NoItems';
+import ItemListHeader from './ItemListHeader';
 
 const ItemListDiv = styled.div`
     padding: 0;
     text-align: center;
     position: relative;
-    border: 20px solid black;
-    border-bottom: none;
+    border: 1px solid black;    
+    border-bottom: 0;
     width: 70%;
     min-width: 750px;
     margin auto;
 `
 const ItemListTable = styled.table`
+    border-spacing: 0;
+    border-collapse: collapse;
     position: relative;
     margin: 0 auto;
     padding: 0;
@@ -23,21 +26,31 @@ const ItemListTable = styled.table`
     width: 100%;
 ` 
 const ItemListTd = styled.td`
-position: relative;
-padding-top: 5px;
-padding-bottom: 5px;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    border: 0;
+`
+
+const ItemListTr = styled.tr`
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width:100%;
+    border-bottom: 1px solid black;    
 `
 
 const ItemList =(props)=>{
     return(
         <ItemListDiv>
+        {props.itemsV.length > 0 &&<ItemListHeader/>}
             <ItemListTable>
             <tbody>
                 {props.itemsV.length > 0 ? 
                     props.itemsV.map((item,index)=>{
-                    return(<tr key={index}><ItemListTd key={index}><Item key={index} {...item} index={props.items.indexOf(item)+1}/></ItemListTd></tr>)})
+                    return(<ItemListTr key={index}><ItemListTd key={index}><Item key={index} {...item} index={props.items.indexOf(item)+1}/></ItemListTd></ItemListTr>)})
                     : 
-                    <tr><ItemListTd><NoItems/></ItemListTd></tr>
+                    <ItemListTr><ItemListTd><NoItems/></ItemListTd></ItemListTr>
                 }
             </tbody>
             </ItemListTable>

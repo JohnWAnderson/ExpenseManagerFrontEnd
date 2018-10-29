@@ -4,7 +4,7 @@ import {LoadingChange} from '../Redux/Actions/Loading';
 import { addUser} from '../Redux/Actions/Users';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-
+import {UserNameField, EmailField, PasswordField, UserField} from '../Functions/Validation';
 const SingUpH1 = styled.h1`
     text-align: left ;
     padding-bottom: 25px;
@@ -57,7 +57,7 @@ const SignupFormDiv = styled.div`
 
 const SignupTdError = styled.td`
     text-align: right ;
-    width: 100px; height: auto;
+    width: 120px; height: auto;
     color: red;
 `
 const SignupDiv = styled.div`
@@ -134,7 +134,6 @@ class Signup extends React.Component {
                 error: ''
             }
         }
-        this.validateEmail = this.validateEmail.bind(this);
         this.resetInput = this.resetInput.bind(this);
         this.signedup = this.signedup.bind(this);
     }  
@@ -238,14 +237,10 @@ class Signup extends React.Component {
         }})
     };
 
-        validateEmail =(email) => {
-            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(String(email).toLowerCase());
-        }
-
         PasswordChange = (e) =>{         
             const password = e.target.value
             if(password.length >= 6 && password.length <= 20){
+                if(PasswordField(password)){
                 this.setState({
                     password: {
                         value: password,
@@ -256,7 +251,15 @@ class Signup extends React.Component {
                     this.setState({
                         rePassword: {
                             valid: true,
-                    }})}
+                    }})}}
+                else{
+                    this.setState({
+                        password: {
+                            value: password,
+                            valid: false,
+                            error: 'Invalid Character'
+                        }})
+                }
             }
             else if(password.length === 0){
                 this.setState({
@@ -308,13 +311,23 @@ class Signup extends React.Component {
         NameChange = (e) =>{
             const name = e.target.value
             if(name.length >= 3 && name.length <= 40){
-                this.setState({
-                    name: {
-                        value: name,
-                        valid: true,
-                        error: ''
-                    }
-                })
+                if(UserField(name)){
+                    this.setState({
+                        name: {
+                            value: name,
+                            valid: true,
+                            error: ''
+                        }
+                    })}
+                else{
+                    this.setState({
+                        name: {
+                            value: name,
+                            valid: false,
+                            error: 'Invalid Character'
+                        }
+                    }) 
+                }
             }
             else if(name.length === 0){
                 this.setState({
@@ -338,13 +351,23 @@ class Signup extends React.Component {
         UserNameChange = (e) =>{
             const UserName = e.target.value
             if(UserName.length >= 3 && UserName.length <= 20){
-                            this.setState({
-                                username: {
-                                    value: UserName,
-                                    valid: true,
-                                    error: ''
-                                }
-                            })
+                if(UserNameField(UserName)){
+                    this.setState({
+                        username: {
+                            value: UserName,
+                            valid: true,
+                            error: ''
+                        }
+                    })}
+                else{
+                    this.setState({
+                        username: {
+                            value: UserName,
+                            valid: false,
+                            error: 'Invalid Character'
+                        }
+                    })
+                }
             }
             else if(UserName.length === 0){
                 this.setState({
@@ -377,7 +400,7 @@ class Signup extends React.Component {
                     }
                 })
             }
-            else if(this.validateEmail(email)){
+            else if(EmailField(email)){
                 if(email.length <= 50){
                                 this.setState({
                                     email: {
@@ -392,7 +415,7 @@ class Signup extends React.Component {
                     email: {
                         value: email,
                         valid: false,
-                        error: 'email to long'
+                        error: 'Email To Long'
                     }
                 })
             }
@@ -401,7 +424,7 @@ class Signup extends React.Component {
                     email: {
                         value: email,
                         valid: false,
-                        error: 'invalid email'
+                        error: 'Invalid Email'
                     }
                 })
             }
