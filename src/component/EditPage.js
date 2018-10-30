@@ -18,13 +18,17 @@ const MainDiv = styled.div`
 `
 const PageFormH1 = styled.h1`
     text-align: center ;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     padding-left: 2px;
+    background: #D0D1D1;
 `
 const RemoveButton = styled.button`
     text-align: center ;
     margin-bottom: 25px;
     padding-left: 2px;
+    color: red;
+    font-size: 20px;
+    background: 0;
 `
 
 const PageFormDiv = styled.div`
@@ -33,12 +37,20 @@ const PageFormDiv = styled.div`
     position: relative;
     width: 90%;
     margin auto;
+    
 `
+
+const EditPageButtonDiv = styled.div`
+    padding: 0;
+    text-align: center;
+    background: #D0D1D1;
+`
+
 class EditPage extends React.Component {
     constructor(props){
     super(props);
     this.state = {
-        showDialog: false,
+        showDialog: false
         }
     }
     render() {
@@ -47,9 +59,9 @@ class EditPage extends React.Component {
         const holder = item.name;
         return(
             <MainDiv>
-            <PageFormDiv>
             <PageFormH1>Edit Item Page</PageFormH1>
-            <RemoveButton onClick={()=>{
+            <EditPageButtonDiv>
+            <RemoveButton  disabled={this.props.Loading.clicked} onClick={()=>{
                 confirmAlert({
                     title: 'Confirm to Delete',
                     message: `Are you sure to delete '${item.name}'.`,
@@ -73,7 +85,9 @@ class EditPage extends React.Component {
                       }
                     ]
                   })
-            }}>Delete</RemoveButton>
+            }}>Remove Item</RemoveButton> 
+            </EditPageButtonDiv>
+            <PageFormDiv>
             <ItemForm item={item}        
                     onSubmit={(item) => {
                         const newItem=({...item,oldName: holder})
@@ -104,7 +118,8 @@ const MapUserInfo=(state)=>{
   return{
       User: state.user,
       filter: state.filter,
-      items: state.items
+      items: state.items,
+      Loading: state.loading
   }
 }
 export default connect(MapUserInfo)(EditPage);

@@ -26,6 +26,7 @@ const HeaderLink = styled(Link)`
 `
 
 const ItemPartDiv =styled.div`
+    vertical-align: middle;
     vertical-align: top;
     display: table-cell;
     position: relative;
@@ -45,23 +46,23 @@ const ItemH3 = styled.h3`
 `   
 
 const ItemPartDisDiv =styled.div`
-    vertical-align: center;
     text-align:center;
-    align:center;
+    vertical-align: middle;
     display: table-cell;
     word-wrap: break-word;
     position: relative;
     max-width: 457px;
     width: 34%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
+    padding: auto;
+    margin: auto;
 `
 
 const ItemNameDiv = styled.div`
     position: relative;
+    vertical-align: middle;
     text-align:left;
     margin: 0 auto;
+    top:50%;
     height: 100%;
     padding: 20px;
     margin: auto;

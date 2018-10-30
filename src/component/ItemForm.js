@@ -7,7 +7,7 @@ import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import styled from 'styled-components';
-import {UserNameField} from '../Functions/Validation';
+import {ItemDisFeild, UserNameField} from '../Functions/Validation';
 
 const ItemFormInput = styled.input`
     margin-bottom: 10px;
@@ -43,6 +43,7 @@ const ItemFormErrorTd = styled.td`
 `
 
 const ItemFormDiv = styled.div`
+    width: 80%;
     text-align: left;
     align: left;
     margin: auto;
@@ -222,8 +223,7 @@ class ItemForm extends React.Component{
         const description = e.target.value;
         if(description.length < 225){
             console.log('yes');
-            
-            if(UserNameField(description)){
+            if(ItemDisFeild(description)){
                 this.setState(() => ({description:{
                     value: description,
                     valid: true,
@@ -360,11 +360,11 @@ class ItemForm extends React.Component{
                         <option value = 'false'>no</option>
                         <option value='true'>yes</option>
                     </ItemFormSelect>
-                        {this.state.enddate && 
-                            <ItemFormSingleDate>Select End Date:</ItemFormSingleDate> }
-                            {this.state.enddate && 
-                            <SingleDatePicker disabled={this.props.Loading.clicked} date ={this.state.endrecurring} onDateChange={this.onEndRecurringChange} focused = {this.state.RecFocuse} onFocusChange={this.onRecFocuseChange} numberOfMonths={1} isOutsideRange={()=> false}/> }
                 </td></tr>}
+                {(this.state.enddate && this.state.recurring) && 
+                    <ItemFormSingleDate>Select End Date:</ItemFormSingleDate> }
+                {(this.state.enddate && this.state.recurring) && 
+                    <SingleDatePicker disabled={this.props.Loading.clicked} date ={this.state.endrecurring} onDateChange={this.onEndRecurringChange} focused = {this.state.RecFocuse} onFocusChange={this.onRecFocuseChange} numberOfMonths={1} isOutsideRange={()=> false}/> }
                 </ItemFormTBody>
                 </ItemFormTable>
                 <ItemFormButton type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "button">Submit</ItemFormButton>

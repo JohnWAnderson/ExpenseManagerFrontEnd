@@ -13,7 +13,6 @@ const CalenderPageDiv = styled.div`
     text-align: center;
     flex-direction: column;
     position: relative;
-    margin: auto;
     width:100%;
     min-height: 92%;
 `
@@ -72,23 +71,23 @@ class CalendarPage extends React.Component {
     render() {
         return(
             <CalenderPageDiv>
-            <CalendarInformation>
-                <CalendarInfo cost={this.state.cost} items={this.state.itemNum}/>
-            </CalendarInformation>
-            <CalendarDiv>
-            <BigCalendar
-                onSelectEvent={this.handleSelectEvent} 
-                localizer={this.state.localizer}
-                defaultView="month"
-                views={['month']}
-                events={this.state.events}
-                style={{ height: "600px", width:"770px", align: "center", position: "relative", margin:"auto"}}
-                onNavigate={(date) => {this.onMonthChange(date)}}
-                components={{
-                    toolbar: CustomToolbar
-                  }}
-            />
-            </CalendarDiv>
+                <CalendarInformation>
+                    <CalendarInfo cost={this.state.cost} items={this.state.itemNum}/>
+                </CalendarInformation>
+                <CalendarDiv>
+                <BigCalendar
+                    onSelectEvent={this.handleSelectEvent} 
+                    localizer={this.state.localizer}
+                    defaultView="month"
+                    views={['month']}
+                    events={this.state.events}
+                    style={{ height: "600px", width:"770px", align: "center", position: "relative", margin:"auto"}}
+                    onNavigate={(date) => {this.onMonthChange(date)}}
+                    components={{
+                        toolbar: CustomToolbar
+                    }}
+                />
+                </CalendarDiv>
             </CalenderPageDiv>
         )
     };

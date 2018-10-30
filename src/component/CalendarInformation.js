@@ -10,7 +10,7 @@ const CalInfoMainDiv = styled.div`
     height: auto;
     font-size: 25px;
     position: reletive;
-    min-width: 700px;
+    min-width: 800px;
     background: #D0D1D1;
 `
 const PageInfoLink = styled(Link)`

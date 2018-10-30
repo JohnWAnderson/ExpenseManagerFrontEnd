@@ -10,6 +10,12 @@ export const UserField = (field)=>{
 	else return true;
 }
 
+export const ItemDisFeild = (field)=>{
+	const regex = /^[0-9a-zA-Z_.,'" ]+$/;
+	if(!field.match(regex)) return false;
+	else return true;
+}
+
 export const PasswordField = (field)=>{
 	const regex = /^[0-9a-zA-Z!@#$%^&*()_+-=]+$/;
 	if(!field.match(regex)) return false;

@@ -16,7 +16,6 @@ const PageFormDiv = styled.div`
     text-align: center;
     align:center;
     position: relative;
-    width: 80%;
     margin: auto;
 `
 
@@ -24,6 +23,8 @@ const PageFormH1 = styled.h1`
     text-align: center ;
     padding-bottom: 25px;
     padding-left: 2px;
+    background: #D0D1D1;
+    margin-bottom: 10px;
 `
 
 const AddPage = (props) =>{

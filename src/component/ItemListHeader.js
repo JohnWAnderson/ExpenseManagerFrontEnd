@@ -37,7 +37,7 @@ const HeaderLeftH3 = styled.h3`
     vertical-align: middle;
     position: relative;
     font-size: 30px;
-    margin: 10px;
+    margin: 15px 20px;
     padding: 0;
 `   
 
