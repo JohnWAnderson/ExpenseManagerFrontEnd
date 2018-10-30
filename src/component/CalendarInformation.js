@@ -32,15 +32,11 @@ const PageInfoDiv = styled.div`
 `
 
 export default (props) =>{
-    console.log(props)
     return(
         <CalInfoMainDiv>
             {props.items > 0 ? 
-            <PageInfoDiv>This Month contains {props.items} items which totals to: ${(props.cost/100).toFixed(2)}</PageInfoDiv>:
-            <PageInfoDiv>Page contains no items</PageInfoDiv>}
-            <PageInfoH1>
-                <PageInfoLink to="/add" activeclassname="is-active" exact="true" > Add Item </PageInfoLink> 
-            </PageInfoH1>
+            <PageInfoDiv>This month contains {props.items} items which totals to: ${(props.cost/100).toFixed(2)}</PageInfoDiv>:
+            <PageInfoDiv>Page month no items</PageInfoDiv>}
         </CalInfoMainDiv>
     );
 }

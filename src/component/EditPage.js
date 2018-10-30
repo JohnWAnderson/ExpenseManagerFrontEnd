@@ -14,7 +14,7 @@ const MainDiv = styled.div`
     position:relative;
     min-height: 92%;
     height: auto;
-    min-width: 700px;
+    min-width: 1100px;
 `
 const PageFormH1 = styled.h1`
     text-align: center ;
@@ -35,7 +35,6 @@ const PageFormDiv = styled.div`
     padding: 0;
     text-align: center;
     position: relative;
-    width: 90%;
     margin auto;
     
 `

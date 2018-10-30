@@ -18,7 +18,6 @@ const ItemFormInput = styled.input`
     height: 50px;
     width: 100%;
     font-size: 25px;
-    min-width: 1200px;
     border: 1px solid black;   
 `
 
@@ -31,7 +30,6 @@ const ItemFormTextArea = styled.textarea`
     font-size: 25px;
     height: 100px;
     width: 100%;
-    min-width: 1200px;
     border: 1px solid black;   
 `
 
@@ -47,8 +45,33 @@ const ItemFormDiv = styled.div`
     text-align: left;
     align: left;
     margin: auto;
+    margin-left: 200px;
+    padding-left: 0 150px;
     position: relative;
+    min-width: 800px;
 `
+const MainItemFormDiv = styled.div`
+    padding: 0;
+    align: center;
+    text-align: center;
+    flex-direction: column;
+    position: relative;
+    width:100%;
+    min-width: 1100px;
+    min-height: 92%;
+`
+
+const CalenderPageDiv = styled.div`
+    padding: 0;
+    align: center;
+    text-align: center;
+    flex-direction: column;
+    position: relative;
+    width:100%;
+    min-width: 1100px;
+    min-height: 92%;
+`
+
 const ItemFormForm = styled.form`
     width: 100%;
     margin: auto;
@@ -69,7 +92,6 @@ const ItemFormTD = styled.td`
 width: 90%;
 position: relative;
 `
-
 const ItemFormButton = styled.button`
 background-color: DodgerBlue;
 border: none;
@@ -222,7 +244,6 @@ class ItemForm extends React.Component{
     descriptionChange = (e) =>{        
         const description = e.target.value;
         if(description.length < 225){
-            console.log('yes');
             if(ItemDisFeild(description)){
                 this.setState(() => ({description:{
                     value: description,
@@ -238,7 +259,6 @@ class ItemForm extends React.Component{
             }
         }
         else{
-            console.log('no');
             this.setState(() => ({description:{
                 value: description,
                 valid: false,
@@ -284,6 +304,7 @@ class ItemForm extends React.Component{
     }
 
     render= () =>(
+        <MainItemFormDiv>
         <ItemFormDiv>
             <ItemFormForm  onSubmit= {this.onSubmit}>
             <ItemFormTable>
@@ -370,6 +391,7 @@ class ItemForm extends React.Component{
                 <ItemFormButton type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "button">Submit</ItemFormButton>
             </ItemFormForm>
         </ItemFormDiv>
+        </MainItemFormDiv>
     );
 
 }

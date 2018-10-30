@@ -10,6 +10,7 @@ const MainDiv = styled.div`
     position:relative;
     min-height: 92%;
     height: auto;
+    min-width: 1100px;
 `
 
 const MainSignupBlock = styled.div`

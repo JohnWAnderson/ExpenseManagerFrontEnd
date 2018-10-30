@@ -3,7 +3,8 @@ import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import SelectCalendarEvents from '../Redux/SelectCalandarEvents';
+import {Link} from 'react-router-dom';
+import SelectCalendarEvents from '../Redux/SelectCalendarEvents';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import CalendarInfo from './CalendarInformation';
 
@@ -14,6 +15,7 @@ const CalenderPageDiv = styled.div`
     flex-direction: column;
     position: relative;
     width:100%;
+    min-width: 1100px;
     min-height: 92%;
 `
 const CalendarInformation = styled.div`
@@ -21,18 +23,26 @@ const CalendarInformation = styled.div`
     margin: auto;
     height: 100%;
     text-align: center ;
-    position=relative;
+    position: relative;
     width:100%;
 `   
 const CalendarDiv = styled.div`
     min-width: 800px;
-    margin: auto;
     width:100%;
     align: center;
     text-align: center ;
     position: relative;
     height: 100%;
-`   
+`    
+const MainDiv = styled.div`
+    display: table;
+    min-width: 1100px;
+    width:100%;
+    align: center;
+    text-align: center ;
+    position: relative;
+    height: 100%;
+`    
 
 class CalendarPage extends React.Component {
     constructor(props){
@@ -52,7 +62,6 @@ class CalendarPage extends React.Component {
 
     onMonthChange=(date)=>{
         const eventList = (SelectCalendarEvents(this.props.items, date))
-        console.log(date);
         this.setState({events: eventList[0],
             cost: eventList[1],
             itemNum: eventList[2]});
@@ -74,20 +83,20 @@ class CalendarPage extends React.Component {
                 <CalendarInformation>
                     <CalendarInfo cost={this.state.cost} items={this.state.itemNum}/>
                 </CalendarInformation>
-                <CalendarDiv>
-                <BigCalendar
-                    onSelectEvent={this.handleSelectEvent} 
-                    localizer={this.state.localizer}
-                    defaultView="month"
-                    views={['month']}
-                    events={this.state.events}
-                    style={{ height: "600px", width:"770px", align: "center", position: "relative", margin:"auto"}}
-                    onNavigate={(date) => {this.onMonthChange(date)}}
-                    components={{
-                        toolbar: CustomToolbar
-                    }}
-                />
-                </CalendarDiv>
+                    <CalendarDiv>
+                    <BigCalendar
+                        onSelectEvent={this.handleSelectEvent} 
+                        localizer={this.state.localizer}
+                        defaultView="month"
+                        views={['month']}
+                        events={this.state.events}
+                        style={{ height: "600px", width:"770px", align: "center", position: "relative", margin:"auto"}}
+                        onNavigate={(date) => {this.onMonthChange(date)}}
+                        components={{
+                            toolbar: CustomToolbar
+                        }}
+                    />
+                    </CalendarDiv>
             </CalenderPageDiv>
         )
     };
