@@ -45,7 +45,9 @@ const ItemH3 = styled.h3`
 `   
 
 const ItemPartDisDiv =styled.div`
-    vertical-align: top;
+    vertical-align: center;
+    text-align:center;
+    align:center;
     display: table-cell;
     word-wrap: break-word;
     position: relative;
