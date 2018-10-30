@@ -6,12 +6,27 @@ import getSelectorSum from '../Redux/SelectorSum';
 import getVisableItem from '../Redux/SelectorItemOrder';
 import styled from 'styled-components';
 
+const PageInfoMainDiv = styled.div`
+    font-size: 25px;
+    position: reletive;
+    min-width: 700px;
+    padding: 0;
+    margin: 0;
+    background: #D0D1D1;
+`
+
+const PageInfoDiv = styled.div`
+    padding: 10px;
+`
+
+
 const PageInfoLink = styled(Link)`
     color: green;
     text-decoration: none;
     font-family: Georgia;
     text-align: left ;
     position: reletive;
+    
 `
 const PageInfoH1 = styled.h1`
     font-size: 25px;
@@ -21,24 +36,18 @@ const PageInfoH1 = styled.h1`
     position: reletive;
 `
 
-const PageInfoDiv = styled.div`
-    font-size: 25px;
-    position: reletive;
-    min-width: 700px;
-`
+
 
 const getVisableItemNumber = (props) =>{
     return(
-        <PageInfoDiv>
-            <div>
+        <PageInfoMainDiv>
                 {props.Items.length > 0 ? 
-                <p>Page contains {props.Items.length} which totals to: ${props.Sum/100}</p>:
-                <p>Page contains no items</p>}
-            </div>
+                <PageInfoDiv>Page contains {props.Items.length} which totals to: ${props.Sum/100}</PageInfoDiv>:
+                <PageInfoDiv>Page contains no items</PageInfoDiv>}
             <PageInfoH1>
                 <PageInfoLink to="/add" activeclassname="is-active" exact="true" > Add Item </PageInfoLink> 
             </PageInfoH1>
-        </PageInfoDiv>
+        </PageInfoMainDiv>
     );
 }
 

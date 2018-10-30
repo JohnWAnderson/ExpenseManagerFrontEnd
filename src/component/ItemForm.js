@@ -19,6 +19,7 @@ const ItemFormInput = styled.input`
     width: 100%;
     font-size: 25px;
     min-width: 1200px;
+    border: 1px solid black;   
 `
 
 const ItemFormTextArea = styled.textarea`
@@ -31,6 +32,7 @@ const ItemFormTextArea = styled.textarea`
     height: 100px;
     width: 100%;
     min-width: 1200px;
+    border: 1px solid black;   
 `
 
 const ItemFormErrorTd = styled.td`
@@ -38,11 +40,6 @@ const ItemFormErrorTd = styled.td`
     width: auto; height: auto;
     color: red;
     min-width: 200px;
-`
-
-const ItemFormDatePickerTd = styled.td`
-    text-align: left ;
-    min-width: 100px;
 `
 
 const ItemFormDiv = styled.div`
@@ -118,7 +115,7 @@ class ItemForm extends React.Component{
             },
             description:{
                 value: props.item? props.item.description :'',
-                valid: props.item? true :false,
+                valid: true,
                 error:''
             },
             duedate: props.item? moment(props.item.duedate) : moment().startOf('day'),
@@ -138,7 +135,7 @@ class ItemForm extends React.Component{
     onSubmit= (e) => {
         e.preventDefault();
         this.props.dispatch(LoadingChange({clicked: true}));
-        if(this.state.name.valid && this.state.cost.valid){
+        if(this.state.name.valid && this.state.cost.valid && this.state.description.valid ){
             if(this.state.old === this.state.name.value){
                 this.HandlePropSubmit();
             }
@@ -179,7 +176,7 @@ class ItemForm extends React.Component{
 
     NameChange = (e) =>{
         const name = e.target.value;
-        if(name.length >2){
+        if(name.length >2 && name.length <= 25){
             if(UserNameField(name)){        
                 this.setState(() => ({name:{
                     value: name,
@@ -198,7 +195,7 @@ class ItemForm extends React.Component{
             this.setState(() => ({name:{
                 value: name,
                 valid: false,
-                error:'Must be Length 3'
+                error:'Invalid Length'
             }}));
         }
     }
@@ -223,7 +220,9 @@ class ItemForm extends React.Component{
 
     descriptionChange = (e) =>{        
         const description = e.target.value;
-        if(description.length < 254){
+        if(description.length < 225){
+            console.log('yes');
+            
             if(UserNameField(description)){
                 this.setState(() => ({description:{
                     value: description,
@@ -239,7 +238,9 @@ class ItemForm extends React.Component{
             }
         }
         else{
+            console.log('no');
             this.setState(() => ({description:{
+                value: description,
                 valid: false,
                 error:'Discription to long'
             }}));
@@ -301,7 +302,7 @@ class ItemForm extends React.Component{
                 <tr>
                 <td>
                 <ItemFormTextArea disabled={this.props.Loading.clicked} type = "textarea" name = "Description"  id= "description" value = {this.state.description.value} onChange = {this.descriptionChange} placeholder="description (Optional)"/> </td> 
-                <td></td>
+                <ItemFormErrorTd>{!!this.state.description.error && this.state.description.error}</ItemFormErrorTd>
                 </tr>
                 <tr>
                 <td>

@@ -30,7 +30,7 @@ const AddPage = (props) =>{
     return(
     <MainDiv>
         <PageFormDiv>
-        <PageFormH1>Add Item</PageFormH1>
+        <PageFormH1>Add Item Page</PageFormH1>
         <ItemForm
             onSubmit={(item) => {
                 CreateItem(item).then(response => {

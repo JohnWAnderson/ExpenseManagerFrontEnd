@@ -7,12 +7,14 @@ const ItemCostPartDIV =styled.div`
     align: center;
     width: 33%;
     height: 100%;
+    font-size: 16px;
 `
 
 const ItemCostDiv = styled.div`
     position: relative;
     display: block;
     height: 100%;
+    padding: 30px;
 `   
 
 const ItemCost = (props) => (

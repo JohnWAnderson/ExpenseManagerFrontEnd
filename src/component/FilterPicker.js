@@ -14,6 +14,7 @@ const MainFilterPickerDiv = styled.div`
     position: relative;
     display: block;
     min-width: 700px;
+    background: #D0D1D1;
 `   
 const FilterTitleDiv = styled.div`
     display: inline-block;

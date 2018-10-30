@@ -48,7 +48,7 @@ class EditPage extends React.Component {
         return(
             <MainDiv>
             <PageFormDiv>
-            <PageFormH1>Edit Item</PageFormH1>
+            <PageFormH1>Edit Item Page</PageFormH1>
             <RemoveButton onClick={()=>{
                 confirmAlert({
                     title: 'Confirm to Delete',
