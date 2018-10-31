@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import FilterPicker from './FilterPicker';
 import PageInformation from './PageInformation';
 import styled from 'styled-components';
-import Signup from '../Account/Signup';
+import SignupPage from '../Account/SignupPage';
 const MainDiv = styled.div`
     position:relative;
     min-height: 92%;
@@ -34,7 +34,7 @@ const DatePicker= (props) =>{
                     </Link>
                     <ItemList/>
                 </AppDashBoard> :
-                        <Signup/>} 
+                    <SignupPage/>} 
             </MainDiv>
         );
 }

@@ -11,31 +11,6 @@ const SingUpH1 = styled.h1`
     margin-left: 52px;
 `
 
-const SignUpInfoH1 = styled.h1`
-text-align: left;
-padding-bottom: 25px;
-`
-
-const InformationH1 = styled.h1`
-    text-align: left ;
-    padding-bottom: 25px;
-    padding-left: 2px;
-    font-size: 16px;
-`
-
-const PrototypeH1 = styled.h1`
-    text-align: left ;
-    padding-bottom: 20px;
-    padding-left: 2px;
-`
-const InformationBottomDiv = styled.div`
-    text-align: left ;
-    position: relitive; 
-    bottom: 0;
-    margin-top: 200px;
-    border: 1px solid black;
-`
-
 const SignUpInput = styled.input`
     margin-bottom: 10px;
     padding: 2px;
@@ -77,30 +52,11 @@ const SignupDiv = styled.div`
     height: 100%;
 `   
 
-const MainSigninDiv = styled.div`
-    position: relative;
-    display: block;
-    text-align: center;
-    height: 100%;
-    min-width: 1000px;
-    width: 100%;
-    background: #F7F7F7;
-    margin-bottom: 50px;
-`   
-
-const MaSigninInfoDiv = styled.div`
-    display: inline-block;
-    min-width: 400px;
-    vertical-align: top;
-    align: left;
-    width: 500px;
-    height: 100%;
-    text-align: left ;
-    position=relative;
-`   
 const LoginButton = styled.button`
     background-color: green;
     border: none;
+    width: 70px;
+    height: 30px;
     padding: 2px 2px;
     margin-left: 3px;
     font-size: 16px;
@@ -108,6 +64,7 @@ const LoginButton = styled.button`
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    color: white;
 
     ${({ clicked }) => clicked && `
     background-color: lime;
@@ -313,7 +270,7 @@ class Signup extends React.Component {
                     rePassword: {
                         value: rePassword,
                         valid: false,
-                        error: ''
+                        error: "Don't Match"
                     }})
             }
         }
@@ -440,19 +397,6 @@ class Signup extends React.Component {
             }
         }
     render= () =>(
-        <MainSigninDiv>
-        <MaSigninInfoDiv>
-        <SignUpInfoH1>Track your spending habits now</SignUpInfoH1>
-        <InformationH1>-Track Expenses with single payment or with recurring costs</InformationH1>
-        <InformationH1>-Observe your spending habits relative to a time series</InformationH1>
-        <InformationBottomDiv>
-        <PrototypeH1>prototype information:</PrototypeH1>
-        <p>-! Calendar currently being worked on to be added into the home dash board !-</p>
-        <p>-First start might take a some time, heroku api might have to wake up</p>
-        <p>-CSS and UI currently being worked on, this is prototype build</p>
-        <p>-Other components currently under built, only time series active</p>
-        </InformationBottomDiv>
-        </MaSigninInfoDiv>
         <SignupDiv>
             <SingUpH1>Sign Up</SingUpH1>
             <SignupFormDiv>
@@ -487,7 +431,6 @@ class Signup extends React.Component {
                 </SignupForm>
             </SignupFormDiv>
         </SignupDiv>
-        </MainSigninDiv>
     );
 
 }

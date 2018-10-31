@@ -61,17 +61,6 @@ const MainItemFormDiv = styled.div`
     min-height: 92%;
 `
 
-const CalenderPageDiv = styled.div`
-    padding: 0;
-    align: center;
-    text-align: center;
-    flex-direction: column;
-    position: relative;
-    width:100%;
-    min-width: 1100px;
-    min-height: 92%;
-`
-
 const ItemFormForm = styled.form`
     width: 100%;
     margin: auto;
@@ -114,7 +103,6 @@ font-size: 25px;
 `
 
 const ItemFormRecurring = styled.label`
-margin-left: 150px;
 font-size: 25px;
 `
 
@@ -325,10 +313,14 @@ class ItemForm extends React.Component{
                 <ItemFormTextArea disabled={this.props.Loading.clicked} type = "textarea" name = "Description"  id= "description" value = {this.state.description.value} onChange = {this.descriptionChange} placeholder="description (Optional)"/> </td> 
                 <ItemFormErrorTd>{!!this.state.description.error && this.state.description.error}</ItemFormErrorTd>
                 </tr>
-                <tr>
-                <td>
+                </ItemFormTBody>
+                </ItemFormTable>
+                <ItemFormRecurringDiv>
+                <ItemFormInnerRecurringDiv>
                 <ItemFormSingleDate>Select Date: </ItemFormSingleDate>
                 <SingleDatePicker disabled={this.props.Loading.clicked} date ={this.state.duedate} onDateChange={this.onDateChange} focused = {this.state.CalFocuse} onFocusChange={this.onFocusChange} numberOfMonths={1} isOutsideRange={()=> false}/> 
+                </ItemFormInnerRecurringDiv>
+                <ItemFormInnerRecurringDiv>
                 <ItemFormRecurring>Is this a recurring date: </ItemFormRecurring>
                 <ItemFormSelect disabled={this.props.Loading.clicked} value={this.state.recurring} onChange={(e) => {     
                     if(e.target.value === 'true'){
@@ -346,9 +338,10 @@ class ItemForm extends React.Component{
                     <option value='true'>yes</option>
                     <option value = 'false'>no</option>
                 </ItemFormSelect>
-                </td>
-                </tr>
-                {this.state.recurring && <tr><td>
+                </ItemFormInnerRecurringDiv>
+                </ItemFormRecurringDiv>
+                {this.state.recurring && <ItemFormRecurringDiv>
+                    <ItemFormInnerRecurringDiv>
                     <ItemFormSingleDate >Select rate of recurrence:</ItemFormSingleDate>
                     <ItemFormSelect disabled={this.props.Loading.clicked} value={this.state.recurringsize} onChange={(e) => {     
                         if(e.target.value === 'weekly')
@@ -367,7 +360,9 @@ class ItemForm extends React.Component{
                         <option value = 'biweekly'>bi-weekly</option>
                         <option value = 'monthly'>monthly (date)</option>
                     </ItemFormSelect>
-                    <ItemFormRecurring>Is there an end date for this item:</ItemFormRecurring>
+                    </ItemFormInnerRecurringDiv>
+                    <ItemFormInnerRecurringDiv>
+                    <ItemFormSingleDate>Is there an end date for this item:</ItemFormSingleDate>
                     <ItemFormSelect disabled={this.props.Loading.clicked} value={this.state.enddate} onChange={(e) => {     
                         if(e.target.value === 'true'){
                             this.handleEndDateChange(true); 
@@ -381,13 +376,13 @@ class ItemForm extends React.Component{
                         <option value = 'false'>no</option>
                         <option value='true'>yes</option>
                     </ItemFormSelect>
-                </td></tr>}
-                {(this.state.enddate && this.state.recurring) && 
-                    <ItemFormSingleDate>Select End Date:</ItemFormSingleDate> }
-                {(this.state.enddate && this.state.recurring) && 
-                    <SingleDatePicker disabled={this.props.Loading.clicked} date ={this.state.endrecurring} onDateChange={this.onEndRecurringChange} focused = {this.state.RecFocuse} onFocusChange={this.onRecFocuseChange} numberOfMonths={1} isOutsideRange={()=> false}/> }
-                </ItemFormTBody>
-                </ItemFormTable>
+                    </ItemFormInnerRecurringDiv>
+                    </ItemFormRecurringDiv>}
+                {(this.state.enddate && this.state.recurring) && <div>
+                    <ItemFormSingleDate>Select End Date:</ItemFormSingleDate>
+                    <SingleDatePicker disabled={this.props.Loading.clicked} date ={this.state.endrecurring} onDateChange={this.onEndRecurringChange} focused = {this.state.RecFocuse} onFocusChange={this.onRecFocuseChange} numberOfMonths={1} isOutsideRange={()=> false}/>
+                    </div>}
+
                 <ItemFormButton type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "button">Submit</ItemFormButton>
             </ItemFormForm>
         </ItemFormDiv>
@@ -395,6 +390,17 @@ class ItemForm extends React.Component{
     );
 
 }
+
+ const ItemFormRecurringDiv = styled.div`
+    display: table;
+    width:100%;
+    
+`
+
+const ItemFormInnerRecurringDiv = styled.div`
+    display: table-cell;
+    width: 50%;
+`
 
 const MapUserInfo=(state)=>{
     return{

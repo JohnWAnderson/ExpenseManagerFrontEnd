@@ -24,12 +24,11 @@ text-align: center ;
 const LoginButton = styled.button`
 background-color: #4a8aba;
 border: none;
-padding: 2px 2px;
+padding: 3px 3px;
 border-radius: 3px;
 text-align: center;
 text-decoration: none;
 display: inline-block;
-
 ${({ clicked }) => clicked && `
 background-color: white;
 `}
