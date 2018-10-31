@@ -6,9 +6,14 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {UserNameField, EmailField, PasswordField, UserField} from '../Functions/Validation';
 const SingUpH1 = styled.h1`
-    text-align: left ;
+    text-align: left;
     padding-bottom: 25px;
-    padding-left: 2px;
+    margin-left: 52px;
+`
+
+const SignUpInfoH1 = styled.h1`
+text-align: left;
+padding-bottom: 25px;
 `
 
 const InformationH1 = styled.h1`
@@ -57,17 +62,17 @@ const SignupFormDiv = styled.div`
 `
 
 const SignupTdError = styled.td`
-    text-align: right ;
-    width: 120px; height: auto;
+    text-align: left ;
+    width: 100px; height: auto;
     color: red;
 `
 const SignupDiv = styled.div`
     display: inline-block;
     min-width: 400px;
     vertical-align: top;
-    width: 50%;
-    align: right;
-    text-align: right ;
+    width: 500px;
+    align: left;
+    text-align: left ;
     position: relative;
     height: 100%;
 `   
@@ -75,16 +80,20 @@ const SignupDiv = styled.div`
 const MainSigninDiv = styled.div`
     position: relative;
     display: block;
+    text-align: center;
     height: 100%;
     min-width: 1000px;
+    width: 100%;
+    background: #F7F7F7;
+    margin-bottom: 50px;
 `   
 
 const MaSigninInfoDiv = styled.div`
     display: inline-block;
-    min-width: 500px;
+    min-width: 400px;
     vertical-align: top;
     align: left;
-    width: 50%;
+    width: 500px;
     height: 100%;
     text-align: left ;
     position=relative;
@@ -433,7 +442,7 @@ class Signup extends React.Component {
     render= () =>(
         <MainSigninDiv>
         <MaSigninInfoDiv>
-        <SingUpH1>Track your spending habits now</SingUpH1>
+        <SignUpInfoH1>Track your spending habits now</SignUpInfoH1>
         <InformationH1>-Track Expenses with single payment or with recurring costs</InformationH1>
         <InformationH1>-Observe your spending habits relative to a time series</InformationH1>
         <InformationBottomDiv>
@@ -448,7 +457,7 @@ class Signup extends React.Component {
             <SingUpH1>Sign Up</SingUpH1>
             <SignupFormDiv>
                 <SignupForm  onSubmit= {this.onSubmit}>
-                    <table>
+                    <Signintable>
                     <tbody>
                     <tr>
                         <td><SignUpInput disabled={this.props.Loading.clicked} type = "text" name = "Name"  id="name" placeholder="Name" onChange = {this.NameChange} required /> </td>
@@ -474,7 +483,7 @@ class Signup extends React.Component {
                         <SignupTdLabel><LoginButton type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "button">Signup</LoginButton></SignupTdLabel>
                     </tr>
                     </tbody>
-                    </table>
+                    </Signintable>
                 </SignupForm>
             </SignupFormDiv>
         </SignupDiv>
@@ -482,6 +491,12 @@ class Signup extends React.Component {
     );
 
 }
+
+const Signintable = styled.table`
+    margin-left: 50px;
+    position: relative;
+    height: 100%; width: 450px;
+`   
 
 const MapUserInfo=(state)=>{
     return{

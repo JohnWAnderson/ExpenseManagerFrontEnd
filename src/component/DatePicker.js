@@ -13,16 +13,6 @@ const MainDiv = styled.div`
     min-width: 1100px;
 `
 
-const MainSignupBlock = styled.div`
-    position:relative;
-    border-radius: 5px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 70%; 
-    height: calc(92vh - 40px);
-`
 const AppDashBoard = styled.div`
     padding: 0;
     align: center;
@@ -44,9 +34,7 @@ const DatePicker= (props) =>{
                     </Link>
                     <ItemList/>
                 </AppDashBoard> :
-                <MainSignupBlock>
-                        <Signup/>
-                </MainSignupBlock>} 
+                        <Signup/>} 
             </MainDiv>
         );
 }

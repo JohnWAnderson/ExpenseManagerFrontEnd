@@ -365,7 +365,7 @@ class ItemForm extends React.Component{
                         <option value = 'daily'>daily</option>
                         <option value = 'weekly'>weekly</option>
                         <option value = 'biweekly'>bi-weekly</option>
-                        <option value = 'monthly'>monthly</option>
+                        <option value = 'monthly'>monthly (date)</option>
                     </ItemFormSelect>
                     <ItemFormRecurring>Is there an end date for this item:</ItemFormRecurring>
                     <ItemFormSelect disabled={this.props.Loading.clicked} value={this.state.enddate} onChange={(e) => {     
