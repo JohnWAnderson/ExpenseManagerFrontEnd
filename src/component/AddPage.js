@@ -8,9 +8,8 @@ import {TimesItemChange} from '../Redux/TimesChange';
 import styled from 'styled-components';
 const MainDiv = styled.div`
     position:relative;
-    min-height: 92%;
     height: auto;
-    min-width: 1100px;
+    min-width: 900px;
 `
 const PageFormDiv = styled.div`
     text-align: center;

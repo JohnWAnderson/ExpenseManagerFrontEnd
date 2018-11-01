@@ -7,15 +7,17 @@ import EditPage from './component/EditPage';
 import CalendarPage from './component/CalendarPage';
 import { getCurrentUser, ACCESS_TOKEN, GetItems } from './ApiMethods/Account';
 import PrivateRoute from './component/PrivateRoute';
+import PrivateHomePageRoute from './component/PrivateHomePageRoute';
 import { connect } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom'
 import { addUser, removeUser } from './Redux/Actions/Users';
 import { addItem, clearItems } from './Redux/Actions/Items';
 import { resetFilter } from './Redux/Actions/Filter';
-import DatePicker from './component/DatePicker';
+import AppDashBoard from './component/AppDashBoard';
 import {TimesItemChange} from './Redux/TimesChange';
 import styled from 'styled-components';
 import {LoadingChange} from './Redux/Actions/Loading';
+import SignupPage from './Account/SignupPage';
 
 const MainApp = styled.div`
   padding: 0;
@@ -77,7 +79,7 @@ loadItems = () =>{
         <MainApp className='app'>
             <Header handleLogOut= {this.handleLogOut} handleLogOn={this.handleLogOn}/>
             <Switch>
-                <Route path="/" component = {DatePicker} exact={true}/>
+                <PrivateHomePageRoute path="/" componentAuth= {AppDashBoard}  component={SignupPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/>
                 <PrivateRoute path="/edit/:id" component= {EditPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/>
                 <PrivateRoute path="/add" component={AddPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/> 
                 <PrivateRoute path="/calendar" component={CalendarPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/> 

@@ -117,7 +117,6 @@ class Signup extends React.Component {
             };
             UsernameAvailabile(this.state.username.value).then(response =>
                 {
-                    
                     if(response.available){
                         EmailAvailabile(this.state.email.value).then(response =>
                             {

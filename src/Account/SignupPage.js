@@ -28,24 +28,30 @@ const InformationBottomDiv = styled.div`
 `
 
 const MainSigninDiv = styled.div`
+    text-align: center;
+    height: 92%;
+    min-width: 1100px;
+    width: 100%;
+`   
+
+const SigninGroupDiv = styled.div`
     position: relative;
     display: block;
     text-align: center;
-    height: 100%;
-    min-width: 1000px;
+    height: auto;
     width: 100%;
-    background: #F7F7F7;
+    background: #EDEDED;
     padding-bottom: 50px;
     padding-top: 25px;
 `   
 
-const MaSigninInfoDiv = styled.div`
+const MainSigninInfoDiv = styled.div`
     display: inline-block;
     min-width: 400px;
     vertical-align: top;
     align: left;
     width: 500px;
-    height: 100%;
+    height: 90%;
     text-align: left ;
     position=relative;
 `   
@@ -53,19 +59,21 @@ const MaSigninInfoDiv = styled.div`
 const SignupPage =()=>{
     return(
         <MainSigninDiv>
-        <MaSigninInfoDiv>
-        <SignUpInfoH1>Track your spending habits now</SignUpInfoH1>
-        <InformationH1>-Track Expenses with single payment or with recurring costs</InformationH1>
-        <InformationH1>-Observe your spending habits relative to a time series</InformationH1>
-        <InformationBottomDiv>
-        <PrototypeH1>prototype information:</PrototypeH1>
-        <p>-! Calendar currently being worked on to be added into the home dash board !-</p>
-        <p>-First start might take a some time, heroku api might have to wake up</p>
-        <p>-CSS and UI currently being worked on, this is prototype build</p>
-        <p>-Other components currently under built, only time series active</p>
-        </InformationBottomDiv>
-        </MaSigninInfoDiv>
-        <SignUp/>
+            <SigninGroupDiv>
+            <MainSigninInfoDiv>
+                <SignUpInfoH1>Track your spending habits now</SignUpInfoH1>
+                <InformationH1>-Track Expenses with single payment or with recurring costs</InformationH1>
+                <InformationH1>-Observe your spending habits relative to a time series</InformationH1>
+                <InformationBottomDiv>
+                <PrototypeH1>prototype information:</PrototypeH1>
+                <p>-! Calendar currently being worked on to be added into the home dash board !-</p>
+                <p>-First start might take a some time, heroku api might have to wake up</p>
+                <p>-CSS and UI currently being worked on, this is prototype build</p>
+                <p>-Other components currently under built, only time series active</p>
+                </InformationBottomDiv>
+            </MainSigninInfoDiv>
+                <SignUp/>
+            </SigninGroupDiv>
         </MainSigninDiv>
     );
 }

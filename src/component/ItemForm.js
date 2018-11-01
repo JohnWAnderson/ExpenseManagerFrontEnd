@@ -39,31 +39,33 @@ const ItemFormErrorTd = styled.td`
     color: red;
     min-width: 200px;
 `
-
 const ItemFormDiv = styled.div`
-    width: 80%;
-    text-align: left;
-    align: left;
+    display: inline-block;
+    min-width: 900px;
+    width:80%;
+    padding: auto;
     margin: auto;
-    margin-left: 200px;
-    padding-left: 0 150px;
-    position: relative;
-    min-width: 800px;
+    align: center;
+    text-align: center;
 `
+
 const MainItemFormDiv = styled.div`
-    padding: 0;
+    padding: auto;
     align: center;
     text-align: center;
     flex-direction: column;
     position: relative;
     width:100%;
-    min-width: 1100px;
+    margin: auto;
+    min-width: 900px;
     min-height: 92%;
 `
 
 const ItemFormForm = styled.form`
+    align: center;
+    text-align: center;
     width: 100%;
-    margin: auto;
+    min-width: 900px;
     position: relative;
 `
 
@@ -73,42 +75,54 @@ const ItemFormTable = styled.table`
 `
 
 const ItemFormTBody = styled.tbody`
-width: 100%;
-position: relative;
+    width: 100%;
+    position: relative;
 `
 
 const ItemFormTD = styled.td`
-width: 90%;
-position: relative;
+    width: 90%;
+    position: relative;
 `
 const ItemFormButton = styled.button`
-background-color: DodgerBlue;
-border: none;
-padding: 2px 2px;
-margin-top: 10px;
-font-size: 16px;
-border-radius: 3px;
-text-align: center;
-align: center;
-text-decoration: none;
-font-size: 25px;
+    background-color: DodgerBlue;
+    border: none;
+    padding: 2px 2px;
+    margin-top: 10px;
+    font-size: 16px;
+    border-radius: 3px;
+    text-align: center;
+    align: center;
+    text-decoration: none;
+    font-size: 25px;
 
-${({ clicked }) => clicked && `
-background-color: DeepSkyBlue;
-`}`
+    ${({ clicked }) => clicked && `
+    background-color: DeepSkyBlue;
+    `}`
 
 const ItemFormSelect = styled.select`
-height: 50px;
-font-size: 25px;
+    height: 50px;
+    font-size: 25px;
 `
 
 const ItemFormRecurring = styled.label`
-font-size: 25px;
+    font-size: 25px;
 `
 
 const ItemFormSingleDate = styled.label`
-font-size: 25px;
+    font-size: 25px;
 `
+
+const ItemFormRecurringDiv = styled.div`
+display: table;
+width:100%;
+`
+
+const ItemFormInnerRecurringDiv = styled.div`
+text-align: left ;
+display: table-cell;
+width: 50%;
+`
+
 
 class ItemForm extends React.Component{
     constructor(props){
@@ -293,114 +307,102 @@ class ItemForm extends React.Component{
 
     render= () =>(
         <MainItemFormDiv>
-        <ItemFormDiv>
-            <ItemFormForm  onSubmit= {this.onSubmit}>
-            <ItemFormTable>
-            <ItemFormTBody>
-                <tr>
-                <ItemFormTD>
-                <ItemFormInput disabled={this.props.Loading.clicked} type = "text" placeholder="Name" name = "Name"  id="name" value = {this.state.name.value} onChange = {this.NameChange} required /> 
-                </ItemFormTD>
-                <ItemFormErrorTd>{!!this.state.name.error && this.state.name.error}</ItemFormErrorTd>
-                </tr>
-                <tr>
-                <td>
-                <ItemFormInput disabled={this.props.Loading.clicked} type = "number" placeholder="1.00" name = "Cost" id="cost" value = {this.state.cost.value} onChange = {this.CostChange} required/></td>
-                <ItemFormErrorTd>{!!this.state.cost.error && this.state.cost.error}</ItemFormErrorTd>
-                </tr>
-                <tr>
-                <td>
-                <ItemFormTextArea disabled={this.props.Loading.clicked} type = "textarea" name = "Description"  id= "description" value = {this.state.description.value} onChange = {this.descriptionChange} placeholder="description (Optional)"/> </td> 
-                <ItemFormErrorTd>{!!this.state.description.error && this.state.description.error}</ItemFormErrorTd>
-                </tr>
-                </ItemFormTBody>
-                </ItemFormTable>
-                <ItemFormRecurringDiv>
-                <ItemFormInnerRecurringDiv>
-                <ItemFormSingleDate>Select Date: </ItemFormSingleDate>
-                <SingleDatePicker disabled={this.props.Loading.clicked} date ={this.state.duedate} onDateChange={this.onDateChange} focused = {this.state.CalFocuse} onFocusChange={this.onFocusChange} numberOfMonths={1} isOutsideRange={()=> false}/> 
-                </ItemFormInnerRecurringDiv>
-                <ItemFormInnerRecurringDiv>
-                <ItemFormRecurring>Is this a recurring date: </ItemFormRecurring>
-                <ItemFormSelect disabled={this.props.Loading.clicked} value={this.state.recurring} onChange={(e) => {     
-                    if(e.target.value === 'true'){
-                        this.handleRecurringChange(true);
-                        if(this.state.recurringsize)
-                            this.handlerecurringsizeChange('daily');
-                    }
-                    else if(e.target.value === 'false'){
-                        this.handleRecurringChange(false);
-                        this.handlerecurringsizeChange('none');
-                        this.onEndRecurringChange(null);
-                        this.handleEndDateChange(false);
-                    }
-                }}>>
-                    <option value='true'>yes</option>
-                    <option value = 'false'>no</option>
-                </ItemFormSelect>
-                </ItemFormInnerRecurringDiv>
-                </ItemFormRecurringDiv>
-                {this.state.recurring && <ItemFormRecurringDiv>
+            <ItemFormDiv>
+                <ItemFormForm  onSubmit= {this.onSubmit}>
+                <ItemFormTable>
+                <ItemFormTBody>
+                    <tr>
+                    <ItemFormTD>
+                    <ItemFormInput disabled={this.props.Loading.clicked} type = "text" placeholder="Name" name = "Name"  id="name" value = {this.state.name.value} onChange = {this.NameChange} required /> 
+                    </ItemFormTD>
+                    <ItemFormErrorTd>{!!this.state.name.error && this.state.name.error}</ItemFormErrorTd>
+                    </tr>
+                    <tr>
+                    <td>
+                    <ItemFormInput disabled={this.props.Loading.clicked} type = "number" placeholder="1.00" name = "Cost" id="cost" value = {this.state.cost.value} onChange = {this.CostChange} required/></td>
+                    <ItemFormErrorTd>{!!this.state.cost.error && this.state.cost.error}</ItemFormErrorTd>
+                    </tr>
+                    <tr>
+                    <td>
+                    <ItemFormTextArea disabled={this.props.Loading.clicked} type = "textarea" name = "Description"  id= "description" value = {this.state.description.value} onChange = {this.descriptionChange} placeholder="description (Optional)"/> </td> 
+                    <ItemFormErrorTd>{!!this.state.description.error && this.state.description.error}</ItemFormErrorTd>
+                    </tr>
+                    </ItemFormTBody>
+                    </ItemFormTable>
+                    <ItemFormRecurringDiv>
                     <ItemFormInnerRecurringDiv>
-                    <ItemFormSingleDate >Select rate of recurrence:</ItemFormSingleDate>
-                    <ItemFormSelect disabled={this.props.Loading.clicked} value={this.state.recurringsize} onChange={(e) => {     
-                        if(e.target.value === 'weekly')
-                            this.handlerecurringsizeChange('weekly');                 
-                        else if(e.target.value === 'biweekly')
-                            this.handlerecurringsizeChange('biweekly');
-                        else if(e.target.value === 'monthly')
-                            this.handlerecurringsizeChange('monthly');
-                        else if(e.target.value === 'daily')
-                            this.handlerecurringsizeChange('daily');
-                        else
-                            this.handlerecurringsizeChange('daily');//will change for error handling
-                    }}>>
-                        <option value = 'daily'>daily</option>
-                        <option value = 'weekly'>weekly</option>
-                        <option value = 'biweekly'>bi-weekly</option>
-                        <option value = 'monthly'>monthly (date)</option>
-                    </ItemFormSelect>
+                    <ItemFormSingleDate>Select Date: </ItemFormSingleDate>
+                    <SingleDatePicker disabled={this.props.Loading.clicked} date ={this.state.duedate} onDateChange={this.onDateChange} focused = {this.state.CalFocuse} onFocusChange={this.onFocusChange} numberOfMonths={1} isOutsideRange={()=> false}/> 
                     </ItemFormInnerRecurringDiv>
                     <ItemFormInnerRecurringDiv>
-                    <ItemFormSingleDate>Is there an end date for this item:</ItemFormSingleDate>
-                    <ItemFormSelect disabled={this.props.Loading.clicked} value={this.state.enddate} onChange={(e) => {     
+                    <ItemFormRecurring>Is this a recurring date: </ItemFormRecurring>
+                    <ItemFormSelect disabled={this.props.Loading.clicked} value={this.state.recurring} onChange={(e) => {     
                         if(e.target.value === 'true'){
-                            this.handleEndDateChange(true); 
-                            this.onEndRecurringChange(moment().add(1, 'M'))
+                            this.handleRecurringChange(true);
+                            if(this.state.recurringsize)
+                                this.handlerecurringsizeChange('daily');
                         }
                         else if(e.target.value === 'false'){
+                            this.handleRecurringChange(false);
+                            this.handlerecurringsizeChange('none');
+                            this.onEndRecurringChange(null);
                             this.handleEndDateChange(false);
-                            this.onEndRecurringChange(null)
                         }
                     }}>>
-                        <option value = 'false'>no</option>
                         <option value='true'>yes</option>
+                        <option value = 'false'>no</option>
                     </ItemFormSelect>
                     </ItemFormInnerRecurringDiv>
-                    </ItemFormRecurringDiv>}
-                {(this.state.enddate && this.state.recurring) && <div>
-                    <ItemFormSingleDate>Select End Date:</ItemFormSingleDate>
-                    <SingleDatePicker disabled={this.props.Loading.clicked} date ={this.state.endrecurring} onDateChange={this.onEndRecurringChange} focused = {this.state.RecFocuse} onFocusChange={this.onRecFocuseChange} numberOfMonths={1} isOutsideRange={()=> false}/>
-                    </div>}
-
-                <ItemFormButton type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "button">Submit</ItemFormButton>
-            </ItemFormForm>
-        </ItemFormDiv>
+                    </ItemFormRecurringDiv>
+                    {this.state.recurring && <ItemFormRecurringDiv>
+                        <ItemFormInnerRecurringDiv>
+                        <ItemFormSingleDate >Select rate of recurrence:</ItemFormSingleDate>
+                        <ItemFormSelect disabled={this.props.Loading.clicked} value={this.state.recurringsize} onChange={(e) => {     
+                            if(e.target.value === 'weekly')
+                                this.handlerecurringsizeChange('weekly');                 
+                            else if(e.target.value === 'biweekly')
+                                this.handlerecurringsizeChange('biweekly');
+                            else if(e.target.value === 'monthly')
+                                this.handlerecurringsizeChange('monthly');
+                            else if(e.target.value === 'daily')
+                                this.handlerecurringsizeChange('daily');
+                            else
+                                this.handlerecurringsizeChange('daily');//will change for error handling
+                        }}>>
+                            <option value = 'daily'>daily</option>
+                            <option value = 'weekly'>weekly</option>
+                            <option value = 'biweekly'>bi-weekly</option>
+                            <option value = 'monthly'>monthly (date)</option>
+                        </ItemFormSelect>
+                        </ItemFormInnerRecurringDiv>
+                        <ItemFormInnerRecurringDiv>
+                        <ItemFormSingleDate>Is there an end date for this item:</ItemFormSingleDate>
+                        <ItemFormSelect disabled={this.props.Loading.clicked} value={this.state.enddate} onChange={(e) => {     
+                            if(e.target.value === 'true'){
+                                this.handleEndDateChange(true); 
+                                this.onEndRecurringChange(moment().add(1, 'M'))
+                            }
+                            else if(e.target.value === 'false'){
+                                this.handleEndDateChange(false);
+                                this.onEndRecurringChange(null)
+                            }
+                        }}>>
+                            <option value = 'false'>no</option>
+                            <option value='true'>yes</option>
+                        </ItemFormSelect>
+                        </ItemFormInnerRecurringDiv>
+                        </ItemFormRecurringDiv>}
+                    {(this.state.enddate && this.state.recurring) && <ItemFormInnerRecurringDiv>
+                        <ItemFormSingleDate>Select End Date:</ItemFormSingleDate>
+                        <SingleDatePicker disabled={this.props.Loading.clicked} date ={this.state.endrecurring} onDateChange={this.onEndRecurringChange} focused = {this.state.RecFocuse} onFocusChange={this.onRecFocuseChange} numberOfMonths={1} isOutsideRange={()=> false}/>
+                        </ItemFormInnerRecurringDiv>}
+                    <ItemFormButton type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "button">Submit</ItemFormButton>
+                </ItemFormForm>
+            </ItemFormDiv>
         </MainItemFormDiv>
     );
 
 }
-
- const ItemFormRecurringDiv = styled.div`
-    display: table;
-    width:100%;
-    
-`
-
-const ItemFormInnerRecurringDiv = styled.div`
-    display: table-cell;
-    width: 50%;
-`
 
 const MapUserInfo=(state)=>{
     return{
