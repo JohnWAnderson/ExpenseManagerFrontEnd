@@ -43,7 +43,7 @@ const ItemListTr = styled.tr`
 const ItemList =(props)=>{
     return(
         <ItemListDiv>
-        {props.itemsV.length > 0 &&<ItemListHeader/>}
+        <ItemListHeader/>
             <ItemListTable>
             <tbody>
                 {props.itemsV.length > 0 ? 

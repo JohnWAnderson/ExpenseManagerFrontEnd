@@ -17,15 +17,15 @@ const HeaderLink = styled(Link)`
     color: black;
     text-decoration: none;
     font-family: Georgia;
+    font-size: 40px;
     text-align: left ;
     position: absolute;
-    bottom: 0;
+    bottom: 5px;
+    left: 50px;
     vertical-align: middle;
 `
 
 const HeaderH1 = styled.h1`
-    left: 0; bottom: 0
-    font-size: 40px;
 `
 
 
@@ -57,14 +57,14 @@ const LogOutButtonDiv = styled.div`
 `
 const LogInDiv = styled.div`
     position: absolute;
-    right: 0; bottom: 0
+    right: 25px; bottom: 0;
     text-align: right ;
 `
 
 const LogedInDiv = styled.div`
     position: absolute;
     display: block;
-    right: 0; bottom: 0
+    right: 25px; bottom: 0;
     text-align: right ;
 `
 

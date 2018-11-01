@@ -214,11 +214,23 @@ class Signup extends React.Component {
                         valid: true,
                         error: ''
                     }})
-                if(password === this.state.rePassword.value){
-                    this.setState({
-                        rePassword: {
-                            valid: true,
-                    }})}}
+                    console.log(password,  this.state.rePassword.value);
+                    if(password === this.state.rePassword.value){
+                        this.setState({
+                            rePassword: {
+                                value: this.state.rePassword.value,
+                                valid: true,
+                                error: ''
+                        }})}
+                    else{
+                        this.setState({
+                            rePassword: {
+                                value: this.state.rePassword.value,
+                                valid: false,
+                                error: "Don't Match"
+                        }})
+                    }
+                }
                 else{
                     this.setState({
                         password: {
@@ -261,7 +273,7 @@ class Signup extends React.Component {
                         rePassword: {
                         value: rePassword,
                         valid: false,
-                         error: "Don't Match"
+                        error: "Don't Match"
                     }})
                 }
             }

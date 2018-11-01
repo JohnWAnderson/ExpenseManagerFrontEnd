@@ -4,13 +4,12 @@ import moment from 'moment';
 import styled from 'styled-components';
 
 const ItemDiv = styled.div`
-    border: 1px solid black;
     position: relative;
     display: block;
-    height: 100%;
+    height: 100%px;
 `   
 const ItemH3 = styled.h3`
-    text-align:center;
+    text-align: bottom;
     position: relative;
     font-size: 30px;
     margin: 0;

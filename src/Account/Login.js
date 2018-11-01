@@ -24,7 +24,7 @@ text-align: center ;
 const LoginButton = styled.button`
 background-color: #4a8aba;
 border: none;
-padding: 3px 3px;
+padding: 3px 2px;
 border-radius: 3px;
 text-align: center;
 text-decoration: none;
