@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody,ModalFooter } from 'reactstrap';
 import Login from './Login';
 
 class LoginModal  extends React.Component {
@@ -14,20 +14,25 @@ class LoginModal  extends React.Component {
   }
 
   toggle() {
-    this.setState({
-      modal: !this.state.modal
-    });
+    console.log('yes');  
+    this.props.logOpenToggle();
+    this.props.signOpenToggle();
   }
+
+
 
   render() {
     return (
       <div>
-        <Button onClick={this.toggle}>Login</Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Login</ModalHeader>
+        <Button onClick={this.props.logOpenToggle}>Login</Button>
+        <Modal isOpen={this.props.logOpen} toggle={this.props.logOpenToggle} className={this.props.className}>
+          <ModalHeader toggle={this.props.logOpenToggle}>Login</ModalHeader>
           <ModalBody>
-            <Login toggle={this.toggle} handleLogOn ={this.props.handleLogOn}/>
+            <Login toggle={this.props.logOpenToggle} handleLogOn ={this.props.handleLogOn}/>
           </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.toggle}>SingUp</Button>{' '}
+          </ModalFooter>
         </Modal>
       </div>
     );

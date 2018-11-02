@@ -5,6 +5,7 @@ import { addUser} from '../Redux/Actions/Users';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {UserNameField, EmailField, PasswordField, UserField} from '../Functions/Validation';
+import { Col, Button, Form, FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap';
 
 class Signup extends React.Component {
     constructor(props){
@@ -42,8 +43,12 @@ class Signup extends React.Component {
 
     onSubmit = (e) =>{
         e.preventDefault();
+        console.log(this.state);
+        
         this.props.dispatch(LoadingChange({clicked: true}));
-        if(this.state.username.valid && this.state.name.valid && this.state.email.valid && this.state.password.valid && this.state.rePassword.valid){
+          if(this.state.username.valid && this.state.name.valid && this.state.email.valid && this.state.password.valid && this.state.rePassword.valid){
+              console.log('valid');
+          
             const signupRequestObject = {
                 name: this.state.name.value,
                 email: this.state.email.value,
@@ -59,7 +64,7 @@ class Signup extends React.Component {
                                     signup(signupRequestObject).then(response => {
                                         if(response.available){
                                             this.signedup(signupRequestObject.username, signupRequestObject.password);
-                                            this.resetInput(e);
+                                            this.resetInput();
                                         }
                                         else{
                                             this.props.dispatch(LoadingChange({clicked: false}));
@@ -73,7 +78,6 @@ class Signup extends React.Component {
                                             value: this.state.email.value,
                                             valid: false,
                                             error: 'email taken',
-                                            failed: true
                                         }
                                     })
                                 }
@@ -86,7 +90,6 @@ class Signup extends React.Component {
                             value: this.state.username.value,
                             valid: false,
                             error: 'username taken',
-                            failed: true
                         }
                 })
                 }
@@ -113,7 +116,7 @@ class Signup extends React.Component {
         });
     }
 
-    resetInput = (e) =>{
+    resetInput = () =>{
         this.setState({name: {
             value: '',
             valid: false,
@@ -123,13 +126,11 @@ class Signup extends React.Component {
             value: '',
             valid: false,
             error: '',
-            failed: false
         },
         email: {
             value: '',
             valid: false,
             error: '',
-            failed: false
         },
         password: {
             value: '',
@@ -343,40 +344,53 @@ class Signup extends React.Component {
             }
         }
     render= () =>(
-        <div>
-            <h1>Sign Up</h1>
-            <div>
-                <form  onSubmit= {this.onSubmit}>
-                    <table>
-                    <tbody>
-                    <tr>
-                        <td><input disabled={this.props.Loading.clicked} type = "text" name = "Name"  id="name" placeholder="Name" onChange = {this.NameChange} required /> </td>
-                        <td>{!this.state.name.valid && this.state.name.error}</td>
-                    </tr>
-                    <tr>
-                        <td><input disabled={this.props.Loading.clicked} failed={this.state.username.failed} type = "text" name = "Username" id="username" placeholder="Username" onChange = {this.UserNameChange} required /></td>
-                        <td>{!this.state.username.valid && this.state.username.error}</td>
-                    </tr>
-                    <tr>
-                        <td><input disabled={this.props.Loading.clicked} failed={this.state.email.failed} type = "email" name = "Email" id= "email" placeholder="Email"  onChange = {this.EmailChange} required/></td>
-                        <td>{!this.state.email.valid && this.state.email.error}</td>
-                    </tr>
-                    <tr>
-                        <td><input disabled={this.props.Loading.clicked} type = "password" name = "Password" id="password" placeholder="Password" onChange = {this.PasswordChange} required/></td>
-                        <td>{!this.state.password.valid && this.state.password.error}</td>
-                    </tr>
-                    <tr>
-                        <td><input disabled={this.props.Loading.clicked} type = "password" name = "rePassword" id="rePassword" placeholder="Re-Password" onChange = {this.RePasswordChange} required/></td>
-                        <td>{!this.state.rePassword.valid && this.state.rePassword.error}</td>
-                    </tr>
-                    <tr>
-                        <label><button type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "button">Signup</button></label>
-                    </tr>
-                    </tbody>
-                    </table>
-                </form>
-            </div>
-        </div>
+        <Form  onSubmit={this.onSubmit}>
+            <FormGroup row>
+            <Label for="name" sm={2}>Name</Label>
+                <Col sm={10}>
+                    <Input type="text" name="name" id="name" placeholder="Full Name" invalid={!this.state.name.valid && !!this.state.name.error}
+                     disabled={this.props.Loading.clicked} onChange = {this.NameChange} required />
+                     <FormFeedback>{this.state.name.error}</FormFeedback>
+                </Col>
+            </FormGroup>
+            <FormGroup row>
+            <Label for="username" sm={2}>Username</Label>
+                <Col sm={10}>
+                    <Input type="text" name="Username" id="username" placeholder="Username" invalid={!this.state.username.valid && !!this.state.username.error}
+                    disabled={this.props.Loading.clicked}  onChange = {this.UserNameChange}  onChange = {this.UserNameChange} required />
+                    <FormFeedback>{this.state.username.error}</FormFeedback>
+                </Col>
+            </FormGroup>
+            <FormGroup row>
+            <Label for="email" sm={2}>Email</Label>
+                <Col sm={10}>
+                    <Input type="email" name="email" id="email" placeholder="Email" invalid={!this.state.email.valid && !!this.state.email.error}
+                     disabled={this.props.Loading.clicked} onChange = {this.EmailChange} required/>
+                     <FormFeedback>{this.state.email.error}</FormFeedback>
+                </Col>
+            </FormGroup>
+            <FormGroup row>
+            <Label for="password" sm={2}>Password</Label>
+                <Col sm={10}>
+                    <Input type="password" name="password" id="password" placeholder="Password" invalid={!this.state.password.valid && !!this.state.password.error} 
+                    disabled={this.props.Loading.clicked} onChange = {this.PasswordChange} required/>
+                    <FormFeedback>{this.state.password.error}</FormFeedback>
+                </Col>
+            </FormGroup>
+            <FormGroup row>
+            <Label for="rePassword" sm={2}>RePassword</Label>
+                <Col sm={10}>
+                    <Input type="password" name="rePassword" id="rePassword" placeholder="Re Password" invalid={!this.state.rePassword.valid && !!this.state.rePassword.error} 
+                    disabled={this.props.Loading.clicked} onChange = {this.RePasswordChange} required/>
+                    <FormFeedback>{this.state.rePassword.error}</FormFeedback>
+                </Col>
+            </FormGroup>
+            <FormGroup check row>
+                <Col sm={{ size: 10, offset: 2 }}>
+                <Button color="primary" disabled={this.props.Loading.clicked}>Submit</Button>
+                </Col>
+          </FormGroup>
+        </Form>
     );
 
 }

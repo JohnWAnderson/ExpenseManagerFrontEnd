@@ -6,7 +6,6 @@ const SignupPage =()=>{
     return(
         <div>
             <div>
-            <div>
                 <h1>Track your spending habits now</h1>
                 <h1>-Track Expenses with single payment or with recurring costs</h1>
                 <h1>-Observe your spending habits relative to a time series</h1>
@@ -17,8 +16,6 @@ const SignupPage =()=>{
                 <p>-CSS and UI currently being worked on, this is prototype build</p>
                 <p>-Other components currently under built, only time series active</p>
                 </div>
-            </div>
-                <SignUp/>
             </div>
         </div>
     );
