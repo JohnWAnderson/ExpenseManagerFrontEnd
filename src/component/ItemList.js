@@ -11,6 +11,7 @@ const ItemListDiv = styled.div`
     text-align: center;
     position: relative;
     border: 1px solid black;    
+    border-radius: 10px;
     border-bottom: 0;
     width: 70%;
     min-width: 900px;
@@ -37,7 +38,8 @@ const ItemListTr = styled.tr`
     padding: 0;
     border: 0;
     width:100%;
-    border-bottom: 1px solid black;    
+    border-bottom: 1px solid black;   
+    border-radius: 10px; 
 `
 
 const ItemList =(props)=>{

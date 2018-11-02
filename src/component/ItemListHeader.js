@@ -25,7 +25,7 @@ const ItemHeaderMidDiv =styled.div`
     padding: 0;
 `
 
-const HeaderRightH3 = styled.h3`
+const HeaderItemH3 = styled.h3`
     vertical-align: middle;
     position: relative;
     font-size: 30px;
@@ -45,8 +45,8 @@ export default ()=>{
     return(
     <ItemDiv>
         <ItemHeaderDiv><HeaderLeftH3>Name</HeaderLeftH3></ItemHeaderDiv>
-        <ItemHeaderMidDiv></ItemHeaderMidDiv>
-        <ItemHeaderDiv><HeaderRightH3>Cost</HeaderRightH3></ItemHeaderDiv>
+        <ItemHeaderMidDiv><HeaderItemH3>Note</HeaderItemH3></ItemHeaderMidDiv>
+        <ItemHeaderDiv><HeaderItemH3>Cost</HeaderItemH3></ItemHeaderDiv>
     </ItemDiv>
     );
 }

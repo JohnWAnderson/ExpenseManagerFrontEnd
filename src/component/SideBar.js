@@ -35,6 +35,7 @@ const SideBarLink = styled(Link)`
     color: black; 
     border-bottom: 1px solid black;
     &:hover ${SideBarLink} {
+        text-decoration: none;
         color: #a8a8a8;
     }
 `

@@ -43,9 +43,6 @@ const getVisableItemNumber = (props) =>{
                 {props.Items.length > 0 ? 
                 <PageInfoDiv>Page contains {props.Items.length} which totals to: ${props.Sum/100}</PageInfoDiv>:
                 <PageInfoDiv>Page contains no items</PageInfoDiv>}
-            <PageInfoH1>
-                <PageInfoLink to="/add" activeclassname="is-active" exact="true" > Add Item </PageInfoLink> 
-            </PageInfoH1>
         </PageInfoMainDiv>
     );
 }

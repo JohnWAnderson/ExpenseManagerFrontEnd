@@ -30,6 +30,8 @@ const SideBarDiv = styled.div`
 `
 
 const ComponentDiv = styled.div`
+    padding: 0;
+    margin: 0;
     vertical-align: top;
     display: table-cell;
     position: relative;

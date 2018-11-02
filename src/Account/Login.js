@@ -19,6 +19,14 @@ border-color: red;
 `
 const LoginLabelTd = styled.td`
 text-align: center ;
+max-height:25px;
+`
+
+const LoginLabel = styled.label`
+text-align: center ;
+max-height:25px;
+padding:0;
+margin:0;
 `
 
 const LoginButton = styled.button`
@@ -34,6 +42,9 @@ background-color: white;
 `}
 `
 
+const SizeTd = styled.td`
+max-height: 25px;
+`
 
 class Login extends React.Component {
         constructor(props){
@@ -76,8 +87,8 @@ class Login extends React.Component {
                 <table>
                 <tbody>
                     <tr>
-                        <LoginLabelTd><label >Username or Email</label></LoginLabelTd>
-                        <LoginLabelTd><label >Password</label></LoginLabelTd>
+                        <LoginLabelTd><LoginLabel >Username or Email</LoginLabel></LoginLabelTd>
+                        <LoginLabelTd><LoginLabel >Password</LoginLabel></LoginLabelTd>
                     </tr>
                     <tr>
                         <td><LoginInput failed={this.state.failed} disabled={this.props.Loading.clicked} type = "text" name = "username"  required/></td>

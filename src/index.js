@@ -4,6 +4,8 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import StoreConfig from './Redux/store';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const store = StoreConfig();
 
 const jsx = (

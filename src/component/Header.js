@@ -10,22 +10,31 @@ const MainHeader = styled.header`
     position: relative;
     min-width: 1100px;
     width:100%;
-    min-height: 50px;
+    min-height: 62px;
+    max-height: 65px;
 `
 
 const HeaderLink = styled(Link)`
+    textDecoration: none;
     color: black;
-    text-decoration: none;
-    font-family: Georgia;
     font-size: 40px;
     text-align: left ;
     position: absolute;
     bottom: 5px;
     left: 50px;
     vertical-align: middle;
+    text-decoration: none;
+
+    &:hover ${HeaderLink} {
+        text-decoration: none;
+        color: black;
+    }
 `
 
 const HeaderH1 = styled.h1`
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
 `
 
 

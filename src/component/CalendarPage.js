@@ -3,22 +3,24 @@ import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
 import SelectCalendarEvents from '../Redux/SelectCalendarEvents';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import CalendarInfo from './CalendarInformation';
+import { Container, Row, Col } from 'reactstrap';
 
 const CalenderPageDiv = styled.div`
     padding: 0;
+    margin: 0;
     align: center;
     text-align: center;
-    flex-direction: column;
     position: relative;
     width:100%;
-    min-width: 1100px;
+    min-width: 900px;
     min-height: 92%;
 `
 const CalendarInformation = styled.div`
+    max-width: 850px;
+    min-width: 350px;
     align: center;
     margin: auto;
     height: 100%;
@@ -27,21 +29,15 @@ const CalendarInformation = styled.div`
     width:100%;
 `   
 const CalendarDiv = styled.div`
-    min-width: 800px;
-    width:100%;
+    min-width: 350px;
+    max-width: 850px;
+    width:50%;
     align: center;
     text-align: center ;
     position: relative;
     height: 100%;
-`    
-const MainDiv = styled.div`
-    display: table;
-    min-width: 1100px;
-    width:100%;
-    align: center;
-    text-align: center ;
-    position: relative;
-    height: 100%;
+    padding:0;
+    margin:0;
 `    
 
 class CalendarPage extends React.Component {
@@ -79,25 +75,30 @@ class CalendarPage extends React.Component {
 
     render() {
         return(
-            <CalenderPageDiv>
-                <CalendarInformation>
-                    <CalendarInfo cost={this.state.cost} items={this.state.itemNum}/>
-                </CalendarInformation>
-                    <CalendarDiv>
-                    <BigCalendar
-                        onSelectEvent={this.handleSelectEvent} 
-                        localizer={this.state.localizer}
-                        defaultView="month"
-                        views={['month']}
-                        events={this.state.events}
-                        style={{ height: "600px", width:"770px", align: "center", position: "relative", margin:"auto"}}
-                        onNavigate={(date) => {this.onMonthChange(date)}}
-                        components={{
-                            toolbar: CustomToolbar
-                        }}
-                    />
-                    </CalendarDiv>
-            </CalenderPageDiv>
+            <Container>
+            <Row>
+                <Col xs="6">               
+             <CalendarInformation>
+                <CalendarInfo cost={this.state.cost} items={this.state.itemNum}/>
+            </CalendarInformation></Col>
+                <Col xs="6">                   
+                <CalendarDiv>
+                <BigCalendar
+                    onSelectEvent={this.handleSelectEvent} 
+                    localizer={this.state.localizer}
+                    defaultView="month"
+                    views={['month']}
+                    events={this.state.events}
+                    style={{ height: "550px", width:"100%", align: "center", position: "relative"}}
+                    onNavigate={(date) => {this.onMonthChange(date)}}
+                    components={{
+                        toolbar: CustomToolbar,
+                        event:CustomEvent
+                    }}
+                />
+                </CalendarDiv></Col>
+            </Row>
+            </Container>
         )
     };
 }
@@ -129,7 +130,31 @@ class CustomToolbar extends React.Component {
     }
 }
 
+const EventButtonDiv = styled.div`
+    width:100%;
+    align: center;
+    text-algin:center;
+    position: relative;
+    height: 19px;
+    vertical-align: top;
+    font-size:15px;
+`    
+
+class CustomEvent extends React.Component {
+    constructor(props){
+        super(props);  
+    }
+    render() {
+      return (
+        <EventButtonDiv>
+            <div>{this.props.title}</div>
+        </EventButtonDiv>
+      );
+    }
+  }
+
 const MapUserInfo=(state)=>{
+    
     return{
         items: state.items
     }

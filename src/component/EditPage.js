@@ -9,7 +9,7 @@ import { editItem, removeItem} from '../Redux/Actions/Items';
 import {TimesItemChange} from '../Redux/TimesChange';
 import NotFound from './NotFound';
 import styled from 'styled-components';
-
+import RemoveItemModal from './RemoveItemModal';
 const MainDiv = styled.div`
     position:relative;
     min-height: 92%;
@@ -43,13 +43,37 @@ const PageFormDiv = styled.div`
     text-align: center;
     position: relative;
     margin auto;
-    
 `
 
 const EditPageButtonDiv = styled.div`
     padding: 0;
     text-align: center;
 `
+// <RemoveButton  disabled={this.props.Loading.clicked} onClick={()=>{
+//     confirmAlert({
+//         title: 'Confirm to Delete',
+//         message: `Are you sure to delete '${item.name}'.`,
+//         buttons: [
+//           {
+//             label: 'Yes, Delete',
+//             onClick: () => {
+//             this.props.dispatch(LoadingChange({clicked: true}));
+//             const newItem = ({...item, userName: this.props.User.currentUser.username})
+//             DeleteItem(newItem).then(response => {
+//                 this.props.dispatch(LoadingChange({clicked: false}));        
+//                 if(response.available){
+//                     this.props.dispatch(removeItem({name: newItem.name}));    
+//                     this.props.history.push('/')  
+//                 }
+//             });}
+//           },
+//           {
+//             label: 'cancel',
+//             onClick: () => {}
+//           }
+//         ]
+//       })
+// }}>Remove Item</RemoveButton> 
 
 class EditPage extends React.Component {
     constructor(props){
@@ -57,7 +81,21 @@ class EditPage extends React.Component {
     this.state = {
         showDialog: false
         }
+    this.RemoveItem = this.RemoveItem.bind(this);
     }
+
+    RemoveItem=(item)=>{
+        this.props.dispatch(LoadingChange({clicked: true}));
+        const newItem = ({...item, userName: this.props.User.currentUser.username})
+        DeleteItem(newItem).then(response => {
+            this.props.dispatch(LoadingChange({clicked: false}));        
+            if(response.available){
+                this.props.dispatch(removeItem({name: newItem.name}));    
+                this.props.history.push('/')  
+            }
+        });
+    }
+
     render() {
     const item=this.props.items[this.props.match.params.id-1]
     if(!!item){
@@ -66,31 +104,7 @@ class EditPage extends React.Component {
             <MainDiv>
             <PageFormH1>Edit Item Page</PageFormH1>
             <EditPageButtonDiv>
-            <RemoveButton  disabled={this.props.Loading.clicked} onClick={()=>{
-                confirmAlert({
-                    title: 'Confirm to Delete',
-                    message: `Are you sure to delete '${item.name}'.`,
-                    buttons: [
-                      {
-                        label: 'Yes, Delete',
-                        onClick: () => {
-                        this.props.dispatch(LoadingChange({clicked: true}));
-                        const newItem = ({...item, userName: this.props.User.currentUser.username})
-                        DeleteItem(newItem).then(response => {
-                            this.props.dispatch(LoadingChange({clicked: false}));        
-                            if(response.available){
-                                this.props.dispatch(removeItem({name: newItem.name}));    
-                                this.props.history.push('/')  
-                            }
-                        });}
-                      },
-                      {
-                        label: 'cancel',
-                        onClick: () => {}
-                      }
-                    ]
-                  })
-            }}>Remove Item</RemoveButton> 
+            <RemoveItemModal item={item} RemoveItem={this.RemoveItem}/>
             </EditPageButtonDiv>
             <PageFormDiv>
             <ItemForm item={item}        

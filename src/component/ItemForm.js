@@ -7,7 +7,7 @@ import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import styled from 'styled-components';
-import {ItemDisFeild, UserNameField} from '../Functions/Validation';
+import {ItemDisFeild} from '../Functions/Validation';
 
 const ItemFormInput = styled.input`
     margin-bottom: 10px;
@@ -90,8 +90,8 @@ const ItemFormButton = styled.button`
     margin-top: 10px;
     font-size: 16px;
     border-radius: 3px;
-    text-align: center;
-    align: center;
+    text-align: left;
+    align: left;
     text-decoration: none;
     font-size: 25px;
 
@@ -113,8 +113,9 @@ const ItemFormSingleDate = styled.label`
 `
 
 const ItemFormRecurringDiv = styled.div`
-display: table;
-width:100%;
+    display: table;
+    width:100%;
+    margin-bottom: 10px;
 `
 
 const ItemFormInnerRecurringDiv = styled.div`
@@ -201,8 +202,8 @@ class ItemForm extends React.Component{
 
     NameChange = (e) =>{
         const name = e.target.value;
-        if(name.length >2 && name.length <= 20){
-            if(UserNameField(name)){        
+        if(name.length >2 && name.length <= 22){
+            if(ItemDisFeild(name)){        
                 this.setState(() => ({name:{
                     value: name,
                     valid: true,
@@ -356,7 +357,7 @@ class ItemForm extends React.Component{
                     </ItemFormRecurringDiv>
                     {this.state.recurring && <ItemFormRecurringDiv>
                         <ItemFormInnerRecurringDiv>
-                        <ItemFormSingleDate >Select rate of recurrence:</ItemFormSingleDate>
+                        <ItemFormSingleDate >Select recurrence type:</ItemFormSingleDate>
                         <ItemFormSelect disabled={this.props.Loading.clicked} value={this.state.recurringsize} onChange={(e) => {     
                             if(e.target.value === 'weekly')
                                 this.handlerecurringsizeChange('weekly');                 

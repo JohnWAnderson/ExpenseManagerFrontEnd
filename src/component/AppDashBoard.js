@@ -17,8 +17,8 @@ const AppDashBoard = styled.div`
 export default () =>{
     return(
         <AppDashBoard>
-            <FilterPicker/>
             <PageInformation/>
+            <FilterPicker/>
             <ItemList/>
         </AppDashBoard>
     );
