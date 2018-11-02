@@ -8,37 +8,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import CalendarInfo from './CalendarInformation';
 import { Container, Row, Col } from 'reactstrap';
 
-const CalenderPageDiv = styled.div`
-    padding: 0;
-    margin: 0;
-    align: center;
-    text-align: center;
-    position: relative;
-    width:100%;
-    min-width: 900px;
-    min-height: 92%;
-`
-const CalendarInformation = styled.div`
-    max-width: 850px;
-    min-width: 350px;
-    align: center;
-    margin: auto;
-    height: 100%;
-    text-align: center ;
-    position: relative;
-    width:100%;
-`   
-const CalendarDiv = styled.div`
-    min-width: 350px;
-    max-width: 850px;
-    width:50%;
-    align: center;
-    text-align: center ;
-    position: relative;
-    height: 100%;
-    padding:0;
-    margin:0;
-`    
+ 
 
 class CalendarPage extends React.Component {
     constructor(props){
@@ -78,11 +48,11 @@ class CalendarPage extends React.Component {
             <Container>
             <Row>
                 <Col xs="6">               
-             <CalendarInformation>
+             <div>
                 <CalendarInfo cost={this.state.cost} items={this.state.itemNum}/>
-            </CalendarInformation></Col>
+            </div></Col>
                 <Col xs="6">                   
-                <CalendarDiv>
+                <div>
                 <BigCalendar
                     onSelectEvent={this.handleSelectEvent} 
                     localizer={this.state.localizer}
@@ -96,7 +66,7 @@ class CalendarPage extends React.Component {
                         event:CustomEvent
                     }}
                 />
-                </CalendarDiv></Col>
+                </div></Col>
             </Row>
             </Container>
         )
@@ -130,15 +100,6 @@ class CustomToolbar extends React.Component {
     }
 }
 
-const EventButtonDiv = styled.div`
-    width:100%;
-    align: center;
-    text-algin:center;
-    position: relative;
-    height: 19px;
-    vertical-align: top;
-    font-size:15px;
-`    
 
 class CustomEvent extends React.Component {
     constructor(props){
@@ -146,9 +107,9 @@ class CustomEvent extends React.Component {
     }
     render() {
       return (
-        <EventButtonDiv>
+        <div>
             <div>{this.props.title}</div>
-        </EventButtonDiv>
+        </div>
       );
     }
   }

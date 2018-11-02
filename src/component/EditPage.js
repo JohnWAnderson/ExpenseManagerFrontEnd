@@ -10,70 +10,7 @@ import {TimesItemChange} from '../Redux/TimesChange';
 import NotFound from './NotFound';
 import styled from 'styled-components';
 import RemoveItemModal from './RemoveItemModal';
-const MainDiv = styled.div`
-    position:relative;
-    min-height: 92%;
-    height: auto;
-    min-width: 900px;
-`
-const PageFormH1 = styled.h1`
-    text-align: center ;
-    padding-bottom: 20px;
-    padding-left: 2px;
-`
-const RemoveButton = styled.button`
 
-    text-align: center ;
-    margin-bottom: 25px;
-    padding-left: 2px;
-    color: red;
-    font-size: 20px;
-    background-color: white; 
-    color: black; 
-    border: 2px solid #f44336;
-
-    &:hover ${RemoveButton} {
-        background-color: #f44336;
-        color: white;
-    }
-`
-
-const PageFormDiv = styled.div`
-    padding: 0;
-    text-align: center;
-    position: relative;
-    margin auto;
-`
-
-const EditPageButtonDiv = styled.div`
-    padding: 0;
-    text-align: center;
-`
-// <RemoveButton  disabled={this.props.Loading.clicked} onClick={()=>{
-//     confirmAlert({
-//         title: 'Confirm to Delete',
-//         message: `Are you sure to delete '${item.name}'.`,
-//         buttons: [
-//           {
-//             label: 'Yes, Delete',
-//             onClick: () => {
-//             this.props.dispatch(LoadingChange({clicked: true}));
-//             const newItem = ({...item, userName: this.props.User.currentUser.username})
-//             DeleteItem(newItem).then(response => {
-//                 this.props.dispatch(LoadingChange({clicked: false}));        
-//                 if(response.available){
-//                     this.props.dispatch(removeItem({name: newItem.name}));    
-//                     this.props.history.push('/')  
-//                 }
-//             });}
-//           },
-//           {
-//             label: 'cancel',
-//             onClick: () => {}
-//           }
-//         ]
-//       })
-// }}>Remove Item</RemoveButton> 
 
 class EditPage extends React.Component {
     constructor(props){
@@ -101,12 +38,12 @@ class EditPage extends React.Component {
     if(!!item){
         const holder = item.name;
         return(
-            <MainDiv>
-            <PageFormH1>Edit Item Page</PageFormH1>
-            <EditPageButtonDiv>
+            <div>
+            <h1>Edit Item Page</h1>
+            <div>
             <RemoveItemModal item={item} RemoveItem={this.RemoveItem}/>
-            </EditPageButtonDiv>
-            <PageFormDiv>
+            </div>
+            <div>
             <ItemForm item={item}        
                     onSubmit={(item) => {
                         const newItem=({...item,oldName: holder})
@@ -120,8 +57,8 @@ class EditPage extends React.Component {
                         });
                     }}
                     />
-            </PageFormDiv>
-            </MainDiv>
+            </div>
+            </div>
         );
     }
      else{

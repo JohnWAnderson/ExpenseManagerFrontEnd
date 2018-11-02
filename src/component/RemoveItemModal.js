@@ -2,10 +2,6 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import styled from 'styled-components';
 
-const RemoveButtonDiv = styled.div`
-margin-bottom: 10px;
-`
-
 class RemoveItemModal extends React.Component {
   constructor(props) {
     super(props);
@@ -33,7 +29,7 @@ class RemoveItemModal extends React.Component {
 
   render() {
     return (
-      <RemoveButtonDiv>
+      <div>
         <Button color="danger" onClick={this.ToggleNo}>Remove</Button>
         <Modal isOpen={this.state.modal} toggle={this.ToggleNo} className={this.props.className}>
           <ModalHeader toggle={this.ToggleNo}>Modal title</ModalHeader>
@@ -45,7 +41,7 @@ class RemoveItemModal extends React.Component {
             <Button color="secondary" onClick={this.ToggleNo}>Cancel</Button>
           </ModalFooter>
         </Modal>
-      </RemoveButtonDiv>
+      </div>
     );
   }
 }

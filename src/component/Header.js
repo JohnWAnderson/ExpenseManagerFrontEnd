@@ -3,102 +3,29 @@ import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Login from '../Account/Login';
-const MainHeader = styled.header`
-    padding: 0;
-    height: 8%;
-    background: #5dade9
-    position: relative;
-    min-width: 1100px;
-    width:100%;
-    min-height: 62px;
-    max-height: 65px;
-`
-
-const HeaderLink = styled(Link)`
-    textDecoration: none;
-    color: black;
-    font-size: 40px;
-    text-align: left ;
-    position: absolute;
-    bottom: 5px;
-    left: 50px;
-    vertical-align: middle;
-    text-decoration: none;
-
-    &:hover ${HeaderLink} {
-        text-decoration: none;
-        color: black;
-    }
-`
-
-const HeaderH1 = styled.h1`
-    text-decoration: none;
-    padding: 0;
-    margin: 0;
-`
-
-
-const LogOutTextDiv = styled.div`
-    display: inline-block;
-    text-align: bottom;
-    color: black;
-    font-size: 30px;
-    padding: 0;
-    margin: 0;
-    padding-right: 10px;
-`
-
-const LogOutButton = styled.button`
-    background: #4a8aba;
-    border: none;
-    padding: 2px;
-    width:75;
-    border-radius: 3px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-`
-
-const LogOutButtonDiv = styled.div`
-    display: inline-block;
-    margin-top: 5px;
-    height: 100%;
-`
-const LogInDiv = styled.div`
-    position: absolute;
-    right: 25px; bottom: 0;
-    text-align: right ;
-`
-
-const LogedInDiv = styled.div`
-    position: absolute;
-    display: block;
-    right: 25px; bottom: 0;
-    text-align: right ;
-`
 
 
 const Header =(props)=>{
     return(
-    <MainHeader>
-        <HeaderH1>
-        <HeaderLink to="/">
+    <header>
+        <h1>
+        <Link to="/">
             Expense Manager
-        </HeaderLink>
-        </HeaderH1>
+        </Link>
+        </h1>
     {(props.User.isAuthenticated) ?
-            <LogedInDiv>
+            <div>
                 <table>
                     <tbody>
                         <tr>
-                            <td><LogOutTextDiv>Hello, {props.User.currentUser.name}</LogOutTextDiv></td>
-                            <td><LogOutButtonDiv><LogOutButton onClick = {props.handleLogOut}>LogOut</LogOutButton></LogOutButtonDiv></td>
+                            <td><div>Hello, {props.User.currentUser.name}</div></td>
+                            <td><div><button onClick = {props.handleLogOut}>LogOut</button></div></td>
                         </tr>
                     </tbody>
                 </table>
-            </LogedInDiv> :
-            <LogInDiv><Login handleLogOn={props.handleLogOn}/></LogInDiv>}
-    </MainHeader>   
+            </div> :
+            <div><Login handleLogOn={props.handleLogOn}/></div>}
+    </header>   
     );
 }
 

@@ -10,24 +10,6 @@ import styled from 'styled-components';
 import moment from 'moment';
 
 
-const MainFilterPickerDiv = styled.div`
-    position: relative;
-    display: block;
-    min-width: 700px;
-`   
-const FilterTitleDiv = styled.div`
-    display: inline-block;
-    font-size: 30px;
-    text-align: center;
-    height: 100%
-`
-
-const DatePickerDiv= styled.div`
-    display: inline-block;
-    font-size: 30px;
-    text-align: center;
-    height: 100%
-`
 
 class FilterPicker extends React.Component{
     constructor(props){
@@ -71,11 +53,11 @@ class FilterPicker extends React.Component{
 
     render(){     
         return(
-            <MainFilterPickerDiv>
-            <FilterTitleDiv>
+            <div>
+            <div>
                 Select Date Range:
-            </FilterTitleDiv>
-            <DatePickerDiv>
+            </div>
+            <div>
                 <DateRangePicker 
                 startDateId= "start"
                 endDateId= "end"
@@ -88,8 +70,8 @@ class FilterPicker extends React.Component{
                 numberOfMonths={1} 
                 isOutsideRange={()=> false}
                 />
-            </DatePickerDiv>
-            </MainFilterPickerDiv>
+            </div>
+            </div>
         );
     };
 }
