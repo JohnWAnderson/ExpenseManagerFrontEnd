@@ -5,47 +5,6 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import {UserNameField, EmailField, PasswordField} from '../Functions/Validation';
 
-const LoginInput = styled.input`
-margin: 2px 0;
-display: inline-block;
-border: 2px solid #ccc;
-border-radius: 5px;
-box-sizing: border-box;
-
-${({ failed }) => failed && `
-border-color: red;
-`}
-
-`
-const LoginLabelTd = styled.td`
-text-align: center ;
-max-height:25px;
-`
-
-const LoginLabel = styled.label`
-text-align: center ;
-max-height:25px;
-padding:0;
-margin:0;
-`
-
-const LoginButton = styled.button`
-background-color: #4a8aba;
-border: none;
-padding: 3px 2px;
-border-radius: 3px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-${({ clicked }) => clicked && `
-background-color: white;
-`}
-`
-
-const SizeTd = styled.td`
-max-height: 25px;
-`
-
 class Login extends React.Component {
         constructor(props){
             super(props);
@@ -87,13 +46,13 @@ class Login extends React.Component {
                 <table>
                 <tbody>
                     <tr>
-                        <LoginLabelTd><LoginLabel >Username or Email</LoginLabel></LoginLabelTd>
-                        <LoginLabelTd><LoginLabel >Password</LoginLabel></LoginLabelTd>
+                        <td><label >Username or Email</label></td>
+                        <td><label >Password</label></td>
                     </tr>
                     <tr>
-                        <td><LoginInput failed={this.state.failed} disabled={this.props.Loading.clicked} type = "text" name = "username"  required/></td>
-                        <td><LoginInput failed={this.state.failed} disabled={this.props.Loading.clicked} type = "password" name = "password"  required/></td>
-                        <td><LoginButton type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "LogButton" >Login Submit</LoginButton></td>
+                        <td><input failed={this.state.failed} disabled={this.props.Loading.clicked} type = "text" name = "username"  required/></td>
+                        <td><input failed={this.state.failed} disabled={this.props.Loading.clicked} type = "password" name = "password"  required/></td>
+                        <td><button type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "LogButton" >Login Submit</button></td>
                     </tr>
                 </tbody>
                 </table>

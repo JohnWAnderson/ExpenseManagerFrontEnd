@@ -38,8 +38,9 @@
 // export default connect(MapUserInfo)(Header);
 
 import React from 'react';
-import {Collapse, Navbar, NavbarBrand,Nav,NavItem,NavLink} from 'reactstrap';
+import {Collapse,Navbar,NavbarToggler,NavbarBrand,Nav,NavItem,NavLink } from 'reactstrap';
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import Login from '../Account/Login';
 
@@ -47,26 +48,35 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
 
+    this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false
     };
   }
-
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
   render() {
     return (
       <div>
-      {this.props.User.isAuthenticated}
         <Navbar color="secondary" light expand="md">
-          <NavbarBrand href="/">Expense Manager</NavbarBrand>
+          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink href="/calendar/">Calendar</NavLink>
               </NavItem>
-            <NavItem>
-              <NavLink href="/calendar/">Calendar</NavLink>
-            </NavItem>
+              <NavItem>
+                <NavLink href="/add/">Add Item</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/add/">Add Item</NavLink>
+              </NavItem>
             </Nav>
+            <Login/>
           </Collapse>
         </Navbar>
       </div>

@@ -5,71 +5,6 @@ import { addUser} from '../Redux/Actions/Users';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {UserNameField, EmailField, PasswordField, UserField} from '../Functions/Validation';
-const SingUpH1 = styled.h1`
-    text-align: left;
-    padding-bottom: 25px;
-    margin-left: 52px;
-`
-
-const SignUpInput = styled.input`
-    margin-bottom: 10px;
-    padding: 2px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-sizing: border-box;
-    height: 35px;
-    width: 300px;
-    ${({ failed }) => failed && `
-    border-color: red;
-    `}
-
-`
-const SignupTdLabel = styled.td`
-    position: relative;
-    text-align: left ;
-`
-const SignupForm = styled.form`
-`
-const SignupFormDiv = styled.div`
-    display: inline-block;
-    width: 100%;
-`
-
-const SignupTdError = styled.td`
-    text-align: left ;
-    width: 100px; height: auto;
-    color: red;
-`
-const SignupDiv = styled.div`
-    display: inline-block;
-    min-width: 400px;
-    vertical-align: top;
-    width: 500px;
-    align: left;
-    text-align: left ;
-    position: relative;
-    height: 100%;
-`   
-
-const LoginButton = styled.button`
-    background-color: green;
-    border: none;
-    width: 70px;
-    height: 30px;
-    padding: 2px 2px;
-    margin-left: 3px;
-    font-size: 16px;
-    border-radius: 3px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    color: white;
-
-    ${({ clicked }) => clicked && `
-    background-color: lime;
-    `}`
-
 
 class Signup extends React.Component {
     constructor(props){
@@ -408,40 +343,40 @@ class Signup extends React.Component {
             }
         }
     render= () =>(
-        <SignupDiv>
-            <SingUpH1>Sign Up</SingUpH1>
-            <SignupFormDiv>
-                <SignupForm  onSubmit= {this.onSubmit}>
-                    <Signintable>
+        <div>
+            <h1>Sign Up</h1>
+            <div>
+                <form  onSubmit= {this.onSubmit}>
+                    <table>
                     <tbody>
                     <tr>
-                        <td><SignUpInput disabled={this.props.Loading.clicked} type = "text" name = "Name"  id="name" placeholder="Name" onChange = {this.NameChange} required /> </td>
-                        <SignupTdError>{!this.state.name.valid && this.state.name.error}</SignupTdError>
+                        <td><input disabled={this.props.Loading.clicked} type = "text" name = "Name"  id="name" placeholder="Name" onChange = {this.NameChange} required /> </td>
+                        <td>{!this.state.name.valid && this.state.name.error}</td>
                     </tr>
                     <tr>
-                        <td><SignUpInput disabled={this.props.Loading.clicked} failed={this.state.username.failed} type = "text" name = "Username" id="username" placeholder="Username" onChange = {this.UserNameChange} required /></td>
-                        <SignupTdError>{!this.state.username.valid && this.state.username.error}</SignupTdError>
+                        <td><input disabled={this.props.Loading.clicked} failed={this.state.username.failed} type = "text" name = "Username" id="username" placeholder="Username" onChange = {this.UserNameChange} required /></td>
+                        <td>{!this.state.username.valid && this.state.username.error}</td>
                     </tr>
                     <tr>
-                        <td><SignUpInput disabled={this.props.Loading.clicked} failed={this.state.email.failed} type = "email" name = "Email" id= "email" placeholder="Email"  onChange = {this.EmailChange} required/></td>
-                        <SignupTdError>{!this.state.email.valid && this.state.email.error}</SignupTdError>
+                        <td><input disabled={this.props.Loading.clicked} failed={this.state.email.failed} type = "email" name = "Email" id= "email" placeholder="Email"  onChange = {this.EmailChange} required/></td>
+                        <td>{!this.state.email.valid && this.state.email.error}</td>
                     </tr>
                     <tr>
-                        <td><SignUpInput disabled={this.props.Loading.clicked} type = "password" name = "Password" id="password" placeholder="Password" onChange = {this.PasswordChange} required/></td>
-                        <SignupTdError>{!this.state.password.valid && this.state.password.error}</SignupTdError>
+                        <td><input disabled={this.props.Loading.clicked} type = "password" name = "Password" id="password" placeholder="Password" onChange = {this.PasswordChange} required/></td>
+                        <td>{!this.state.password.valid && this.state.password.error}</td>
                     </tr>
                     <tr>
-                        <td><SignUpInput disabled={this.props.Loading.clicked} type = "password" name = "rePassword" id="rePassword" placeholder="Re-Password" onChange = {this.RePasswordChange} required/></td>
-                        <SignupTdError>{!this.state.rePassword.valid && this.state.rePassword.error}</SignupTdError>
+                        <td><input disabled={this.props.Loading.clicked} type = "password" name = "rePassword" id="rePassword" placeholder="Re-Password" onChange = {this.RePasswordChange} required/></td>
+                        <td>{!this.state.rePassword.valid && this.state.rePassword.error}</td>
                     </tr>
                     <tr>
-                        <SignupTdLabel><LoginButton type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "button">Signup</LoginButton></SignupTdLabel>
+                        <label><button type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "button">Signup</button></label>
                     </tr>
                     </tbody>
-                    </Signintable>
-                </SignupForm>
-            </SignupFormDiv>
-        </SignupDiv>
+                    </table>
+                </form>
+            </div>
+        </div>
     );
 
 }
