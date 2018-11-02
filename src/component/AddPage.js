@@ -7,12 +7,21 @@ import { addItem } from '../Redux/Actions/Items';
 import {TimesItemChange} from '../Redux/TimesChange';
 import styled from 'styled-components';
 
+const MainDiv = styled.div`
+    position:relative;
+    height:100%;
+    width:100%;
+`
+
+const ItemPageHeader = styled.h1`
+display:block;
+text-align:center;
+`
 
 const AddPage = (props) =>{
     return(
-    <div>
-        <div>
-        <h1>Add Item Page</h1>
+    <MainDiv>
+        <ItemPageHeader>Add Item Page</ItemPageHeader>
         <ItemForm
             onSubmit={(item) => {
                 CreateItem(item).then(response => {
@@ -25,8 +34,7 @@ const AddPage = (props) =>{
                 });
             }}
         />
-        </div>
-    </div>
+    </MainDiv>
     );
 };
 

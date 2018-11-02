@@ -11,6 +11,15 @@ import NotFound from './NotFound';
 import styled from 'styled-components';
 import RemoveItemModal from './RemoveItemModal';
 
+const ItemPageHeader = styled.h1`
+display:block;
+text-align:center;
+`
+
+const CenterDiv = styled.div`
+display:block;
+text-align:center;
+`
 
 class EditPage extends React.Component {
     constructor(props){
@@ -39,10 +48,10 @@ class EditPage extends React.Component {
         const holder = item.name;
         return(
             <div>
-            <h1>Edit Item Page</h1>
-            <div>
+            <ItemPageHeader>Edit Item Page</ItemPageHeader>
+            <CenterDiv>
             <RemoveItemModal item={item} RemoveItem={this.RemoveItem}/>
-            </div>
+            </CenterDiv>
             <div>
             <ItemForm item={item}        
                     onSubmit={(item) => {
