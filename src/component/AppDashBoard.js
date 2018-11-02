@@ -6,20 +6,13 @@ import {Link} from 'react-router-dom';
 import FilterPicker from './FilterPicker';
 import PageInformation from './PageInformation';
 
-const AppDashBoard = styled.div`
-    padding: 0;
-    align: center;
-    text-align: center;
-    height: 92%;
-    position: relative;
-`
 
 export default () =>{
     return(
-        <AppDashBoard>
+        <div>
             <PageInformation/>
             <FilterPicker/>
             <ItemList/>
-        </AppDashBoard>
+        </div>
     );
 }
