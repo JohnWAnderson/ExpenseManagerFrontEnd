@@ -20,15 +20,22 @@ const PageFormH1 = styled.h1`
     text-align: center ;
     padding-bottom: 20px;
     padding-left: 2px;
-    background: #D0D1D1;
 `
 const RemoveButton = styled.button`
+
     text-align: center ;
     margin-bottom: 25px;
     padding-left: 2px;
     color: red;
     font-size: 20px;
-    background: 0;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #f44336;
+
+    &:hover ${RemoveButton} {
+        background-color: #f44336;
+        color: white;
+    }
 `
 
 const PageFormDiv = styled.div`
@@ -42,7 +49,6 @@ const PageFormDiv = styled.div`
 const EditPageButtonDiv = styled.div`
     padding: 0;
     text-align: center;
-    background: #D0D1D1;
 `
 
 class EditPage extends React.Component {

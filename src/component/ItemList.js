@@ -13,7 +13,7 @@ const ItemListDiv = styled.div`
     border: 1px solid black;    
     border-bottom: 0;
     width: 70%;
-    min-width: 750px;
+    min-width: 900px;
     margin auto;
 `
 const ItemListTable = styled.table`

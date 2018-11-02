@@ -19,9 +19,6 @@ export default () =>{
         <AppDashBoard>
             <FilterPicker/>
             <PageInformation/>
-            <Link to="/calendar">
-            [calendar prototype link]
-            </Link>
             <ItemList/>
         </AppDashBoard>
     );

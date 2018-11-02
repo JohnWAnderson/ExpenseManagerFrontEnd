@@ -14,13 +14,13 @@ const ItemCostDiv = styled.div`
     position: relative;
     display: block;
     height: 100%;
-    padding: 30px;
 `   
+
 
 const ItemCost = (props) => (
     <ItemCostDiv>
         <ItemCostPartDIV>
-            { props.times > 1 ? <div>Recurring:{props.times} ${props.cost/100} </div> : <div></div>}
+            { props.times > 1 ? <div><ItemCostDiv>Recurring:{props.times}</ItemCostDiv> ${props.cost/100} </div> : <div></div>}
         </ItemCostPartDIV>
         <ItemCostPartDIV>
             ${parseFloat(props.cost/100 * props.times).toFixed(2)} 

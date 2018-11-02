@@ -12,7 +12,6 @@ const PageInfoMainDiv = styled.div`
     min-width: 700px;
     padding: 0;
     margin: 0;
-    background: #D0D1D1;
 `
 
 const PageInfoDiv = styled.div`
@@ -26,8 +25,8 @@ const PageInfoLink = styled(Link)`
     font-family: Georgia;
     text-align: left ;
     position: reletive;
-    
 `
+
 const PageInfoH1 = styled.h1`
     font-size: 25px;
     margin: auto;

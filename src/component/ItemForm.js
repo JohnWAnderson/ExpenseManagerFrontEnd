@@ -201,7 +201,7 @@ class ItemForm extends React.Component{
 
     NameChange = (e) =>{
         const name = e.target.value;
-        if(name.length >2 && name.length <= 25){
+        if(name.length >2 && name.length <= 20){
             if(UserNameField(name)){        
                 this.setState(() => ({name:{
                     value: name,

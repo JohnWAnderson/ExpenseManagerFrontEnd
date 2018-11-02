@@ -11,21 +11,6 @@ const CalInfoMainDiv = styled.div`
     font-size: 25px;
     position: reletive;
     min-width: 800px;
-    background: #D0D1D1;
-`
-const PageInfoLink = styled(Link)`
-    color: green;
-    text-decoration: none;
-    font-family: Georgia;
-    text-align: left ;
-    position: reletive;
-`
-const PageInfoH1 = styled.h1`
-    font-size: 25px;
-    margin: auto;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    position: reletive;
 `
 const PageInfoDiv = styled.div`
     padding: 10px;

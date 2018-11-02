@@ -12,20 +12,11 @@ const ItemDiv = styled.div`
     padding: 0;
     border: 0;
     width:100%;
-    min-height: 72px;
-    max-height: 72px;
 `   
-const HeaderLink = styled(Link)`
-    color: blue;
-    text-decoration: none;
-    text-align: left ;
-    position: relative;
-    bottom: 0;
-    font-size: 12px;
-    padding: 0;
-`
 
 const ItemPartDiv =styled.div`
+    word-wrap: break-word;
+    max-width: 300px;
     vertical-align: middle;
     vertical-align: top;
     display: table-cell;
@@ -36,37 +27,19 @@ const ItemPartDiv =styled.div`
     margin: 0;
 `
 
-const ItemH3 = styled.h3`
-    text-align:left;
-    position: relative;
-    font-size: 30px;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-`   
-
 const ItemPartDisDiv =styled.div`
+    max-width: 300px;
     text-align:center;
     vertical-align: middle;
     display: table-cell;
     word-wrap: break-word;
     position: relative;
-    max-width: 457px;
+    max-width: 300px;
     width: 34%;
     padding: auto;
     margin: auto;
 `
 
-const ItemNameDiv = styled.div`
-    position: relative;
-    vertical-align: middle;
-    text-align:left;
-    margin: 0 auto;
-    top:50%;
-    height: 100%;
-    padding: 20px;
-    margin: auto;
-`
 const Item = (props) => (
  <ItemDiv>
     <ItemPartDiv>
@@ -81,6 +54,36 @@ const Item = (props) => (
  </ItemDiv>
 );
 
+
+const ItemNameDiv = styled.div`
+    position: relative;
+    vertical-align: middle;
+    text-align:left;
+    margin: 0 auto;
+    top:50%;
+    height: 100%;
+    padding: 20px;
+    margin: auto;
+`
+
+const ItemH3 = styled.h3`
+    text-align:left;
+    position: relative;
+    font-size: 30px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+`   
+
+const HeaderLink = styled(Link)`
+    color: blue;
+    text-decoration: none;
+    text-align: left ;
+    position: relative;
+    bottom: 0;
+    font-size: 12px;
+    padding: 0;
+`
 const ItemName = (props) => (
     <ItemNameDiv>
         <ItemH3>
