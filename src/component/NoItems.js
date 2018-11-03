@@ -6,6 +6,7 @@ import { Row, Col } from 'reactstrap';
 const NoItems =(props)=>{
     {console.log(props)
     }
+    
     return(
         <Row>
             <Col>There are no items in Date Range {moment(props.filter.startDate).format("MM-DD-YYYY")} - {moment(props.filter.endDate).format("MM-DD-YYYY")}</Col>

@@ -191,18 +191,27 @@ class ItemForm extends React.Component{
     descriptionChange = (e) =>{        
         const description = e.target.value;
         if(description.length < 225){
-            if(ItemDisFeild(description)){
+            if(description.length === 0){
                 this.setState(() => ({description:{
                     value: description,
                     valid: true,
                     error:''
-                }}));}
-            else{
-                this.setState(() => ({description:{
-                    value: description,
-                    valid: false,
-                    error:'Invalid Character'
                 }}));
+            }
+            else{
+                if(ItemDisFeild(description)){
+                    this.setState(() => ({description:{
+                        value: description,
+                        valid: true,
+                        error:''
+                    }}));}
+                else{
+                    this.setState(() => ({description:{
+                        value: description,
+                        valid: false,
+                        error:'Invalid Character'
+                    }}));
+                }
             }
         }
         else{
