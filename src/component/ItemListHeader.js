@@ -7,12 +7,18 @@ const NormalCol = styled(Col)`
     text-align:center;
 `
 
+const BottomBoarderDiv = styled.div`
+    border-bottom: 3px solid black;
+`
+
 export default ()=>{
     return(
-    <Row>
-        <NormalCol>Name</NormalCol>
-        <NormalCol>Note</NormalCol>
-        <NormalCol>Cost</NormalCol>
-    </Row>
+    <BottomBoarderDiv>
+        <Row>
+            <NormalCol>Name</NormalCol>
+            <NormalCol>Note</NormalCol>
+            <NormalCol>Cost</NormalCol>
+        </Row>
+    </BottomBoarderDiv>
     );
 }

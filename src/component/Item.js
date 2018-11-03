@@ -2,27 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ItemCost from './/ItemCost';
-import { Row, Col } from 'reactstrap';
+import {Container, Row, Col } from 'reactstrap';
 import Media from "react-media";
 
 const DescriptionRow = styled(Row)`
     word-wrap: break-word;
 `
 
-const DescriptionCol = styled(Col)`
-    word-wrap: break-word;
-    width:34%;
-    text-align:center;
-    min-width:380;
+const BottomBoarderDiv = styled.div`
+    border-bottom: 3px solid black;
 `
-
-const NormalCol = styled(Col)`
-    word-wrap: break-word;
-    width:33%;
-    text-align:center;
-    min-width:380;
-`
-//1140
+//1200
 
 const ItemDiv = styled.div`
     border-collapse: collapse;
@@ -61,31 +51,31 @@ const ItemPartDisDiv =styled.div`
 `
 
 const Item = (props) => (
-    <div>
-    <Media query="(max-width: 1200px)">
-        {matches =>
-        matches ? (
-            <div>
-                <DescriptionRow><Col><ItemName name={props.name} index={props.index}/></Col></DescriptionRow>
-                <DescriptionRow><Col> {props.description}</Col></DescriptionRow>
-                <DescriptionRow><Col><ItemCost {...props}/></Col></DescriptionRow>
-            </div>
-        ) : (
-            <ItemDiv>
-                <ItemPartDiv>
-                    <ItemName name={props.name} index={props.index}/>
-                </ItemPartDiv>
-                <ItemPartDisDiv>
-                    {props.description}
-                </ItemPartDisDiv>
-                <ItemPartDiv>
-                    <ItemCost {...props}/>
-                </ItemPartDiv>
-            </ItemDiv>
-        )
-        }
-    </Media>
-    </div>
+    <BottomBoarderDiv>
+        <Media query="(max-width: 1200px)">
+            {matches =>
+            matches ? (
+                <div>
+                    <DescriptionRow><Col><ItemName name={props.name} index={props.index}/></Col></DescriptionRow>
+                    <DescriptionRow><Col> {props.description}</Col></DescriptionRow>
+                    <DescriptionRow><Col><ItemCost {...props}/></Col></DescriptionRow>
+                </div>
+            ) : (
+                <ItemDiv>
+                    <ItemPartDiv>
+                        <ItemName name={props.name} index={props.index}/>
+                    </ItemPartDiv>
+                    <ItemPartDisDiv>
+                        {props.description}
+                    </ItemPartDisDiv>
+                    <ItemPartDiv>
+                        <ItemCost {...props}/>
+                    </ItemPartDiv>
+                </ItemDiv>
+            )
+            }
+        </Media>
+    </BottomBoarderDiv>
 );
 
 const ItemH3 = styled.h3`
@@ -101,7 +91,7 @@ const ItemNameDiv = styled.div`
 
 `
 
-const HeaderLink = styled(Link)`
+const EditLink = styled(Link)`
     color: blue;
     text-decoration: none;
     text-align: left ;
@@ -111,14 +101,37 @@ const HeaderLink = styled(Link)`
     padding: 0;
 `
 
+const HeaderLink = styled(Link)`
+    color: blue;
+    text-decoration: none;
+    text-align: left ;
+    position: relative;
+`
+
 const ItemName = (props) => (
     <ItemNameDiv>
-        <ItemH3>
-        {props.name}
-        <HeaderLink   to={`/edit/${props.index}`}>
-            edit
-        </HeaderLink>
-        </ItemH3>
+    <Media query="(max-width: 1200px)">
+        {matches =>
+        matches ? (
+            <Container>
+            <ItemH3>
+                <Row>
+                <HeaderLink to={`/edit/${props.index}`}>
+                    {props.name}
+                </HeaderLink>
+                </Row>
+            </ItemH3>
+            </Container>
+        ) : (
+            <ItemH3>
+                {props.name}
+                <EditLink to={`/edit/${props.index}`}>
+                    edit
+                </EditLink>
+            </ItemH3>
+        )
+        }
+    </Media>
     </ItemNameDiv>
    );
    

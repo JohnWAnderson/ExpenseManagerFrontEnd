@@ -8,9 +8,11 @@ const NoItems =(props)=>{
     }
     
     return(
-        <Row>
-            <Col>There are no items in Date Range {moment(props.filter.startDate).format("MM-DD-YYYY")} - {moment(props.filter.endDate).format("MM-DD-YYYY")}</Col>
-        </Row>
+        <div>
+            <Row>
+                <Col>There are no items in Date Range {moment(props.filter.startDate).format("MM-DD-YYYY")} - {moment(props.filter.endDate).format("MM-DD-YYYY")}</Col>
+            </Row>
+        </div>
     )
 }
 

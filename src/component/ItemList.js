@@ -9,26 +9,43 @@ import { Container, Row, Col } from 'reactstrap';
 import Media from "react-media";
 
 const BoarderDiv = styled.div`
-    border: 1px solid black; 
+    border-top: 3px solid black;
+    border-right: 3px solid black;
+    border-left: 3px solid black;
 `
+
+const BoarderCont = styled(Container)`
+    border-top: 3px solid black;
+    border-right: 3px solid black;
+    border-left: 3px solid black;
+`
+
+const NoPadBoarderDiv = styled.div`
+    border-top: 3px solid black;
+    border-right: 3px solid black;
+    border-left: 3px solid black;
+`
+
 const ItemList =(props)=>{
     return(
         <Container>    
-            <Media query="(max-width: 1200px)">
-            {matches =>
-            matches ? (
-                <div></div>
-            ) : (
-                <ItemListHeader/>
-            )
-            }
-        </Media>
-                {props.itemsV.length > 0 ? 
-                    props.itemsV.map((item,index)=>{
-                    return(<BoarderDiv><Item key={index} {...item} index={props.items.indexOf(item)+1}/></BoarderDiv>)})
-                    : 
-                    <NoItems/>
+            <NoPadBoarderDiv>
+                <Media query="(max-width: 1200px)">
+                {matches =>
+                matches ? (
+                    <div></div>
+                ) : (
+                    <ItemListHeader/>
+                )
                 }
+            </Media>
+                    {props.itemsV.length > 0 ? 
+                        props.itemsV.map((item,index)=>{
+                        return(<Item key={index} {...item} index={props.items.indexOf(item)+1}/>)})
+                        : 
+                        <NoItems/>
+                    }
+            </NoPadBoarderDiv>
         </Container>
         
     );
