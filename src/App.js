@@ -80,7 +80,7 @@ loadItems = () =>{
               <PrivateRoute path="/calendar" component= {CalendarPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/>
               <PrivateRoute path="/edit/:id" component= {EditPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/>
               <PrivateRoute path="/add" component={AddPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/> 
-              <PrivateRoute path="/Time" component={AppDashBoard} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/> 
+              <PrivateRoute path="/Timeseries" component={AppDashBoard} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/> 
               <Route component= {NotFound}/>
             </Switch>
         </MainApp>

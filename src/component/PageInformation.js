@@ -1,18 +1,29 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom';
 import getSelectorSum from '../Redux/SelectorSum';
 import getVisableItem from '../Redux/SelectorItemOrder';
 import styled from 'styled-components';
+import { Container, Row, Col } from 'reactstrap';
+
+
+const PageInfoRow = styled(Row)`
+    color: black;
+    text-decoration: none;
+    font-family: Georgia;
+    font-size: 20px;
+    position: relative;
+    vertical-align: middle;
+    text-align:center;
+`
 
 const getVisableItemNumber = (props) =>{
     return(
-        <div>
-                {props.Items.length > 0 ? 
-                <div>Page contains {props.Items.length} which totals to: ${props.Sum/100}</div>:
-                <div>Page contains no items</div>}
-        </div>
+        <Container>
+                {props.Items.length > 0 ? <div>
+                <PageInfoRow><Col><h1>Page contains {props.Items.length}</h1></Col></PageInfoRow> <PageInfoRow><Col><h1>Totaling ${props.Sum/100}</h1></Col></PageInfoRow></div>:
+                <PageInfoRow>Page contains no items</PageInfoRow>}
+        </Container>
     );
 }
 

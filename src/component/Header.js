@@ -1,42 +1,3 @@
-// import React from 'react';
-// import {Link} from 'react-router-dom';
-// import { connect } from 'react-redux';
-// import styled from 'styled-components';
-// import Login from '../Account/Login';
-
-
-// const Header =(props)=>{
-//     return(
-//     <header>
-//         <h1>
-//         <Link to="/">
-//             Expense Manager
-//         </Link>
-//         </h1>
-//     {(props.User.isAuthenticated) ?
-//             <div>
-//                 <table>
-//                     <tbody>
-//                         <tr>
-//                             <td><div>Hello, {props.User.currentUser.name}</div></td>
-//                             <td><div><button onClick = {props.handleLogOut}>LogOut</button></div></td>
-//                         </tr>
-//                     </tbody>
-//                 </table>
-//             </div> :
-//             <div><Login handleLogOn={props.handleLogOn}/></div>}
-//     </header>   
-//     );
-// }
-
-// const MapUserInfo=(state)=>{
-//     return{
-//         User: state.user
-//     }
-// }
-
-// export default connect(MapUserInfo)(Header);
-
 import React from 'react';
 import {Collapse,Navbar,NavbarToggler,NavbarBrand,Nav,NavItem,NavLink, Button } from 'reactstrap';
 import { connect } from 'react-redux';
@@ -44,6 +5,41 @@ import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import LoginModal from '../Account/LoginModal';
 import SignupModal from '../Account/SignupModal';
+
+const HeaderLink = styled(Link)`
+    color: black;
+    text-decoration: none;
+    font-family: Georgia;
+    font-size: 30px;
+    text-align: left ;
+    position: relative;
+    vertical-align: middle;
+    &:hover ${HeaderLink} {
+      text-decoration: none;
+      color: black;
+  }
+`
+
+const MenuLink = styled(Link)`
+    color: black;
+    text-decoration: none;
+    font-family: Georgia;
+    font-size: 20px;
+    position: relative;
+    vertical-align: middle;
+    &:hover ${MenuLink} {
+      text-decoration: none;
+      color: black;
+  }
+`
+
+const MenuButton = styled(Button)`
+    font-size: 20px;
+    position: relative;
+    vertical-align: middle;
+    height: 100%;
+`
+
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -82,19 +78,28 @@ class Header extends React.Component {
     return (
       <div>
         <Navbar color="secondary" light expand="md">
-          <NavbarBrand href="/">ExpenseManager</NavbarBrand>
+          <h1><HeaderLink to="/">Expense Manager</HeaderLink></h1>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
           {(this.props.User.isAuthenticated) ? 
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Link to="/calendar/">Calendar</Link>
+                <Button>
+                  <MenuLink to="/calendar/">Calendar</MenuLink>
+                </Button>
               </NavItem>
               <NavItem>
-                <Link to="/add/">Add Item</Link>
+                <Button>
+                  <MenuLink to="/Timeseries/">Time Series</MenuLink>
+                </Button>
+              </NavItem>    
+              <NavItem>
+                <Button>
+                  <MenuLink to="/add/">Add Item</MenuLink>
+                </Button>
               </NavItem>
               <NavItem>
-                <Button  onClick = {this.props.handleLogOut}>LogOut</Button>
+                <MenuButton onClick = {this.props.handleLogOut}>LogOut</MenuButton>
               </NavItem>
             </Nav> 
             : 

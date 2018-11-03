@@ -8,8 +8,17 @@ import { editItem } from '../Redux/Actions/Items';
 import {TimesItemChange} from '../Redux/TimesChange';
 import styled from 'styled-components';
 import moment from 'moment';
+import { Container, Row, Col } from 'reactstrap';
 
-
+const PageInfoRow = styled(Row)`
+    color: black;
+    text-decoration: none;
+    font-family: Georgia;
+    font-size: 20px;
+    position: relative;
+    vertical-align: middle;
+    text-align:center;
+`
 
 class FilterPicker extends React.Component{
     constructor(props){
@@ -53,11 +62,9 @@ class FilterPicker extends React.Component{
 
     render(){     
         return(
-            <div>
-            <div>
-                Select Date Range:
-            </div>
-            <div>
+            <Container>
+                <PageInfoRow>
+                <Col>
                 <DateRangePicker 
                 startDateId= "start"
                 endDateId= "end"
@@ -70,8 +77,9 @@ class FilterPicker extends React.Component{
                 numberOfMonths={1} 
                 isOutsideRange={()=> false}
                 />
-            </div>
-            </div>
+                </Col>
+                </PageInfoRow>
+            </Container>
         );
     };
 }

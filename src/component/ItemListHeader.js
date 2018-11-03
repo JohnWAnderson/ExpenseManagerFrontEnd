@@ -1,13 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Row, Col } from 'reactstrap';
 
+const NormalCol = styled(Col)`
+    word-wrap: break-word;
+    text-align:center;
+`
 
 export default ()=>{
     return(
-    <div>
-        <div><div>Name</div></div>
-        <div><div>Note</div></div>
-        <div><div>Cost</div></div>
-    </div>
+    <Row>
+        <NormalCol>Name</NormalCol>
+        <NormalCol>Note</NormalCol>
+        <NormalCol>Cost</NormalCol>
+    </Row>
     );
 }

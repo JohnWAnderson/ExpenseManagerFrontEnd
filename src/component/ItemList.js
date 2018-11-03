@@ -5,22 +5,19 @@ import getVisableItem from '../Redux/SelectorItemOrder';
 import styled from 'styled-components';
 import NoItems from './NoItems';
 import ItemListHeader from './ItemListHeader';
-
+import { Container, Row, Col } from 'reactstrap';
 const ItemList =(props)=>{
     return(
-        <div>
-        <ItemListHeader/>
-            <table>
-            <tbody>
+        <Container>
+            <ItemListHeader/>
                 {props.itemsV.length > 0 ? 
                     props.itemsV.map((item,index)=>{
-                    return(<tr key={index}><td key={index}><Item key={index} {...item} index={props.items.indexOf(item)+1}/></td></tr>)})
+                    return(<Item key={index} {...item} index={props.items.indexOf(item)+1}/>)})
                     : 
-                    <tr><td><NoItems/></td></tr>
+                    <NoItems/>
                 }
-            </tbody>
-            </table>
-        </div>
+        </Container>
+        
     );
 }
 

@@ -10,7 +10,11 @@ import styled from 'styled-components';
 const MainDiv = styled.div`
     position:relative;
     height:100%;
-    width:100%;
+    width:80%;
+    text-align:center;
+    align:center;
+    margin: auto;
+    padding: auto;
 `
 
 const ItemPageHeader = styled.h1`

@@ -13,7 +13,20 @@ import { Button, Form, FormGroup, Label, Input, FormFeedback, Col, InputGroupTex
 const MyLabel = styled(Label)`
     display:block;
     min-width:180px;
+    max-width:200px;
 `
+
+const MyForm = styled(Form)`
+    display:block;
+    min-width:180px;
+    text-align:left;
+    align:left;
+    margin: auto;
+    padding: auto;
+
+
+`
+//1330
 // /text-align:right;
 class ItemForm extends React.Component{
     constructor(props){
@@ -238,7 +251,7 @@ class ItemForm extends React.Component{
     }
 
     render= () =>(
-        <Form onSubmit={this.onSubmit}>
+        <MyForm onSubmit={this.onSubmit}>
         <FormGroup row>
           <MyLabel for="name" sm={2}>Item Name</MyLabel>
           <Col sm={10}>
@@ -327,7 +340,7 @@ class ItemForm extends React.Component{
             <Button>Submit</Button>
           </Col>
         </FormGroup>
-      </Form>
+      </MyForm>
     );
 
 }
