@@ -15,12 +15,13 @@ const ItemCost = (props) => (
     <Media query="(max-width: 1200px)">
         {matches =>
         matches ? (
-            <Row>
-                { props.times > 1 ? <Col><Col>Recurring:{props.times}</Col><Col>${props.cost/100}</Col></Col>: <Col></Col>}
-                <Col>
-                    ${parseFloat(props.cost/100 * props.times).toFixed(2)}
-                </Col>
-            </Row>
+            <ItemCostDiv>
+                { props.times > 1 ? <Row><Col>Recurring:{props.times}</Col><Col>${props.cost/100}</Col></Row>: <Col></Col>}
+                <Row>
+                    <Col></Col>
+                    <Col>${parseFloat(props.cost/100 * props.times).toFixed(2)}</Col>
+                </Row>
+            </ItemCostDiv>
         ) : (
             <ItemCostDiv>
                 { props.times > 1 ? <Col><Row><Col>Recurring:{props.times}</Col><Col>${props.cost/100}</Col></Row></Col> : <Col></Col>}

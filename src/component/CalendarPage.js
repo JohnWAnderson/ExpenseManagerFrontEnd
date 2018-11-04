@@ -7,7 +7,7 @@ import SelectCalendarEvents from '../Redux/SelectCalendarEvents';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import CalendarInfo from './CalendarInformation';
 import { Container, Row, Col } from 'reactstrap';
-
+import Media from "react-media";
  
 
 class CalendarPage extends React.Component {
@@ -46,28 +46,53 @@ class CalendarPage extends React.Component {
     render() {
         return(
             <Container>
-            <Row>
-                <Col xs="6">               
-             <div>
-                <CalendarInfo cost={this.state.cost} items={this.state.itemNum}/>
-            </div></Col>
-                <Col xs="6">                   
-                <div>
-                <BigCalendar
-                    onSelectEvent={this.handleSelectEvent} 
-                    localizer={this.state.localizer}
-                    defaultView="month"
-                    views={['month']}
-                    events={this.state.events}
-                    style={{ height: "550px", width:"100%", align: "center", position: "relative"}}
-                    onNavigate={(date) => {this.onMonthChange(date)}}
-                    components={{
-                        toolbar: CustomToolbar,
-                        event:CustomEvent
-                    }}
-                />
-                </div></Col>
-            </Row>
+            <Media query="(max-width: 1200px)">
+                {matches =>
+                matches ? (
+                    <Container>
+                    <Row><Col><CalendarInfo cost={this.state.cost} items={this.state.itemNum}/></Col></Row>
+                    <Row><Col>                        
+                    <BigCalendar
+                        onSelectEvent={this.handleSelectEvent} 
+                        localizer={this.state.localizer}
+                        defaultView="month"
+                        views={['month']}
+                        events={this.state.events}
+                        style={{ height: "550px", width:"100%", align: "center", position: "relative"}}
+                        onNavigate={(date) => {this.onMonthChange(date)}}
+                        components={{
+                            toolbar: CustomToolbar,
+                            event:CustomEvent
+                        }}
+                        />
+                    </Col></Row>
+                    </Container>
+                ) : (
+                    <Row>
+                        <Col xs="6">               
+                    <div>
+                        <CalendarInfo cost={this.state.cost} items={this.state.itemNum}/>
+                    </div></Col>
+                        <Col xs="6">                   
+                        <div>
+                        <BigCalendar
+                            onSelectEvent={this.handleSelectEvent} 
+                            localizer={this.state.localizer}
+                            defaultView="month"
+                            views={['month']}
+                            events={this.state.events}
+                            style={{ height: "550px", width:"100%", align: "center", position: "relative"}}
+                            onNavigate={(date) => {this.onMonthChange(date)}}
+                            components={{
+                                toolbar: CustomToolbar,
+                                event:CustomEvent
+                            }}
+                        />
+                        </div></Col>
+                </Row>
+                )
+                }
+            </Media>
             </Container>
         )
     };

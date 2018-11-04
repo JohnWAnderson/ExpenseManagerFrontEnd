@@ -18,6 +18,8 @@ const PageInfoRow = styled(Row)`
     position: relative;
     vertical-align: middle;
     text-align:center;
+    margin-top: 10px;
+    margin-bottom: 10px;
 `
 
 class FilterPicker extends React.Component{

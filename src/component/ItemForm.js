@@ -14,6 +14,10 @@ const MyLabel = styled(Label)`
     display:block;
     min-width:180px;
     max-width:200px;
+
+    @media (min-width: 1330px) {
+        text-align: right;
+    }
 `
 
 const MyForm = styled(Form)`
@@ -353,101 +357,7 @@ class ItemForm extends React.Component{
     );
 
 }
-// <div>
-// <div>
-//     <form  onSubmit= {this.onSubmit}>
-//     <table>
-//     <tbody>
-//         <tr>
-//         <td>
-//         <input disabled={this.props.Loading.clicked} type = "text" placeholder="Name" name = "Name"  id="name" value = {this.state.name.value} onChange = {this.NameChange} required /> 
-//         </td>
-//         <td>{!!this.state.name.error && this.state.name.error}</td>
-//         </tr>
-//         <tr>
-//         <td>
-//         <input disabled={this.props.Loading.clicked} type = "number" placeholder="1.00" name = "Cost" id="cost" value = {this.state.cost.value} onChange = {this.CostChange} required/></td>
-//         <td>{!!this.state.cost.error && this.state.cost.error}</td>
-//         </tr>
-//         <tr>
-//         <td>
-//         <textarea disabled={this.props.Loading.clicked} type = "textarea" name = "Description"  id= "description" value = {this.state.description.value} onChange = {this.descriptionChange} placeholder="description (Optional)"/> </td> 
-//         <td>{!!this.state.description.error && this.state.description.error}</td>
-//         </tr>
-//     </tbody>
-//     </table>
-//         <div>
-//         <div>
-//         <lable>Select Date: </lable>
-//         <SingleDatePicker disabled={this.props.Loading.clicked} date ={this.state.duedate} onDateChange={this.onDateChange} focused = {this.state.CalFocuse} onFocusChange={this.onFocusChange} numberOfMonths={1} isOutsideRange={()=> false}/> 
-//         </div>
-//         <div>
-//         <lable>Is this a recurring date: </lable>
-//         <select disabled={this.props.Loading.clicked} value={this.state.recurring} onChange={(e) => {     
-//             if(e.target.value === 'true'){
-//                 this.handleRecurringChange(true);
-//                 if(this.state.recurringsize)
-//                     this.handlerecurringsizeChange('daily');
-//             }
-//             else if(e.target.value === 'false'){
-//                 this.handleRecurringChange(false);
-//                 this.handlerecurringsizeChange('none');
-//                 this.onEndRecurringChange(null);
-//                 this.handleEndDateChange(false);
-//             }
-//         }}>>
-//             <option value='true'>yes</option>
-//             <option value = 'false'>no</option>
-//         </select>
-//         </div>
-//         </div>
-//         {this.state.recurring && <div>
-//             <div>
-//             <label >Select recurrence type:</label>
-//             <select disabled={this.props.Loading.clicked} value={this.state.recurringsize} onChange={(e) => {     
-//                 if(e.target.value === 'weekly')
-//                     this.handlerecurringsizeChange('weekly');                 
-//                 else if(e.target.value === 'biweekly')
-//                     this.handlerecurringsizeChange('biweekly');
-//                 else if(e.target.value === 'monthly')
-//                     this.handlerecurringsizeChange('monthly');
-//                 else if(e.target.value === 'daily')
-//                     this.handlerecurringsizeChange('daily');
-//                 else
-//                     this.handlerecurringsizeChange('daily');//will change for error handling
-//             }}>>
-//                 <option value = 'daily'>daily</option>
-//                 <option value = 'weekly'>weekly</option>
-//                 <option value = 'biweekly'>bi-weekly</option>
-//                 <option value = 'monthly'>monthly (date)</option>
-//             </select>
-//             </div>
-//             <div>
-//             <label>Is there an end date for this item:</label>
-//             <select disabled={this.props.Loading.clicked} value={this.state.enddate} onChange={(e) => {     
-                // if(e.target.value === 'true'){
-                //     this.handleEndDateChange(true); 
-                //     this.onEndRecurringChange(moment().add(1, 'M'))
-                // }
-                // else if(e.target.value === 'false'){
-                //     this.handleEndDateChange(false);
-                //     this.onEndRecurringChange(null)
-                // }
-//             }}>>
-                // <option value = 'false'>no</option>
-                // <option value='true'>yes</option>
-//             </select>
-//             </div>
-//             </div>}
-//         {(this.state.enddate && this.state.recurring) && <div>
-//             <label>Select End Date:</label>
-//             <SingleDatePicker disabled={this.props.Loading.clicked} date ={this.state.endrecurring} onDateChange={this.onEndRecurringChange} focused = {this.state.RecFocuse} 
-//                  onFocusChange={this.onRecFocuseChange} numberOfMonths={1} isOutsideRange={()=> false}/>
-//             </div>}
-//         <button type="submit" value="Submit" clicked={this.props.Loading.clicked} disabled={this.props.Loading.clicked} className= "button">Submit</button>
-//     </form>
-// </div>
-// </div>
+
 const MapUserInfo=(state)=>{
     return{
         User: state.user.currentUser,

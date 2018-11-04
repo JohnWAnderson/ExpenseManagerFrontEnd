@@ -5,6 +5,7 @@ import { Row, Col } from 'reactstrap';
 const NormalCol = styled(Col)`
     word-wrap: break-word;
     text-align:center;
+    font-size: 30px;
 `
 
 const BottomBoarderDiv = styled.div`
@@ -16,7 +17,7 @@ export default ()=>{
     <BottomBoarderDiv>
         <Row>
             <NormalCol>Name</NormalCol>
-            <NormalCol>Note</NormalCol>
+            <NormalCol></NormalCol>
             <NormalCol>Cost</NormalCol>
         </Row>
     </BottomBoarderDiv>
