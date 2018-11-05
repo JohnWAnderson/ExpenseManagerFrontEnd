@@ -16,27 +16,45 @@ const ItemCost = (props) => (
         {matches =>
         matches ? (
             <ItemCostDiv>
-                { props.times > 1 ? <Row><Col>Recurring:{props.times}</Col><Col>${props.cost/100}</Col></Row>: <Col></Col>}
-                <Row>
-                    <Col></Col>
-                    <Col>${parseFloat(props.cost/100 * props.times).toFixed(2)}</Col>
-                </Row>
+                { props.times > 1 ? <RecurringCost cost={props.cost} times={props.times}/>: <Row></Row>}
+                <TotalCost cost={props.cost} times={props.times}/>
             </ItemCostDiv>
         ) : (
             <ItemCostDiv>
-                { props.times > 1 ? <Col><Row><Col>Recurring:{props.times}</Col><Col>${props.cost/100}</Col></Row></Col> : <Col></Col>}
-                <Row>
-                    <Col>
-                        ${parseFloat(props.cost/100 * props.times).toFixed(2)}
-                    </Col>
-                    <Col></Col>
-                </Row>
+                { props.times > 1 ? <RecurringCost cost={props.cost} times={props.times}/>: <Col></Col>}
+                <TotalCost cost={props.cost} times={props.times}/>
             </ItemCostDiv>
         )
         }
     </Media>
     </Row>
    );
+
+   const ColRight = styled(Col)`
+    text-align:Right;
+    align:Right;
+    `
+
+    const RecurringCost = (props)=>(
+        <Row>
+            <ColRight>
+                Recurring: {props.times}
+            </ColRight>
+            <Col>
+                Cost: ${props.cost/100}
+            </Col>
+        </Row>
+    )
+
+
+   const TotalCost = (props)=>(
+    <Row>
+        <ColRight>Total:</ColRight>
+        <Col>
+            ${parseFloat(props.cost/100 * props.times).toFixed(2)}
+        </Col>
+    </Row>
+   )
    
    
    export default ItemCost;

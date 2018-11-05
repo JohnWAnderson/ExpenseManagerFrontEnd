@@ -4,9 +4,6 @@ import moment from 'moment';
 import styled from 'styled-components';
 import { Row, Col } from 'reactstrap';
 const NoItems =(props)=>{
-    {console.log(props)
-    }
-    
     return(
         <div>
             <Row>

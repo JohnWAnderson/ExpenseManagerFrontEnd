@@ -43,7 +43,6 @@ const MenuButton = styled(Button)`
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.toggle = this.toggle.bind(this);
     this.signOpenToggle = this.signOpenToggle.bind(this);
     this.logOpenToggle = this.logOpenToggle.bind(this);

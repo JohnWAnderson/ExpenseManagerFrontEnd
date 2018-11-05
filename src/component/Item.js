@@ -11,11 +11,14 @@ const MobalDescriptionRow = styled(Row)`
 `
 
 const DescriptionRow = styled(Row)`
-    background: LightGray;
     word-wrap: break-word;
+    background: #f4f4f4;
     font-size: 16px;
 `
 
+const DiscriptionColorDiv = styled.div`
+    background: #f4f4f4;
+`
 const BottomBoarderDiv = styled.div`
     border-bottom: 3px solid black;
 `
@@ -63,7 +66,7 @@ const Item = (props) => (
             matches ? (
                 <div>
                     <Row><Col><ItemName name={props.name} index={props.index}/></Col></Row>
-                    <MobalDescriptionRow><Col> {props.description}</Col></MobalDescriptionRow>
+                    <ItemDescription description={props.description}/>
                     <Row><Col><ItemCost {...props}/></Col></Row>
                 </div>
             ) : (
@@ -73,20 +76,42 @@ const Item = (props) => (
                         <ItemName name={props.name} index={props.index}/>
                     </Col>
                     <Col>
+                    </Col>
+                    <Col>
                         <ItemCost {...props}/>
                     </Col>
                     </Row>
-                    <DescriptionRow>
-                        <Col>
-                            {props.description}
-                        </Col>
-                    </DescriptionRow>
+                    <ItemDescription description={props.description}/>
                 </Container>
             )
             }
         </Media>
     </BottomBoarderDiv>
 );
+
+
+
+const ItemDescription = (props) => {
+    return (
+    <Media query="(max-width: 1200px)">
+    {matches =>
+    matches ? (
+        <MobalDescriptionRow>
+            <Col> 
+                {!!props.description && <DiscriptionColorDiv>Description:  {props.description}</DiscriptionColorDiv>}
+            </Col>
+        </MobalDescriptionRow>
+        ) : (
+        <DescriptionRow>
+            <Col>
+                {!!props.description && <div>Description:  {props.description}</div>}
+            </Col>
+        </DescriptionRow>
+        )
+        }
+    </Media>
+   );
+}
 
 
 const ItemH3 = styled.h3`

@@ -12,7 +12,6 @@ class RemoveItemModal extends React.Component {
     this.state = {
       modal: false
     };
-    console.log(props);
     
     this.ToggleYes = this.ToggleYes.bind(this);
     this.ToggleNo = this.ToggleNo.bind(this);

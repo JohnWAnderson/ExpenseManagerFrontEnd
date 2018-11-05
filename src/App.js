@@ -4,7 +4,7 @@ import Header from './component/Header';
 import NotFound from './component/NotFound';
 import AddPage from './component/AddPage';
 import EditPage from './component/EditPage';
-import CalendarPage from './component/CalendarPage';
+import CalendarPage from './component/Calendar/CalendarPage';
 import { getCurrentUser, ACCESS_TOKEN, GetItems } from './ApiMethods/Account';
 import PrivateRoute from './component/PrivateRoute';
 import PrivateHomePageRoute from './component/PrivateHomePageRoute';
