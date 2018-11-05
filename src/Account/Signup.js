@@ -43,12 +43,9 @@ class Signup extends React.Component {
 
     onSubmit = (e) =>{
         e.preventDefault();
-        console.log(this.state);
         
         this.props.dispatch(LoadingChange({clicked: true}));
           if(this.state.username.valid && this.state.name.valid && this.state.email.valid && this.state.password.valid && this.state.rePassword.valid){
-              console.log('valid');
-          
             const signupRequestObject = {
                 name: this.state.name.value,
                 email: this.state.email.value,
@@ -149,7 +146,6 @@ class Signup extends React.Component {
                         valid: true,
                         error: ''
                     }})
-                    console.log(password,  this.state.rePassword.value);
                     if(password === this.state.rePassword.value){
                         this.setState({
                             rePassword: {

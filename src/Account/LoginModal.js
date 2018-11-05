@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody,ModalFooter } from 'reactstrap';
 import Login from './Login';
+import { connect } from 'react-redux';
 
 class LoginModal  extends React.Component {
   constructor(props) {
@@ -8,13 +9,10 @@ class LoginModal  extends React.Component {
     this.state = {
       modal: false
     };
-    console.log(props);
-    
     this.toggle = this.toggle.bind(this);
   }
 
   toggle() {
-    console.log('yes');  
     this.props.logOpenToggle();
     this.props.signOpenToggle();
   }
@@ -31,7 +29,7 @@ class LoginModal  extends React.Component {
             <Login toggle={this.props.logOpenToggle} handleLogOn ={this.props.handleLogOn}/>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>SingUp</Button>{' '}
+            <Button color="primary" onClick={this.toggle} disabled={this.props.Loading.clicked}>SingUp</Button>{' '}
           </ModalFooter>
         </Modal>
       </div>
@@ -39,4 +37,11 @@ class LoginModal  extends React.Component {
   }
 }
 
-export default LoginModal;
+
+const MapUserInfo=(state)=>{
+  return{
+      Loading: state.loading
+  }
+}
+
+export default connect(MapUserInfo)(LoginModal);

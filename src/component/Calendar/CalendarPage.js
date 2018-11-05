@@ -8,32 +8,29 @@ import TheCalendar from './TheCalendar';
 import { Container, Row, Col } from 'reactstrap';
 import Media from "react-media";
 
-
- 
-
 class CalendarPage extends React.Component {
     constructor(props){
-    super(props);
-    const eventList = (SelectCalendarEvents(this.props.items, new Date()))
-    this.state = {
-        currentDate: new Date(),
-        events: eventList[0],
-        cost: eventList[1],
-        itemNum: eventList[2]
-      };
-      this.onMonthChange = this.onMonthChange.bind(this);
-      this.handleSelectEvent = this.handleSelectEvent.bind(this);
-      this.getindexID = this.getindexID.bind(this);
+        super(props);
+        const eventList = (SelectCalendarEvents(this.props.items, new Date()))
+        this.state = {
+            currentDate: new Date(),
+            events: eventList[0],
+            cost: eventList[1],
+            itemNum: eventList[2]
+        };
+        this.onMonthChange = this.onMonthChange.bind(this);
+        this.handleSelectEvent = this.handleSelectEvent.bind(this);
+        this.getindexID = this.getindexID.bind(this);
     }
 
-    onMonthChange=(date)=>{
-        console.log();
-        
+    onMonthChange=(date)=>{    
         const eventList = (SelectCalendarEvents(this.props.items, date))
         this.setState({events: eventList[0],
             cost: eventList[1],
             itemNum: eventList[2]});
     }
+
+
     
     handleSelectEvent(event) {
         this.props.history.push(`/edit/${this.getindexID(event.title)}`)  

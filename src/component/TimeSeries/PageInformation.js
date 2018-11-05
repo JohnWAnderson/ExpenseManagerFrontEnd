@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import getSelectorSum from '../Redux/SelectorSum';
-import getVisableItem from '../Redux/SelectorItemOrder';
+import getSelectorSum from '../../Redux/SelectorSum';
+import getVisableItem from '../../Redux/SelectorItemOrder';
 import styled from 'styled-components';
 import { Container, Row, Col } from 'reactstrap';
 

@@ -8,7 +8,6 @@ class SignupModal  extends React.Component {
     this.state = {
       modal: false
     };
-    console.log(props);
     
     this.toggle = this.toggle.bind(this);
   }

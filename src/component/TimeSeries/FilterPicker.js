@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import {setEndDate, setStartDate} from '../Redux/Actions/Filter';
-import { editItem } from '../Redux/Actions/Items';
-import {TimesItemChange} from '../Redux/TimesChange';
+import {setEndDate, setStartDate} from '../../Redux/Actions/Filter';
+import { editItem } from '../../Redux/Actions/Items';
+import {TimesItemChange} from '../../Redux/TimesChange';
 import styled from 'styled-components';
 import moment from 'moment';
 import { Container, Row, Col } from 'reactstrap';
@@ -35,7 +35,6 @@ class FilterPicker extends React.Component{
     }
 
     onDatesChange = ({startDate, endDate}) => {
-        console.log(startDate, endDate);
         if((startDate !==null) && (endDate!==null)){
             this.props.dispatch(setStartDate(startDate));
             this.props.dispatch(setEndDate(endDate));

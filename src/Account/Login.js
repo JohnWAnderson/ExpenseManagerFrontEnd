@@ -14,20 +14,17 @@ class Login extends React.Component {
                 failed: false,
             }
             this.onSubmit = this.onSubmit.bind(this);
-            console.log(props);
         }
 
     onSubmit = (e) =>{
         e.preventDefault();
-        console.log(e.target.elements.Username.value);
         if((UserNameField(e.target.elements.Username.value) || EmailField(e.target.elements.Username.value)) && PasswordField(e.target.elements.Password.value)){
-            document.body.classList.add('busy-cursor');
+            this.props.dispatch(LoadingChange({clicked: true}));
             const signupRequestObject = {
                 usernameOrEmail: e.target.elements.Username.value,
                 password: e.target.elements.Password.value
             }; 
-            signin(signupRequestObject).then(response => {       
-                console.log(response);       
+            signin(signupRequestObject).then(response => {         
                 this.props.dispatch(LoadingChange({clicked: false}));
                 if(response.tokenType === "Bearer "){
                     localStorage.setItem(ACCESS_TOKEN, response.accessToken);
@@ -40,9 +37,7 @@ class Login extends React.Component {
                 }
             });
         }
-        else{
-            console.log("no");
-        }
+
         //this.props.toggle();
     }
 

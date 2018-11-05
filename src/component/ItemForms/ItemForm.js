@@ -1,13 +1,13 @@
 import React from 'react';
-import { TaskNameAvailability } from '../ApiMethods/Account';
-import {LoadingChange} from '../Redux/Actions/Loading';
+import { TaskNameAvailability } from '../../ApiMethods/Account';
+import {LoadingChange} from '../../Redux/Actions/Loading';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import styled from 'styled-components';
-import {ItemDisFeild} from '../Functions/Validation';
+import {ItemDisFeild} from '../../Functions/Validation';
 import { Button, Form, FormGroup, Label, Input, FormFeedback, Col, InputGroupText, InputGroupAddon, InputGroup} from 'reactstrap';
 
 const MyLabel = styled(Label)`

@@ -1,10 +1,10 @@
 import React from 'react';
 import ItemForm from './ItemForm';
-import { CreateItem } from '../ApiMethods/Account';
+import { CreateItem } from '../../ApiMethods/Account';
 import { connect } from 'react-redux';
-import {LoadingChange} from '../Redux/Actions/Loading';
-import { addItem } from '../Redux/Actions/Items';
-import {TimesItemChange} from '../Redux/TimesChange';
+import {LoadingChange} from '../../Redux/Actions/Loading';
+import { addItem } from '../../Redux/Actions/Items';
+import {TimesItemChange} from '../../Redux/TimesChange';
 import styled from 'styled-components';
 
 const MainDiv = styled.div`

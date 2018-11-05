@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import ItemCost from './/ItemCost';
+import ItemCost from './ItemCost';
 import {Container, Row, Col } from 'reactstrap';
 import Media from "react-media";
 

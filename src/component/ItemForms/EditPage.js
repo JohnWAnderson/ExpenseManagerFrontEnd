@@ -1,13 +1,12 @@
 import React from 'react';
 import ItemForm from './ItemForm';
-import { UpdateItems, DeleteItem} from '../ApiMethods/Account';
-import { confirmAlert } from 'react-confirm-alert'; // Import
+import { UpdateItems, DeleteItem} from '../../ApiMethods/Account';
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 import { connect } from 'react-redux';
-import {LoadingChange} from '../Redux/Actions/Loading';
-import { editItem, removeItem} from '../Redux/Actions/Items';
-import {TimesItemChange} from '../Redux/TimesChange';
-import NotFound from './NotFound';
+import {LoadingChange} from '../../Redux/Actions/Loading';
+import { editItem, removeItem} from '../../Redux/Actions/Items';
+import {TimesItemChange} from '../../Redux/TimesChange';
+import NotFound from '../NotFound';
 import styled from 'styled-components';
 import RemoveItemModal from './RemoveItemModal';
 

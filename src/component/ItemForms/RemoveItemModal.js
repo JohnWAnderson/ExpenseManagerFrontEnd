@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 const RemoveItemDiv = styled.div`
 margin-bottom: 10px;
@@ -33,7 +34,7 @@ class RemoveItemModal extends React.Component {
   render() {
     return (
       <RemoveItemDiv>
-        <Button color="danger" onClick={this.ToggleNo}>Remove</Button>
+        <Button color="danger" onClick={this.ToggleNo} disabled={this.props.Loading.clicked}>Remove</Button>
         <Modal isOpen={this.state.modal} toggle={this.ToggleNo} className={this.props.className}>
           <ModalHeader toggle={this.ToggleNo}>Modal title</ModalHeader>
           <ModalBody>
@@ -49,4 +50,10 @@ class RemoveItemModal extends React.Component {
   }
 }
 
-export default RemoveItemModal;
+
+const MapUserInfo=(state)=>{
+  return{
+      Loading: state.loading
+  }
+}
+export default connect(MapUserInfo)(RemoveItemModal);
