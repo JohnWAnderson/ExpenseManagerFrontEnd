@@ -21,7 +21,7 @@ const getVisableItemNumber = (props) =>{
     return(
         <Container>
                 {props.Items.length > 0 ? <div>
-                <PageInfoRow><Col><h1>Page contains {props.Items.length}</h1></Col></PageInfoRow> <PageInfoRow><Col><h1>Totaling ${props.Sum/100}</h1></Col></PageInfoRow></div>:
+                <PageInfoRow><Col><h1>Page contains {props.Items.length} Items</h1></Col></PageInfoRow> <PageInfoRow><Col><h1>Totaling ${(props.Sum/100).toFixed(2)}</h1></Col></PageInfoRow></div>:
                 <PageInfoRow>Page contains no items</PageInfoRow>}
         </Container>
     );

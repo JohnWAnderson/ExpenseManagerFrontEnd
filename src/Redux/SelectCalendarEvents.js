@@ -18,6 +18,7 @@ export default (items, date) =>{
                             {
                                 start: moment(m.format('YYYY-MM-DD')),
                                 end: moment(m.format('YYYY-MM-DD')),
+                                allDay: true,   
                                 title: item.name
                             }
                         ]
@@ -32,6 +33,7 @@ export default (items, date) =>{
                             {
                                 start: moment(m.format('YYYY-MM-DD')),
                                 end: moment(m.format('YYYY-MM-DD')),
+                                allDay: true, 
                                 title: item.name
                             }
                         ]
@@ -49,6 +51,7 @@ export default (items, date) =>{
                                 {
                                     start: moment(m.format('YYYY-MM-DD')),
                                     end: moment(m.format('YYYY-MM-DD')),
+                                    allDay: true, 
                                     title: item.name
                                 }
                             ]
@@ -64,6 +67,7 @@ export default (items, date) =>{
                             {
                                 start: moment(m.format('YYYY-MM-DD')),
                                 end: moment(m.format('YYYY-MM-DD')),
+                                allDay: true, 
                                 title: item.name
                             }
                         ]
@@ -79,6 +83,7 @@ export default (items, date) =>{
                 {
                     start: theDate,
                     end: theDate,
+                    allDay: true, 
                     title: item.name
                 }
             ]
@@ -116,10 +121,6 @@ const CheckStartDate = (recurringsize ,date, mDate)=>{
         default:
             return mDate;
     }
-}
-
-const getMonthly = (day)=>{
-
 }
 
 const LoopForDate = (recurringsize, date, mDate)=>{

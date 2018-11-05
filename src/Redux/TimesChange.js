@@ -7,9 +7,10 @@ export const TimesItemChange = (item, startDate, endDate) =>{
             const recurringsize = item.recurringsize;
             let startF= moment(startDate).startOf('day');
             let endF = moment(endDate).startOf('day');
-            if(duedate.isBefore(startF, 'day')){
-                times = 0        
-                startF = findNewStart(duedate, startF, recurringsize)
+            if(duedate.isBefore(startF, 'day')){     
+                const temp = (findNewStart(duedate, startF, recurringsize));
+                startF = temp[0];
+                times = temp[1];
              }
              else
                 startF = duedate;
@@ -33,15 +34,15 @@ export const TimesItemChange = (item, startDate, endDate) =>{
 const findNewStart = (duedate, startF, recurringsize) =>{
     switch(recurringsize){
         case "daily":
-            return startF
+            return [startF, 1];
         case "weekly":
-            return moment(duedate).add(startF.diff(duedate, 'weeks'), 'weeks').startOf('day');
+            return [moment(duedate).add(startF.diff(duedate, 'weeks'), 'weeks').startOf('day'), 0];
         case "biweekly":
-            return moment(duedate).add(Math.floor(startF.diff(duedate, 'weeks')/2), 'weeks').startOf('day');
+            return [moment(duedate).add(Math.floor(startF.diff(duedate, 'weeks')/2), 'weeks').startOf('day'), 0];
         case "monthly":
-            return moment(duedate).add(startF.diff(duedate, 'month'), 'month').startOf('day');
+            return [moment(duedate).add(startF.diff(duedate, 'month'), 'month').startOf('day'), 0];
         default:
-            return 1;
+            return [startF, 1];
     }
 }
 
