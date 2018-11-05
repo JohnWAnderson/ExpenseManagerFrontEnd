@@ -4,7 +4,14 @@ export const addUser = ({currentUser: {name ='', username=''}, isAuthenticated=f
         currentUser:{
             name, username
         },
-        isAuthenticated,
+        isAuthenticated
+    }
+});
+
+export const authUser = ({isAuthenticated=false} = {}) =>({
+    type: 'AUTH_USER',
+    user:{
+        isAuthenticated
     }
 });
 

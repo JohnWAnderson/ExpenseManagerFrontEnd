@@ -12,6 +12,12 @@ export default (state = UserReducerDefault, action) => {
                 currentUser: action.user.currentUser,
                 isAuthenticated: action.user.isAuthenticated
             }
+
+        case 'AUTH_USER':
+            return {
+                ...state,
+                isAuthenticated: action.user.isAuthenticated
+            }
             
         case 'REMOVE_USER':         
             return state = UserReducerDefault

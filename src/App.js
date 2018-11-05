@@ -10,7 +10,7 @@ import PrivateRoute from './component/PrivateRoute';
 import PrivateHomePageRoute from './component/PrivateHomePageRoute';
 import { connect } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom'
-import { addUser, removeUser } from './Redux/Actions/Users';
+import { addUser, removeUser, authUser } from './Redux/Actions/Users';
 import { addItem, clearItems } from './Redux/Actions/Items';
 import { resetFilter } from './Redux/Actions/Filter';
 import AppDashBoard from './component/TimeSeries/AppDashBoard';
@@ -44,13 +44,13 @@ class App extends React.Component {
 
 handleLogOn=()=>{
   this.loadCurrentUser();
-  this.loadItems();
 }
 
   loadCurrentUser=()=> {
     getCurrentUser()
     .then(response => {
-        this.props.dispatch(addUser({currentUser: response, isAuthenticated: true}))
+        this.props.dispatch(addUser({currentUser: response}))
+        this.loadItems();
     })
   };
 
@@ -67,6 +67,8 @@ loadItems = () =>{
         const newItem = {...item, times: TimesItemChange(item, this.props.User.filter.startDate, this.props.User.filter.endDate)}
         this.props.dispatch(addItem(newItem))
       }
+      this.props.dispatch(authUser({isAuthenticated: true}))
+      this.props.dispatch(LoadingChange({clicked: false}));
   });
 }
   

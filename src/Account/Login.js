@@ -25,12 +25,12 @@ class Login extends React.Component {
                 password: e.target.elements.Password.value
             }; 
             signin(signupRequestObject).then(response => {         
-                this.props.dispatch(LoadingChange({clicked: false}));
                 if(response.tokenType === "Bearer "){
                     localStorage.setItem(ACCESS_TOKEN, response.accessToken);
                     this.props.handleLogOn();
                 }
                 else{   
+                    this.props.dispatch(LoadingChange({clicked: false}));
                     this.setState({ failed: true })
                     document.getElementById('Username').value = ''
                     document.getElementById('Password').value = ''
