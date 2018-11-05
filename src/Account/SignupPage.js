@@ -1,23 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
 import SignUp from './Signup';
+import { Container, Row, Col } from 'reactstrap';
+
+const ProptypeInfo = styled.div`
+    border: 3px solid black;
+    width:60%;
+    bottom: 0;
+`
+
+const MainContainer = styled(Container)`
+    height:100%;
+`
+
+Container
 
 const SignupPage =()=>{
     return(
-        <div>
-            <div>
-                <h1>Track your spending habits now</h1>
-                <h1>-Track Expenses with single payment or with recurring costs</h1>
-                <h1>-Observe your spending habits relative to a time series</h1>
-                <div>
-                <h1>prototype information:</h1>
-                <p>-! Calendar currently being worked on to be added into the home dash board !-</p>
-                <p>-First start might take a some time, heroku api might have to wake up</p>
-                <p>-CSS and UI currently being worked on, this is prototype build</p>
-                <p>-Other components currently under built, only time series active</p>
-                </div>
-            </div>
-        </div>
+        <MainContainer>
+            <Row><Col><h1>Track your spending habits now</h1></Col></Row>
+            <Row><Col><h3>-Track Expenses with single payment or with recurring costs</h3></Col></Row>
+            <Row><Col><h3>-Observe your spending habits relative to a time series</h3></Col></Row>
+                <ProptypeInfo>
+                    <h1>prototype information:</h1>
+                    <p>-! Calendar currently being worked on to be added into the home dash board !-</p>
+                    <p>-First start might take a some time, heroku api might have to wake up</p>
+                    <p>-CSS and UI currently being worked on, this is prototype build</p>
+                    <p>-Other components currently under built, only time series active</p>
+                </ProptypeInfo>
+        </MainContainer>
     );
 }
 
