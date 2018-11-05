@@ -7,13 +7,15 @@ const ProptypeInfo = styled.div`
     border: 3px solid black;
     width:60%;
     bottom: 0;
+    text-align: left ;
+    position: relitive; 
+    bottom: 0;
+    margin-top: 200px;
 `
 
 const MainContainer = styled(Container)`
     height:100%;
 `
-
-Container
 
 const SignupPage =()=>{
     return(
