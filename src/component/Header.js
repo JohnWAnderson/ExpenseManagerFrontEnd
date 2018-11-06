@@ -7,13 +7,14 @@ import LoginModal from '../Account/LoginModal';
 import SignupModal from '../Account/SignupModal';
 
 const HeaderLink = styled(Link)`
-    color: black;
+  font-family: Georgia;
+    color: White;
     text-decoration: none;
-    font-family: Georgia;
     font-size: 30px;
     text-align: left ;
     position: relative;
     vertical-align: middle;
+
     &:hover ${HeaderLink} {
       text-decoration: none;
       color: black;
@@ -21,7 +22,7 @@ const HeaderLink = styled(Link)`
 `
 
 const MenuLink = styled(Link)`
-    color: black;
+    color: White;
     text-decoration: none;
     font-family: Georgia;
     font-size: 20px;
@@ -39,6 +40,12 @@ const MenuButton = styled(Button)`
     vertical-align: middle;
     height: 100%;
 `
+
+const HeaderNavbar = styled(Navbar)`
+  background: #3263A4;
+`
+
+
 
 class Header extends React.Component {
   constructor(props) {
@@ -75,30 +82,29 @@ class Header extends React.Component {
 
   render() {
     return (
-      <div>
-        <Navbar color="secondary" light expand="md">
+        <HeaderNavbar light expand="md">
           <h1><HeaderLink to="/">Expense Manager</HeaderLink></h1>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
           {(this.props.User.isAuthenticated) ? 
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Button>
+                <Button color="primary">
                   <MenuLink to="/calendar/">Calendar</MenuLink>
                 </Button>
               </NavItem>
               <NavItem>
-                <Button>
+                <Button color="primary">
                   <MenuLink to="/Timeseries/">Time Series</MenuLink>
                 </Button>
               </NavItem>    
               <NavItem>
-                <Button>
+                <Button color="primary">
                   <MenuLink to="/add/">Add Item</MenuLink>
                 </Button>
               </NavItem>
               <NavItem>
-                <MenuButton onClick = {this.props.handleLogOut}>LogOut</MenuButton>
+                <MenuButton color="primary" onClick = {this.props.handleLogOut}>LogOut</MenuButton>
               </NavItem>
             </Nav> 
             : 
@@ -115,8 +121,7 @@ class Header extends React.Component {
               </NavItem>
             </Nav> }
           </Collapse>
-        </Navbar>
-      </div>
+        </HeaderNavbar>
     );
   }
 }

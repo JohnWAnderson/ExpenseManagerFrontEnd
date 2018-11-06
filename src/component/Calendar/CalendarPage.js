@@ -8,6 +8,12 @@ import TheCalendar from './TheCalendar';
 import { Container, Row, Col } from 'reactstrap';
 import Media from "react-media";
 
+
+const CalContainer = styled(Container)`
+    padding-top:20px;
+`
+
+
 class CalendarPage extends React.Component {
     constructor(props){
         super(props);
@@ -42,7 +48,7 @@ class CalendarPage extends React.Component {
 
     render() {
         return(
-            <Container>
+            <CalContainer>
             <Media query="(max-width: 1200px)">
                 {matches =>
                 matches ? (
@@ -69,7 +75,7 @@ class CalendarPage extends React.Component {
                 )
                 }
             </Media>
-            </Container>
+            </CalContainer>
         )
     };
 }

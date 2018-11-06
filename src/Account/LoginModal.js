@@ -22,7 +22,7 @@ class LoginModal  extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.props.logOpenToggle}>Login</Button>
+        <Button color="primary" onClick={this.props.logOpenToggle}>Login</Button>
         <Modal isOpen={this.props.logOpen} toggle={this.props.logOpenToggle} className={this.props.className}>
           <ModalHeader toggle={this.props.logOpenToggle}>Login</ModalHeader>
           <ModalBody>

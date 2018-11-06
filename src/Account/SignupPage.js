@@ -14,7 +14,7 @@ const ProptypeInfo = styled.div`
 `
 
 const MainContainer = styled(Container)`
-    height:100%;
+    height:92;
 `
 
 const SignupPage =()=>{
@@ -22,7 +22,7 @@ const SignupPage =()=>{
         <MainContainer>
             <Row><Col><h1>Track your spending habits now</h1></Col></Row>
             <Row><Col><h3>-Track Expenses with single payment or with recurring costs</h3></Col></Row>
-            <Row><Col><h3>-Observe your spending habits relative to a time series</h3></Col></Row>
+            <Row><Col><h3>-Observe your spending habits</h3></Col></Row>
                 <ProptypeInfo>
                     <h1>prototype information:</h1>
                     <p>-! Calendar currently being worked on to be added into the home dash board !-</p>
