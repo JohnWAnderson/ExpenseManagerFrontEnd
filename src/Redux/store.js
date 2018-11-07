@@ -14,8 +14,8 @@ export default () => {
         items: ItemsReducer,
         user: UserReducer,
         filter: FilterReducer,
-        qFilter: FilterReducerQ,
-        loading: LoadingReducer
+        loading: LoadingReducer,
+        qFilter: FilterReducerQ
 
         }),persistedState,
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

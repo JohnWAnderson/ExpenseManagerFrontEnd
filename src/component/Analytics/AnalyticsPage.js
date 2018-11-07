@@ -22,7 +22,7 @@ class AnalyticsPage extends React.Component {
 
 const MapInfo=(state)=>{
     return{       
-        //itemsV: getVisableItem(state.items, {'','cost',}),
+        //itemsV: getVisableItem(state.items, {'','cost', qFilter.}),
         items: state.items
     }
 }

@@ -27,6 +27,8 @@ const NoPadBoarderDiv = styled.div`
 `
 
 const ItemList =(props)=>{
+    console.log(props.all);
+    
     return(
         <Container>    
             <NoPadBoarderDiv>
@@ -55,7 +57,8 @@ const ItemList =(props)=>{
 const MapInfo=(state)=>{
     return{
         itemsV: getVisableItem(state.items, state.filter),
-        items: state.items
+        items: state.items,
+        all: state
     }
 }
 

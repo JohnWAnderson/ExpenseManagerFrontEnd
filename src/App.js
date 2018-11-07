@@ -13,12 +13,14 @@ import { BrowserRouter } from 'react-router-dom'
 import { addUser, removeUser, authUser } from './Redux/Actions/Users';
 import { addItem, clearItems } from './Redux/Actions/Items';
 import { resetFilter } from './Redux/Actions/Filter';
+import { resetFilterQ } from './Redux/Actions/QFilter';
 import AppDashBoard from './component/TimeSeries/AppDashBoard';
 import {TimesItemChange} from './Redux/TimesChange';
 import styled from 'styled-components';
 import {LoadingChange} from './Redux/Actions/Loading';
 import SignupPage from './Account/SignupPage';
 import AnalyticsPage from './component/Analytics/AnalyticsPage';
+import moment from 'moment';
 
 const MainApp = styled.div`
   padding: 0;
@@ -34,6 +36,7 @@ const MainApp = styled.div`
 class App extends React.Component {
   constructor(props) {   
     super(props);  
+    console.log(props);
     this.handleLogOn=this.handleLogOn.bind(this);
     this.loadCurrentUser=this.loadCurrentUser.bind(this);
     this.handleLogOut=this.handleLogOut.bind(this);
@@ -50,7 +53,7 @@ handleLogOn=()=>{
     .then(response => {
         this.props.dispatch(addUser({currentUser: response}))
         this.loadItems();
-    })
+    })  
   };
 
 handleLogOut=()=>{
@@ -58,6 +61,7 @@ handleLogOut=()=>{
     this.props.dispatch(removeUser());
     this.props.dispatch(clearItems());
     this.props.dispatch(resetFilter());
+    this.props.dispatch(resetFilterQ());
 }
 
 loadItems = () =>{

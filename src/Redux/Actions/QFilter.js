@@ -1,16 +1,14 @@
-import moment from 'moment';
 
 export const setStartDateQ = (startDate = undefined) =>({
-    type: 'SET_START_DATE_FILTERQ',
+    type: 'SET_QUARTER_START',
     startDate
 });
 
 export const setEndDateQ = (endDate = undefined) =>({
-    type: 'SET_END_DATE_FILTERQ',
+    type: 'SET_QUARTER_END',
     endDate
 });
 
-export const resetFilterQ = (quarter = moment().quarter()) => ({
-    type: 'SET_DEFAULTQ',
-    quarter
+export const resetFilterQ = () => ({
+    type: 'SET_QUARTER_DEFAULT'
 })

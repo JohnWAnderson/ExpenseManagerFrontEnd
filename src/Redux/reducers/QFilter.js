@@ -2,29 +2,26 @@ import moment from 'moment';
 
 
 const QFilterReducerDefault = {
-    startDate: moment().startOf('month'),
-    endDate: moment().endOf('month')
+    StartDate: moment().quarter(moment().quarter()).startOf('quarter'),
+    EndDate: moment().quarter(moment().quarter()).endOf('quarter')
 }
 
 export default  (state = QFilterReducerDefault, action) => {
     switch(action.type){
-        case 'SET_START_DATE_FILTERQ':        
+        case 'SET_QUARTER_START':        
             return {
                 ...state,
-                startDate: action.startDate
+                StartDate: action.StartDate
             };
 
-        case 'SET_END_DATE_FILTERQ':   
+        case 'SET_QUARTER_END':   
             return {
                 ...state,
-                endDate: action.endDate
+                EndDate: action.EndDate
             };
 
-        case 'SET_DEFAULTQ':
-            return {
-                startDate: moment().quarter(action.quarter).startOf('quarter'),
-                endDate: moment().quarter(action.quarter).endOf('quarter')
-            };
+        case 'SET_QUARTER_DEFAULT':
+            return QFilterReducerDefault;
 
         default:
             return state;

@@ -37,12 +37,24 @@ const MyNavBarLink = styled(Link)`
   }
 `
 
-
-const MenuButton = styled(Button)`
-    font-size: 10px;
+const MyNavBarButton = styled.button`
+    cursor:pointer;
+    font-family: Georgia;
+    color: White;
+    text-decoration: none;
+    font-size: 20px;
+    text-align: center ;
+    align: center ;
     position: relative;
     vertical-align: middle;
+    background: none;
+    border:none;
+    margin: 5px;
 
+    &:hover ${MyNavBarButton} {
+      text-decoration: none;
+      color: red;
+  }
 `
 
 const HeaderNavbar = styled(Navbar)`
@@ -102,10 +114,7 @@ class Header extends React.Component {
                 <h3><MyNavBarLink to="/add">Add Item</MyNavBarLink></h3>
               </NavItem>
               <NavItem>
-                <h3><MyNavBarLink to="/Timeseries">Time Series</MyNavBarLink></h3>
-              </NavItem>    
-              <NavItem>
-                <MenuButton color="danger" onClick = {this.props.handleLogOut}>LogOut</MenuButton>
+                <MyNavBarButton color="danger" onClick = {this.props.handleLogOut}>LogOut</MyNavBarButton>
               </NavItem>
             </Nav> 
             : 
