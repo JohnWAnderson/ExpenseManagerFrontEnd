@@ -47,8 +47,11 @@ class FilterPicker extends React.Component{
     };
 
     onDatesDelete = ()=>{
-        this.props.dispatch(setStartDate(moment().startOf('month')));
-        this.props.dispatch(setEndDate(moment().endOf('month')));
+        const startOfMonth = moment().startOf('month');
+        const endOfMonth = moment().endOf('month');
+        this.props.dispatch(setStartDate(startOfMonth));
+        this.props.dispatch(setEndDate(endOfMonth));
+        this.TimesAmountChange(startOfMonth, endOfMonth);
     }
 
     TimesAmountChange = (startDate, endDate) =>{
@@ -75,6 +78,7 @@ class FilterPicker extends React.Component{
                 focusedInput={this.state.CalFocuse}
                 onFocusChange={this.onFocusChange}
                 showClearDates={true}
+                minimumNights={0}
                 numberOfMonths={1} 
                 isOutsideRange={()=> false}
                 />

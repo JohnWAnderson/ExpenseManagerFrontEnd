@@ -18,6 +18,7 @@ import {TimesItemChange} from './Redux/TimesChange';
 import styled from 'styled-components';
 import {LoadingChange} from './Redux/Actions/Loading';
 import SignupPage from './Account/SignupPage';
+import AnalyticsPage from './component/Analytics/AnalyticsPage';
 
 const MainApp = styled.div`
   padding: 0;
@@ -77,6 +78,7 @@ loadItems = () =>{
             <Header handleLogOut= {this.handleLogOut} handleLogOn={this.handleLogOn}/>
             <Switch>
               <PrivateHomePageRoute path="/" componentAuth= {CalendarPage}  component={SignupPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/>
+              <PrivateRoute path="/analytics" component= {AnalyticsPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/>
               <PrivateRoute path="/calendar" component= {CalendarPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/>
               <PrivateRoute path="/edit/:id" component= {EditPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/>
               <PrivateRoute path="/add" component={AddPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/> 

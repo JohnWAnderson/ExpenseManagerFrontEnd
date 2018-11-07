@@ -41,6 +41,7 @@ const ItemList =(props)=>{
             </Media>
                     {props.itemsV.length > 0 ? 
                         props.itemsV.map((item,index)=>{
+                        console.log(item);
                         return(<Item key={index} {...item} index={props.items.indexOf(item)+1}/>)})
                         : 
                         <NoItems/>
@@ -53,7 +54,6 @@ const ItemList =(props)=>{
 
 const MapInfo=(state)=>{
     return{
-        
         itemsV: getVisableItem(state.items, state.filter),
         items: state.items
     }

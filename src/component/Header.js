@@ -21,24 +21,28 @@ const HeaderLink = styled(Link)`
   }
 `
 
-const MenuLink = styled(Link)`
-    color: White;
-    text-decoration: none;
-    font-family: Georgia;
-    font-size: 20px;
-    position: relative;
-    vertical-align: middle;
-    &:hover ${MenuLink} {
+const MyNavBarLink = styled(Link)`
+  font-family: Georgia;
+  color: White;
+  text-decoration: none;
+  font-size: 20px;
+  text-align: left ;
+  position: relative;
+  vertical-align: middle;
+  margin: 10px;
+
+    &:hover ${MyNavBarLink} {
       text-decoration: none;
       color: black;
   }
 `
 
+
 const MenuButton = styled(Button)`
-    font-size: 20px;
+    font-size: 10px;
     position: relative;
     vertical-align: middle;
-    height: 100%;
+
 `
 
 const HeaderNavbar = styled(Navbar)`
@@ -89,22 +93,19 @@ class Header extends React.Component {
           {(this.props.User.isAuthenticated) ? 
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Button color="primary">
-                  <MenuLink to="/calendar/">Calendar</MenuLink>
-                </Button>
+                <h3><MyNavBarLink to="/analytics">Analytics</MyNavBarLink></h3>
               </NavItem>
               <NavItem>
-                <Button color="primary">
-                  <MenuLink to="/Timeseries/">Time Series</MenuLink>
-                </Button>
+                <h3><MyNavBarLink to="/Timeseries">Time Series</MyNavBarLink></h3>
               </NavItem>    
               <NavItem>
-                <Button color="primary">
-                  <MenuLink to="/add/">Add Item</MenuLink>
-                </Button>
+                <h3><MyNavBarLink to="/add">Add Item</MyNavBarLink></h3>
               </NavItem>
               <NavItem>
-                <MenuButton color="primary" onClick = {this.props.handleLogOut}>LogOut</MenuButton>
+                <h3><MyNavBarLink to="/Timeseries">Time Series</MyNavBarLink></h3>
+              </NavItem>    
+              <NavItem>
+                <MenuButton color="danger" onClick = {this.props.handleLogOut}>LogOut</MenuButton>
               </NavItem>
             </Nav> 
             : 

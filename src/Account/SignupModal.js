@@ -3,10 +3,12 @@ import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import Signup from './Signup';
 import styled from 'styled-components';
 
-const SignupButton = styled(Button)`
-  background: #3263A4;
-  color: #3263A4;
-  background-color:  #3263A4;
+const MenuModalButton = styled(Button)`
+    font-size: 20px;
+    position: relative;
+    vertical-align: middle;
+    height: 100%;
+    margin: 10px;
 `
 
 class SignupModal  extends React.Component {
@@ -21,7 +23,7 @@ class SignupModal  extends React.Component {
   render() {
     return (
       <div>
-        <SignupButton color="primary" onClick={this.props.signOpenToggle}>Sign Up</SignupButton>
+        <MenuModalButton color="primary" onClick={this.props.signOpenToggle}>Sign Up</MenuModalButton>
         <Modal isOpen={this.props.signOpen} toggle={this.props.signOpenToggle} className={this.props.className}>
           <ModalHeader toggle={this.props.signOpenToggle}>Sign Up</ModalHeader>
           <ModalBody>
