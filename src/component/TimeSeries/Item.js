@@ -23,42 +23,6 @@ const BottomBoarderDiv = styled.div`
     border-bottom: 3px solid black;
 `
 
-const ItemDiv = styled.div`
-    border-collapse: collapse;
-    position: relative;
-    display: table;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    width:100%;
-`   
-
-const ItemPartDiv =styled.div`
-    word-wrap: break-word;
-    max-width: 300px;
-    vertical-align: middle;
-    vertical-align: top;
-    display: table-cell;
-    position: relative;
-    width: 33%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-`
-
-const ItemPartDisDiv =styled.div`
-    max-width: 300px;
-    text-align:center;
-    vertical-align: middle;
-    display: table-cell;
-    word-wrap: break-word;
-    position: relative;
-    max-width: 300px;
-    width: 34%;
-    padding: auto;
-    margin: auto;
-`
-
 const Item = (props) => (
     <BottomBoarderDiv>
         <Media query="(max-width: 1200px)">

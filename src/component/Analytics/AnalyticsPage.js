@@ -5,16 +5,32 @@ import { Container, Row, Col } from 'reactstrap';
 import Media from "react-media";
 import {Doughnut} from 'react-chartjs-2';
 import getVisableItem from '../../Redux/SelectorItemOrder';
+import moment from 'moment';
+import AnalyticsPieGraph from './AnalyticsPieGraph';
+import { editItem } from '../../Redux/Actions/Items';
+import {TimesItemChange} from '../../Redux/TimesChange';
 
 class AnalyticsPage extends React.Component {
     constructor(props){
         super(props);
+        this.TimesAmountChange= this.TimesAmountChange.bind(this);
+        this.TimesAmountChange(props.qFilter.StartDate, props.qFilter.EndDate)
     }
 
-    render() {
+    TimesAmountChange = (startDate, endDate) =>{
+        this.props.items.map((item)=>{
+            //console.log(item, startDate, endDate, TimesItemChange(item, startDate, endDate));
+            this.props.dispatch(editItem(item.name, {qTimes: TimesItemChange(item, startDate, endDate)}));
+        })
+    };
+    
+    render() {      
         return(
             <Container>
-
+                <Row>
+                    <Col>Currently in {moment(this.props.qFilter.StartDate).quarter()}  quarter</Col>
+                    <Col><AnalyticsPieGraph itemsV={this.props.itemsV} /></Col>
+                </Row>
             </Container>
         )
     }
@@ -22,7 +38,7 @@ class AnalyticsPage extends React.Component {
 
 const MapInfo=(state)=>{
     return{       
-        //itemsV: getVisableItem(state.items, {'','cost', qFilter.}),
+        qFilter: state.qFilter,
         items: state.items
     }
 }

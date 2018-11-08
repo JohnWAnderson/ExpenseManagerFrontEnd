@@ -43,7 +43,7 @@ const ItemList =(props)=>{
             </Media>
                     {props.itemsV.length > 0 ? 
                         props.itemsV.map((item,index)=>{
-                        console.log(item);
+                        //console.log(item);
                         return(<Item key={index} {...item} index={props.items.indexOf(item)+1}/>)})
                         : 
                         <NoItems/>

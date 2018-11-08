@@ -105,6 +105,9 @@ class Header extends React.Component {
           {(this.props.User.isAuthenticated) ? 
             <Nav className="ml-auto" navbar>
               <NavItem>
+                <h3><MyNavBarLink to="/">Home</MyNavBarLink></h3>
+              </NavItem>
+              <NavItem>
                 <h3><MyNavBarLink to="/analytics">Analytics</MyNavBarLink></h3>
               </NavItem>
               <NavItem>
