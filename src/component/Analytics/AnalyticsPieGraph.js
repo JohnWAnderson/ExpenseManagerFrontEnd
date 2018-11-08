@@ -15,7 +15,7 @@ class AnalyticsPieGraph extends React.Component{
             data:  this.ChangeData(props.itemsV)
         }
     }
-
+ 
     ChangeData=(items)=>{
         const data = {
             labels: ["M", "T", "W", "T", "F", "S", "S"],
