@@ -1,4 +1,4 @@
-export const addItem = ({name ='', description='', cost=0, duedate=0, recurring=false, recurringsize='none', enddate=false, endrecurring=0, times=1, qTimes=1} = {}) =>(
+export const addItem = ({name ='', description='', cost=0, duedate=0, recurring=false, recurringsize='none', enddate=false, endrecurring=0, times=1, qTimes=1, group='etc'} = {}) =>(
     {
     type: 'ADD_ITEM',
     item:{
@@ -11,7 +11,8 @@ export const addItem = ({name ='', description='', cost=0, duedate=0, recurring=
         enddate,
         endrecurring,
         times,
-        qTimes
+        qTimes,
+        group
     }
 });
 

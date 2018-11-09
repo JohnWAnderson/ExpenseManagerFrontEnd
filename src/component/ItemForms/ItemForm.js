@@ -52,6 +52,7 @@ class ItemForm extends React.Component{
                 error:''
             },
             duedate: props.item? moment(props.item.duedate) : moment().startOf('day'),
+            group: props.item? props.item.group : 'other',
             recurring: props.item? props.item.recurring : false ,
             recurringsize: props.item? props.item.recurringsize : "none",
             enddate: props.item? props.item.enddate : false,
@@ -103,6 +104,7 @@ class ItemForm extends React.Component{
             "description":this.state.description.value,
             "userName": this.props.User.username,
             "duedate": this.state.duedate.format("YYYY-MM-DD"),
+            "group": this.state.group,
             "recurring": this.state.recurring,
             "recurringsize": this.state.recurringsize,
             "enddate": this.state.enddate,
@@ -362,7 +364,9 @@ const MapUserInfo=(state)=>{
     return{
         User: state.user.currentUser,
         filter: state.filter,
-        Loading: state.loading
+        Loading: state.loading,
+        groups: state.group
+
     }
   }
 

@@ -4,6 +4,7 @@ import UserReducer from './reducers/Users';
 import FilterReducer from './reducers/Filter';
 import LoadingReducer from './reducers/Loading';
 import FilterReducerQ from './reducers/QFilter';
+import GroupReducer from './reducers/Group';
 import { REDUX_TOKEN } from '../ApiMethods/Account';
 
 export default () => {
@@ -15,7 +16,8 @@ export default () => {
         user: UserReducer,
         filter: FilterReducer,
         loading: LoadingReducer,
-        qFilter: FilterReducerQ
+        qFilter: FilterReducerQ,
+        group: GroupReducer
 
         }),persistedState,
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

@@ -15,6 +15,15 @@ display:block;
 text-align:center;
 `
 
+const MainFormPageDiv = styled.div`
+    position:relative;
+    width:80%;
+    text-align:center;
+    align:center;
+    margin: auto;
+    padding: auto;
+`
+
 const CenterDiv = styled.div`
 display:block;
 text-align:center;
@@ -46,7 +55,7 @@ class EditPage extends React.Component {
     if(!!item){
         const holder = item.name;
         return(
-            <div>
+            <MainFormPageDiv>
             <ItemPageHeader>Edit Item Page</ItemPageHeader>
             <CenterDiv>
             <RemoveItemModal item={item} RemoveItem={this.RemoveItem}/>
@@ -66,14 +75,14 @@ class EditPage extends React.Component {
                     }}
                     />
             </div>
-            </div>
+            </MainFormPageDiv>
         );
     }
      else{
         return(
-            <div>
+            <MainFormPageDiv>
                 <NotFound/>
-            </div>
+            </MainFormPageDiv>
         );
    }}
 };

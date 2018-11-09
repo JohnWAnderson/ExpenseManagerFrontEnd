@@ -51,10 +51,21 @@ handleLogOn=()=>{
   loadCurrentUser=()=> {
     getCurrentUser()
     .then(response => {
-        this.props.dispatch(addUser({currentUser: response}))
+        this.props.dispatch(addUser({currentUser: response}));
         this.loadItems();
     })  
   };
+
+  loadItems = () =>{
+    GetItems().then(response => {     
+        for (const item of response.content) {
+          const newItem = {...item, times: TimesItemChange(item, this.props.User.filter.startDate, this.props.User.filter.endDate)}
+          this.props.dispatch(addItem(newItem))
+        }
+        this.props.dispatch(authUser({isAuthenticated: true}))
+        this.props.dispatch(LoadingChange({clicked: false}));
+    });
+  }
 
 handleLogOut=()=>{
     localStorage.removeItem(ACCESS_TOKEN);
@@ -64,17 +75,6 @@ handleLogOut=()=>{
     this.props.dispatch(resetFilterQ());
 }
 
-loadItems = () =>{
-  GetItems().then(response => {     
-      for (const item of response.content) {
-        const newItem = {...item, times: TimesItemChange(item, this.props.User.filter.startDate, this.props.User.filter.endDate)}
-        this.props.dispatch(addItem(newItem))
-      }
-      this.props.dispatch(authUser({isAuthenticated: true}))
-      this.props.dispatch(LoadingChange({clicked: false}));
-  });
-}
-  
 
   render=()=>(
     <BrowserRouter>
