@@ -12,12 +12,18 @@ const MenuModalButton = styled(Button)`
     margin: 10px;
 `
 
+const Test = styled(Modal)`
+    font-size: 20px;
+    position: relative;
+    vertical-align: middle;
+    height: 100%;
+    margin: 10px;
+`
+
+
 class LoginModal  extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      modal: false
-    };
     this.toggle = this.toggle.bind(this);
   }
 
@@ -26,13 +32,13 @@ class LoginModal  extends React.Component {
     this.props.signOpenToggle();
   }
 
-
+  //backdrop="static" keyboard="false"  
 
   render() {
     return (
       <div>
         <MenuModalButton color='primary' onClick={this.props.logOpenToggle}>Login</MenuModalButton>
-        <Modal isOpen={this.props.logOpen} toggle={this.props.logOpenToggle} className={this.props.className}>
+        <Modal isOpen={this.props.logOpen} toggle={this.props.logOpenToggle} className={this.props.className} >
           <ModalHeader toggle={this.props.logOpenToggle}>Login</ModalHeader>
           <ModalBody>
             <Login toggle={this.props.logOpenToggle} handleLogOn ={this.props.handleLogOn}/>

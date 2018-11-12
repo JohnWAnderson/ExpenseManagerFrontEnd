@@ -36,7 +36,7 @@ const MainApp = styled.div`
 class App extends React.Component {
   constructor(props) {   
     super(props);  
-    console.log(props);
+    //console.log(props);
     this.handleLogOn=this.handleLogOn.bind(this);
     this.loadCurrentUser=this.loadCurrentUser.bind(this);
     this.handleLogOut=this.handleLogOut.bind(this);

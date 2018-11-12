@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import GroupForm from './GroupForm';
 
 class GroupModal extends React.Component {
@@ -25,7 +25,7 @@ class GroupModal extends React.Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle} className='name'>
           <ModalHeader toggle={this.toggle}>Expense Groups</ModalHeader>
           <ModalBody>
-            <GroupForm/>
+            <GroupForm toggle={this.toggle}/>
           </ModalBody>
         </Modal>
       </div>

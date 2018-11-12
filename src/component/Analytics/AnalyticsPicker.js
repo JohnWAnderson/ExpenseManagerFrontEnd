@@ -1,12 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import {setEndDate, setStartDate} from '../../Redux/Actions/Filter';
 import { editItem } from '../../Redux/Actions/Items';
 import {TimesItemChange} from '../../Redux/TimesChange';
-import styled from 'styled-components';
 import moment from 'moment';
 import { Container, Row, Col } from 'reactstrap';
 import QuarterButton from './QuarterButton';
@@ -34,10 +31,8 @@ class FilterPicker extends React.Component{
         let quaters=[];
         let yearF = date.year();
         let quaterF = date.quarter();
-        console.log(yearF, quaterF);
         const year = moment().year();
         const quater = moment().quarter();
-        console.log(year, quater);
         while(yearF <= year && quaterF <= quater){
             quaters.push([yearF, quaterF])
             if(quaterF===4){
@@ -47,8 +42,7 @@ class FilterPicker extends React.Component{
             else{
                 quaterF = quaterF + 1;
             }
-       }
-       console.log(quaters);   
+       }  
        return quaters;
     }
 
@@ -56,13 +50,20 @@ class FilterPicker extends React.Component{
     render(){     
         return(
             <Container>
-                { (this.state.quaters.length > 0) ?
-                    this.state.quaters.map((item)=>{
-                    const key = `${item[0]} Q${item[1]}`;
-                    return(<QuarterButton key={key} item={item}/>)})
-                    :
-                    <button>none</button>
-                }
+            <Row>
+            <Col><h1>Quarter Selection</h1></Col>
+            </Row>
+            <Row>
+                <Container>
+                    { (this.state.quaters.length > 0) ?
+                        this.state.quaters.map((item)=>{
+                        const key = `${item[0]} Q${item[1]}`;
+                        return(<QuarterButton key={key} item={item}/>)})
+                        :
+                        <button>none</button>
+                    }
+                </Container>
+            </Row>
             </Container>
         );
     };

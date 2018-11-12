@@ -1,32 +1,33 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 import AnalyticsPieGraph from './AnalyticsPieGraph';
 import AnalyticsPicker from './AnalyticsPicker';
+import styled from 'styled-components';
+import Media from "react-media";
 
-class AnalyticsPage extends React.Component {
-    constructor(props){
-        super(props);
-    }
+const CenterRow = styled(Row)`
+    text-align:center;
+`
 
-    //                    <Col>Currently in {moment(this.props.qFilter.StartDate).quarter()}  quarter</Col>
-    render() {      
-        return(
+const CenterCol = styled(Col)`
+    text-align:center;
+`
+
+export default () => (
+    <Media query="(max-width: 1200px)">
+        {matches => matches ? (
+            <Container>
+                <CenterRow><AnalyticsPicker/></CenterRow>
+                <CenterRow><AnalyticsPieGraph/></CenterRow>
+            </Container>
+        ) : (
             <Container>
                 <Row>
-                    <Col><AnalyticsPicker/></Col>
-                    <Col><AnalyticsPieGraph/></Col>
+                    <CenterCol><AnalyticsPicker/></CenterCol>
+                    <CenterCol><AnalyticsPieGraph/></CenterCol>
                 </Row>
             </Container>
         )
-    }
-}
-
-const MapInfo=(state)=>{
-    return{       
-        qFilter: state.qFilter,
-        items: state.items
-    }
-}
-
-export default connect(MapInfo)(AnalyticsPage);
+        }
+    </Media>
+)

@@ -18,12 +18,9 @@ class QuarterButton extends React.Component {
     }
 
     hanndleClick=()=>{
-        console.log('yes')
         const newDate = moment().year(this.state.item[0]).quarter(this.state.item[1]);
-        console.log(newDate);
         const startDate = moment(newDate).startOf('quarter')
         const endDate =moment(newDate).endOf('quarter')
-        console.log(startDate,endDate);
         this.props.dispatch(setStartDateQ(startDate));
         this.props.dispatch(setEndDateQ(endDate));
         this.TimesAmountChange(startDate, endDate);

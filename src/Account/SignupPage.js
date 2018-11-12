@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import SignUp from './Signup';
 import { Container, Row, Col } from 'reactstrap';
 
 const ProptypeInfo = styled.div`

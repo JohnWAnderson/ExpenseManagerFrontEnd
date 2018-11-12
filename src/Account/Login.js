@@ -2,7 +2,6 @@ import React from 'react';
 import { signin, ACCESS_TOKEN } from '../ApiMethods/Account';
 import {LoadingChange} from '../Redux/Actions/Loading';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 import {UserNameField, EmailField, PasswordField} from '../Functions/Validation';
 
 import { Col, Button, Form, FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap';

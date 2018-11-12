@@ -13,6 +13,5 @@ export default (items, {name, sortby, startDate, endDate}) =>{
                 GroupList.set(item.group, item.cost * item.qTimes);
         }
     }
-    console.log(GroupList);
     return GroupList;
 }

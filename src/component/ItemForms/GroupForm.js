@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Col, Button, Form, FormGroup, Label, Input, FormText, FormFeedback, InputGroup,  ListGroupItem, ListGroup} from 'reactstrap';
+import { Col, Button, Input, FormFeedback, InputGroup} from 'reactstrap';
 import { addGroup } from '../../Redux/Actions/Group';
 import {GroupField} from '../.././Functions/Validation';
 import GroupList from './GroupList';
@@ -24,6 +24,7 @@ class GroupForm extends React.Component {
             {
                 this.props.dispatch(addGroup({group: this.state.value}))
                 this.setState({value: '', invalid: false, error : ""})
+                this.props.toggle();
             }
             else
                 this.setState({invalid: true, error : "Duplicate group name"})
