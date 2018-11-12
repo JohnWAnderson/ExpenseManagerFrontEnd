@@ -15,11 +15,10 @@ class CustomToolbar extends React.Component {
             <div className="rbc-toolbar">
                 <span className="rbc-btn-group">
                     <button type="button" onClick={() => this.navigate('PREV')}>back</button>
-                    <button type="button" onClick={() => this.navigate('NEXT')}>next</button>
                 </span>
                 <span className="rbc-toolbar-label">{label}</span>
                 <span className="rbc-btn-group">
-
+                    <button type="button" onClick={() => this.navigate('NEXT')}>next</button>
                 </span>
             </div>
         )

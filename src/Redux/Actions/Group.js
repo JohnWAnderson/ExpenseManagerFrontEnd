@@ -1,4 +1,4 @@
-export const addGroup = ({group='etc'} = {}) =>(
+export const addGroup = ({group='other'} = {}) =>(
     {
     type: 'ADD_GROUP',
     group: group

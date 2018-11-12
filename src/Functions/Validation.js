@@ -28,4 +28,8 @@ export const EmailField = (field)=>{
 	else return true;
 }
 
-
+export const GroupField = (field)=>{
+	const regex = /^[0-9a-zA-Z_ ]+$/;
+	if(!field.match(regex)) return false;
+	else return true;
+}

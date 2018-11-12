@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom'
 import { addUser, removeUser, authUser } from './Redux/Actions/Users';
 import { addItem, clearItems } from './Redux/Actions/Items';
+import { addGroup, clearGroup} from './Redux/Actions/Group';
 import { resetFilter } from './Redux/Actions/Filter';
 import { resetFilterQ } from './Redux/Actions/QFilter';
 import AppDashBoard from './component/TimeSeries/AppDashBoard';
@@ -20,7 +21,6 @@ import styled from 'styled-components';
 import {LoadingChange} from './Redux/Actions/Loading';
 import SignupPage from './Account/SignupPage';
 import AnalyticsPage from './component/Analytics/AnalyticsPage';
-import moment from 'moment';
 
 const MainApp = styled.div`
   padding: 0;
@@ -41,6 +41,7 @@ class App extends React.Component {
     this.loadCurrentUser=this.loadCurrentUser.bind(this);
     this.handleLogOut=this.handleLogOut.bind(this);
     this.loadItems=this.loadItems.bind(this);
+    this.loadGroup=this.loadGroup.bind(this);
     this.props.dispatch(LoadingChange({clicked: false}));
   }
 
@@ -58,18 +59,29 @@ handleLogOn=()=>{
 
   loadItems = () =>{
     GetItems().then(response => {     
+      const groupList = new Set();
         for (const item of response.content) {
           const newItem = {...item, times: TimesItemChange(item, this.props.User.filter.startDate, this.props.User.filter.endDate)}
+          groupList.add(item.group);
           this.props.dispatch(addItem(newItem))
         }
+        this.loadGroup(groupList)
         this.props.dispatch(authUser({isAuthenticated: true}))
         this.props.dispatch(LoadingChange({clicked: false}));
     });
   }
 
+  loadGroup = (groupList)=>{
+    for (let group of groupList){
+      if(group !== "none")
+        this.props.dispatch(addGroup({group: group}))
+    }
+  }
+
 handleLogOut=()=>{
     localStorage.removeItem(ACCESS_TOKEN);
     this.props.dispatch(removeUser());
+    this.props.dispatch(clearGroup());
     this.props.dispatch(clearItems());
     this.props.dispatch(resetFilter());
     this.props.dispatch(resetFilterQ());

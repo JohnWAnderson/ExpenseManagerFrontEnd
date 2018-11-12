@@ -9,12 +9,14 @@ import moment from 'moment';
 import AnalyticsPieGraph from './AnalyticsPieGraph';
 import { editItem } from '../../Redux/Actions/Items';
 import {TimesItemChange} from '../../Redux/TimesChange';
+import GetFirstQuarter from '../../Redux/GetFirstQuarter';
 
 class AnalyticsPage extends React.Component {
     constructor(props){
         super(props);
         this.TimesAmountChange= this.TimesAmountChange.bind(this);
         this.TimesAmountChange(props.qFilter.StartDate, props.qFilter.EndDate)
+        GetFirstQuarter(props.items);
     }
 
     TimesAmountChange = (startDate, endDate) =>{

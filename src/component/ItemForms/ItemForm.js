@@ -8,6 +8,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import styled from 'styled-components';
 import {ItemDisFeild} from '../../Functions/Validation';
+import GroupModal from './GroupModal';
 import { Button, Form, FormGroup, Label, Input, FormFeedback, Col, InputGroupText, InputGroupAddon, InputGroup} from 'reactstrap';
 
 const MyLabel = styled(Label)`
@@ -51,16 +52,21 @@ class ItemForm extends React.Component{
                 valid: true,
                 error:''
             },
-            duedate: props.item? moment(props.item.duedate) : moment().startOf('day'),
-            group: props.item? props.item.group : 'other',
-            recurring: props.item? props.item.recurring : false ,
-            recurringsize: props.item? props.item.recurringsize : "none",
-            enddate: props.item? props.item.enddate : false,
+            group:{
+                value: props.item ? props.item.group : 'no',
+                valid: props.item? true : false,
+                error:''
+            },
+            duedate: props.item ? moment(props.item.duedate) : moment().startOf('day'),
+            recurring: props.item ? props.item.recurring : false ,
+            recurringsize: props.item ? props.item.recurringsize : "none",
+            enddate: props.item ? props.item.enddate : false,
             endrecurring: (props.item && props.item.endrecurring!= null)  ? moment(props.item.endrecurring) : null,
             CalFocuse: false,
             RecFocuse: false,
             edit: props.item? true :false,
             old: props.item? props.item.name :'',
+
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.HandlePropSubmit = this.HandlePropSubmit.bind(this);
@@ -104,7 +110,7 @@ class ItemForm extends React.Component{
             "description":this.state.description.value,
             "userName": this.props.User.username,
             "duedate": this.state.duedate.format("YYYY-MM-DD"),
-            "group": this.state.group,
+            "group": this.state.group.value,
             "recurring": this.state.recurring,
             "recurringsize": this.state.recurringsize,
             "enddate": this.state.enddate,
@@ -265,8 +271,29 @@ class ItemForm extends React.Component{
         this.setState(()=>({enddate}))
     }
 
+    onGroupChange=(e)=>{
+        const groupName = e.target.value;
+        //console.log(groupName);
+        this.setState(() => ({group:{
+            value: groupName,
+            valid: true,
+            error:''
+        }}));
+    }
+
+    createSelectItems() {
+        let items = []; 
+        items.push(<option key="no"></option>)
+        for (let group of this.props.groups) {             
+            items.push(<option key={group} value={group}>{group}</option>);   
+        }
+        <input name="browser" style="display:no;" disabled="disabled" onblur="if(this.value==''){toggleField(this,this.previousSibling);}"></input>
+        return items;
+     }  
+
     render= () =>(
         <MyForm onSubmit={this.onSubmit}>
+
         <FormGroup row>
           <MyLabel for="name" sm={2}>Item Name</MyLabel>
           <Col sm={10}>
@@ -275,6 +302,7 @@ class ItemForm extends React.Component{
             <FormFeedback>{this.state.name.error}</FormFeedback>
           </Col>
         </FormGroup>
+
         <FormGroup row>
           <MyLabel for="cost" sm={2}>Cost</MyLabel>
           <Col sm={10}>
@@ -286,6 +314,7 @@ class ItemForm extends React.Component{
             </InputGroup>
           </Col>
         </FormGroup>
+
         <FormGroup row>
             <MyLabel for="description" sm={2}>Description</MyLabel>
             <Col sm={10}>
@@ -295,6 +324,7 @@ class ItemForm extends React.Component{
                 <FormFeedback>{this.state.description.error}</FormFeedback>
             </Col>
         </FormGroup>
+
         <FormGroup row>
             <MyLabel for="startdate" sm={2}>Start Date</MyLabel>
             <Col sm={10}>
@@ -302,6 +332,20 @@ class ItemForm extends React.Component{
                 focused = {this.state.CalFocuse} onFocusChange={this.onFocusChange} numberOfMonths={1} isOutsideRange={()=> false}/>
             </Col>
         </FormGroup>
+
+        <FormGroup row>
+            <MyLabel for="Group" sm={2}>Group Name</MyLabel>
+            <Col sm={10}>
+            <InputGroup>
+            <Input type="select" name="Group" id="Group" disabled={this.props.Loading.clicked} value ={this.state.group.value}
+                onChange={this.onGroupChange}>
+                    {this.createSelectItems()}
+            </Input>
+            <GroupModal/>
+            </InputGroup>
+            </Col>
+        </FormGroup>
+
         <FormGroup row>
           <MyLabel for="ReccuringSelect" sm={2}>Reccuring Cost</MyLabel>
           <Col sm={10}>
@@ -312,6 +356,7 @@ class ItemForm extends React.Component{
             </Input>
           </Col>
         </FormGroup>
+        
         {this.state.recurring &&
         <div>
             <FormGroup row>

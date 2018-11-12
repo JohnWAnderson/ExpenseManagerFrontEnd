@@ -353,7 +353,7 @@ class Signup extends React.Component {
             <Label for="username" sm={2}>Username</Label>
                 <Col sm={10}>
                     <Input type="text" name="Username" id="username" placeholder="Username" invalid={!this.state.username.valid && !!this.state.username.error}
-                    disabled={this.props.Loading.clicked}  onChange = {this.UserNameChange}  onChange = {this.UserNameChange} required />
+                    disabled={this.props.Loading.clicked}  onChange = {this.UserNameChange} required />
                     <FormFeedback>{this.state.username.error}</FormFeedback>
                 </Col>
             </FormGroup>
@@ -391,11 +391,6 @@ class Signup extends React.Component {
 
 }
 
-const Signintable = styled.table`
-    margin-left: 50px;
-    position: relative;
-    height: 100%; width: 450px;
-`   
 
 const MapUserInfo=(state)=>{
     return{
