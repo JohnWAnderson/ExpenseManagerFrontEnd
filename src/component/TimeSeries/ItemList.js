@@ -5,20 +5,9 @@ import getVisableItem from '../../Redux/SelectorItemOrder';
 import styled from 'styled-components';
 import NoItems from './NoItems';
 import ItemListHeader from './ItemListHeader';
-import { Container, Row, Col } from 'reactstrap';
+import { Container} from 'reactstrap';
 import Media from "react-media";
 
-const BoarderDiv = styled.div`
-    border-top: 3px solid black;
-    border-right: 3px solid black;
-    border-left: 3px solid black;
-`
-
-const BoarderCont = styled(Container)`
-    border-top: 3px solid black;
-    border-right: 3px solid black;
-    border-left: 3px solid black;
-`
 
 const NoPadBoarderDiv = styled.div`
     border-top: 3px solid black;

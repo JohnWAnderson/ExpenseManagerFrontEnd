@@ -1,12 +1,12 @@
 
-export const setStartDateQ = (startDate = undefined) =>({
+export const setStartDateQ = (StartDate = undefined) =>({
     type: 'SET_QUARTER_START',
-    startDate
+    StartDate
 });
 
-export const setEndDateQ = (endDate = undefined) =>({
+export const setEndDateQ = (EndDate = undefined) =>({
     type: 'SET_QUARTER_END',
-    endDate
+    EndDate
 });
 
 export const resetFilterQ = () => ({

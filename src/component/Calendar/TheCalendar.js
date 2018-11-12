@@ -17,13 +17,10 @@ class TheCalendar extends React.Component {
                 onSelectEvent={this.props.handleSelectEvent} 
                 localizer={this.state.localizer}
                 defaultView="month"
-                views={['month']}
+                views={['month','day']}
                 events={this.props.events}
                 style={{ height: "550px", width:"100%", align: "center", position: "relative"}}
                 onNavigate={(date) => {this.props.onMonthChange(date)}}
-                components={{
-                    toolbar: CustomToolbar
-                }}
             />       
         )
     }

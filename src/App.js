@@ -73,7 +73,7 @@ handleLogOn=()=>{
 
   loadGroup = (groupList)=>{
     for (let group of groupList){
-      if(group !== "none")
+      if(group !== "no")
         this.props.dispatch(addGroup({group: group}))
     }
   }
