@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import Signup from './Signup';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 const MenuModalButton = styled(Button)`
     font-size: 20px;
@@ -23,7 +24,7 @@ class SignupModal  extends React.Component {
   render() {
     return (
       <div>
-        <MenuModalButton color="primary" onClick={this.props.signOpenToggle}>Sign Up</MenuModalButton>
+        <MenuModalButton color="primary" onClick={this.props.signOpenToggle} disabled={this.props.Loading.clicked} >Sign Up</MenuModalButton>
         <Modal isOpen={this.props.signOpen} toggle={this.props.signOpenToggle} className={this.props.className}>
           <ModalHeader toggle={this.props.signOpenToggle}>Sign Up</ModalHeader>
           <ModalBody>
@@ -35,4 +36,10 @@ class SignupModal  extends React.Component {
   }
 }
 
-export default SignupModal;
+const MapUserInfo=(state)=>{
+  return{
+      Loading: state.loading
+  }
+}
+
+export default connect(MapUserInfo)(SignupModal);

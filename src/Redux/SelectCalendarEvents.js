@@ -5,7 +5,7 @@ export default (items, date) =>{
     let cost = 0;
     let itemNumber = 0;
     const mDate = (moment(date));
-    items.map((item)=>{
+    for(const item of items){
         let theDate = (moment(item.duedate));
         if(item.recurring){
             if(theDate.month() === mDate.month()){
@@ -88,7 +88,7 @@ export default (items, date) =>{
                 }
             ]
         }
-    });
+    };
     return [eventsList,cost, itemNumber];
 }
 

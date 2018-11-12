@@ -19,12 +19,13 @@ class FilterPicker extends React.Component{
             CalFocuse: null,
             quaters: this.setQuarterButtons(GetFirstQuarter(props.items))
         };
+        console.log(props.items);
     }
 
     TimesAmountChange = (startDate, endDate) =>{
-        this.props.items.map((item)=>{
+        for(const item of this.props.items){
             this.props.dispatch(editItem(item.name, {qTimes: TimesItemChange(item, startDate, endDate)}));
-        })
+        }
     };
 
     setQuarterButtons=(date)=>{

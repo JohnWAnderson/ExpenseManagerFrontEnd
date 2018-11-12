@@ -55,9 +55,9 @@ class FilterPicker extends React.Component{
     }
 
     TimesAmountChange = (startDate, endDate) =>{
-        this.props.Items.map((item)=>{
+        for(const item of this.props.Items){
             this.props.dispatch(editItem(item.name, {times: TimesItemChange(item, startDate, endDate)}));
-        })
+        }
     };
 
     onFocusChange = (CalFocuse) =>{

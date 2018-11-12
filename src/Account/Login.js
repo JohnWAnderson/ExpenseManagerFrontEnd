@@ -4,7 +4,7 @@ import {LoadingChange} from '../Redux/Actions/Loading';
 import { connect } from 'react-redux';
 import {UserNameField, EmailField, PasswordField} from '../Functions/Validation';
 
-import { Col, Button, Form, FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap';
+import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class Login extends React.Component {
         constructor(props){
@@ -45,7 +45,7 @@ class Login extends React.Component {
             <FormGroup row>
             <Label for="Username" sm={2}>Username</Label>
                 <Col sm={10}>
-                    <Input type="text" name="Username" id="Username" placeholder="Username or Email" invalid={false} disabled={this.props.Loading.clicked} invalid={this.state.failed} />
+                    <Input type="text" name="Username" id="Username" placeholder="Username or Email" disabled={this.props.Loading.clicked} invalid={this.state.failed} />
                 </Col>
             </FormGroup>
             <FormGroup row>

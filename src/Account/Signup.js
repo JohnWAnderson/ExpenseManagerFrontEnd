@@ -2,10 +2,9 @@ import React from 'react';
 import { signup, signin , UsernameAvailabile, EmailAvailabile, ACCESS_TOKEN, getCurrentUser} from '../ApiMethods/Account';
 import {LoadingChange} from '../Redux/Actions/Loading';
 import { addUser} from '../Redux/Actions/Users';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {UserNameField, EmailField, PasswordField, UserField} from '../Functions/Validation';
-import { Col, Button, Form, FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap';
+import { Col, Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 
 class Signup extends React.Component {
     constructor(props){

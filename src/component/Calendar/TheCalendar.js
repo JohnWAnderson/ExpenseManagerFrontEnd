@@ -1,6 +1,6 @@
 import React from 'react';
-import CustomToolbar from './CustomToolbar';
-import CustomEvent from './CustomEvent';
+// import CustomToolbar from './CustomToolbar';
+// import CustomEvent from './CustomEvent';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 

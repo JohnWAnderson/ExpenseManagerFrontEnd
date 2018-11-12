@@ -9,7 +9,7 @@ import 'react-dates/initialize';
 import styled from 'styled-components';
 import {ItemDisFeild} from '../../Functions/Validation';
 import GroupModal from './GroupModal';
-import { Button, Form, FormGroup, Label, Input, FormFeedback, Col, InputGroupText, InputGroupAddon, InputGroup} from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormFeedback, Col, InputGroupAddon, InputGroup} from 'reactstrap';
 
 const MyLabel = styled(Label)`
     display:block;
@@ -287,7 +287,6 @@ class ItemForm extends React.Component{
         for (let group of this.props.groups) {             
             items.push(<option key={group} value={group}>{group}</option>);   
         }
-        <input name="browser" style="display:no;" disabled="disabled" onblur="if(this.value==''){toggleField(this,this.previousSibling);}"></input>
         return items;
      }  
 
@@ -318,7 +317,7 @@ class ItemForm extends React.Component{
         <FormGroup row>
             <MyLabel for="description" sm={2}>Description</MyLabel>
             <Col sm={10}>
-                <Input type="textarea"disabled={this.props.Loading.clicked} type = "textarea" name = "Description"  id= "description" 
+                <Input type="textarea" disabled={this.props.Loading.clicked} name = "Description"  id= "description" 
                 value = {this.state.description.value} onChange = {this.descriptionChange} placeholder="description (Optional)"
                 invalid = {!!this.state.description.error && !this.state.description.valid}/>
                 <FormFeedback>{this.state.description.error}</FormFeedback>
