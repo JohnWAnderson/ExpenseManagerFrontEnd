@@ -19,7 +19,6 @@ class FilterPicker extends React.Component{
             CalFocuse: null,
             quaters: this.setQuarterButtons(GetFirstQuarter(props.items))
         };
-        console.log(props.items);
     }
 
     TimesAmountChange = (startDate, endDate) =>{
