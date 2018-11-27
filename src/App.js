@@ -19,7 +19,7 @@ import AppDashBoard from './component/TimeSeries/AppDashBoard';
 import {TimesItemChange} from './Redux/TimesChange';
 import styled from 'styled-components';
 import {LoadingChange} from './Redux/Actions/Loading';
-import SignupPage from './Account/SignupPage';
+import HomePage from './component/HomePage';
 import AnalyticsPage from './component/Analytics/AnalyticsPage';
 
 const MainApp = styled.div`
@@ -92,7 +92,7 @@ handleLogOut=()=>{
         <MainApp className='app'>
             <Header handleLogOut= {this.handleLogOut} handleLogOn={this.handleLogOn}/>
             <Switch>
-              <PrivateHomePageRoute path="/" componentAuth= {CalendarPage}  component={SignupPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/>
+              <PrivateHomePageRoute path="/" componentAuth= {CalendarPage}  component={HomePage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/>
               <PrivateRoute path="/analytics" component= {AnalyticsPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/>
               <PrivateRoute path="/calendar" component= {CalendarPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/>
               <PrivateRoute path="/edit/:id" component= {EditPage} isAuthenticated={this.props.User.user.isAuthenticated}  exact={true}/>
