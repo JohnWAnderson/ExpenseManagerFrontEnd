@@ -38,7 +38,7 @@ const findNewStart = (duedate, startF, recurringsize) =>{
         case "weekly":
             return [moment(duedate).add(startF.diff(duedate, 'weeks'), 'weeks').startOf('day'), 0];
         case "biweekly":
-            return [moment(duedate).add(Math.floor(startF.diff(duedate, 'weeks')/2), 'weeks').startOf('day'), 0];
+            return [moment(duedate).add((Math.floor(startF.diff(duedate, 'weeks')/2) * 2), 'weeks').startOf('day'), 0];
         case "monthly":
             return [moment(duedate).add(startF.diff(duedate, 'month'), 'month').startOf('day'), 0];
         default:
