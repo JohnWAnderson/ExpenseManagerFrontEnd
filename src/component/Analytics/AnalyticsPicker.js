@@ -28,15 +28,21 @@ class FilterPicker extends React.Component{
     };
 
     setQuarterButtons=(date)=>{
+        console.log(date)
+        console.log(date.year())
+        console.log(date.quarter())
         let quaters=[];
         let yearF = date.year();
         let quaterF = date.quarter();
         const year = moment().year();
         const quater = moment().quarter();
-        while(yearF <= year && quaterF <= quater){
+        while(yearF <= year){
+            if(yearF === year && quaterF > quater )
+                break;
+
             quaters.push([yearF, quaterF])
             if(quaterF===4){
-                quaterF = 0;
+                quaterF = 1;
                 yearF = yearF+1;
             }
             else{
